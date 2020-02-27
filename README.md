@@ -33,6 +33,7 @@ MANO Benchmarking Framework (MBF) is a result of a small script that was used to
     sudo docker exec -it experiment-runner bash
 
     # Background Run the respective experiment file
+    nohup python -u ./run-emu-experiment-osm.py > emu-experiment.log &
     nohup python -u ./run-experiment-osm.py > experiment.log &
     nohup python -u ./run-experiment-sonata.py > experiment.log &
     nohup python -u ./run-experiment-sonata-k8-scaling.py > 10xpc-experiment.log &
