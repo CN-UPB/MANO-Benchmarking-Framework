@@ -1,0 +1,237 @@
+{
+	"variables": [],
+	"info": {
+		"name": "Pishahang-OS",
+		"_postman_id": "41e76b83-213a-f921-5a8a-017e70c2791d",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "auth",
+			"description": "",
+			"item": [
+				{
+					"name": "v3/auth/tokens",
+					"request": {
+						"url": "http://0.0.0.0:5000/v3/auth/tokens",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"auth\": {\n        \"identity\": {\n            \"methods\": [\n                \"password\"\n            ],\n            \"password\": {\n                \"user\": {\n                \t\"name\": \"admin\",\n                \t\"domain\": {\n                        \"name\": \"Default\"\n                    },\n                    \"password\": \"1234\"\n                }\n            }\n        },\n        \"scope\": {\n        \t\"project\": {\n                \"id\": \"40d9de036960447dafd7d74d306cf189\"\n            }\n        }\n    }\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "heat",
+			"description": "",
+			"item": [
+				{
+					"name": "/v1/<project_id>/stacks",
+					"request": {
+						"url": "http://0.0.0.0:8004/v1/saasup/stacks",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"auth\": {\n        \"identity\": {\n            \"methods\": [\n                \"password\"\n            ],\n            \"password\": {\n                \"user\": {\n                \t\"name\": \"admin\",\n                \t\"domain\": {\n                        \"name\": \"Default\"\n                    },\n                    \"password\": \"1234\"\n                }\n            }\n        },\n        \"scope\": {\n        \t\"project\": {\n                \"id\": \"40d9de036960447dafd7d74d306cf189\"\n            }\n        }\n    }\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "/v1/<project_id>/stacks/<sonata_service>",
+					"request": {
+						"url": "http://0.0.0.0:8004/v1/project_id/stacks/sonata_service",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "/v1/<project_id>/stacks/<sonata_service>/<sonata_id>",
+					"request": {
+						"url": "http://0.0.0.0:8004/v1/project_id/stacks/sonata_service/sonata_id",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "/v1/<project_id>/stacks/<sonata_service>/<sonata_id>",
+					"request": {
+						"url": "http://0.0.0.0:8004/v1/project_id/stacks/sonata_service/sonata_id",
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "/v1/<project_id>/stacks/<sonata_service>/<sonata_id>/template",
+					"request": {
+						"url": "http://0.0.0.0:8004/v1/project_id/stacks/sonata_service/sonata_id/template",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "/v1/<project_id>/stacks/<sonata_service>/<sonata_id>/resources",
+					"request": {
+						"url": "http://0.0.0.0:8004/v1/project_id/stacks/sonata_service/sonata_id/resources",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "/v1/<project_id>/stacks/<sonata_service>/<sonata_id>/resources/<resource_type>",
+					"request": {
+						"url": "http://0.0.0.0:8004/v1/project_id/stacks/sonata_service/sonata_id/resources/r_type",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "glance",
+			"description": "",
+			"item": [
+				{
+					"name": "/v2/images",
+					"request": {
+						"url": "http://0.0.0.0:9292/v2/images",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"auth\": {\n        \"identity\": {\n            \"methods\": [\n                \"password\"\n            ],\n            \"password\": {\n                \"user\": {\n                \t\"name\": \"admin\",\n                \t\"domain\": {\n                        \"name\": \"Default\"\n                    },\n                    \"password\": \"1234\"\n                }\n            }\n        },\n        \"scope\": {\n        \t\"project\": {\n                \"id\": \"40d9de036960447dafd7d74d306cf189\"\n            }\n        }\n    }\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "nova",
+			"description": "",
+			"item": [
+				{
+					"name": "/v2.1/<project_id>/limits",
+					"request": {
+						"url": "http://0.0.0.0:8774/v2.1/project_id/limits",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"auth\": {\n        \"identity\": {\n            \"methods\": [\n                \"password\"\n            ],\n            \"password\": {\n                \"user\": {\n                \t\"name\": \"admin\",\n                \t\"domain\": {\n                        \"name\": \"Default\"\n                    },\n                    \"password\": \"1234\"\n                }\n            }\n        },\n        \"scope\": {\n        \t\"project\": {\n                \"id\": \"40d9de036960447dafd7d74d306cf189\"\n            }\n        }\n    }\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "/v2.1/<project_id>/flavors/detail",
+					"request": {
+						"url": "http://0.0.0.0:8774/v2.1/project/flavors/detail",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"auth\": {\n        \"identity\": {\n            \"methods\": [\n                \"password\"\n            ],\n            \"password\": {\n                \"user\": {\n                \t\"name\": \"admin\",\n                \t\"domain\": {\n                        \"name\": \"Default\"\n                    },\n                    \"password\": \"1234\"\n                }\n            }\n        },\n        \"scope\": {\n        \t\"project\": {\n                \"id\": \"40d9de036960447dafd7d74d306cf189\"\n            }\n        }\n    }\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
