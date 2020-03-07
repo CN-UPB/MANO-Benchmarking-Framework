@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, jsonify, Response
+from flask import Flask, render_template, request, redirect, jsonify, Response
 app = Flask(__name__)
 
 import json
@@ -66,15 +66,13 @@ def stack_find(project_id, stack_name):
     with lock:
         _stack_id = stack_map[_stack_name]['id']
 
-    app.logger.info('Stack creation request: %s', _stack_id)
+    app.logger.info('Find Stack request: %s', _stack_id)
 
     _response = _response.format(
                                 stack_name = _stack_name,
                                 stack_id = _stack_id)
-
-    return Response(_response, 
-                        status=302, 
-                        mimetype='text/plain')
+    
+    return redirect(_response, code=302)
 
 # Send 'CREATE COMPLETE' first time
 # then 'UPDATE_COMPLETE'
@@ -121,14 +119,17 @@ def stack_template(project_id, stack_name, stack_id):
 
 @app.route('/v1/<project_id>/stacks/<stack_name>/<stack_id>/resources', methods=['GET'])
 def stack_resources(project_id, stack_name, stack_id):
-    return Response(json.dumps(static_response.resources),
+    return Response(json.dumps(static_response.resources(stack_id, stack_name)),
                         status=200,
                         mimetype='application/json')
 
 
 @app.route('/v1/<project_id>/stacks/<stack_name>/<stack_id>/resources/<resource_name>', methods=['GET'])
 def stack_resources_status(project_id, stack_name, stack_id, resource_name):
-    return Response(json.dumps(static_response.resources_status(stack_id, stack_name, resource_name)),
+
+    _data = static_response.resources_status_individual[resource_name]
+
+    return Response(json.dumps(_data),
                         status=200,
                         mimetype='application/json')
 
