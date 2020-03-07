@@ -10,7 +10,7 @@ auth_token = {
         "name": "admin"
       }
     ],
-    "expires_at": "2020-03-02T15:05:52.000000Z",
+    "expires_at": "2050-03-02T15:05:52.000000Z",
     "project": {
       "domain": {
         "id": "default",
@@ -23,21 +23,21 @@ auth_token = {
       {
         "endpoints": [
           {
-            "url": "http://131.234.250.117:8776/v3/40d9de036960447dafd7d74d306cf189",
+            "url": "http://vim-mocker:8776/v3/40d9de036960447dafd7d74d306cf189",
             "interface": "internal",
             "region": "RegionOne",
             "region_id": "RegionOne",
             "id": "5e8c4ef810e9483080bd4bafda1d52af"
           },
           {
-            "url": "http://131.234.250.117:8776/v3/40d9de036960447dafd7d74d306cf189",
+            "url": "http://vim-mocker:8776/v3/40d9de036960447dafd7d74d306cf189",
             "interface": "admin",
             "region": "RegionOne",
             "region_id": "RegionOne",
             "id": "a77f6fd8bdf04f2d9aef662c243c1c7d"
           },
           {
-            "url": "http://131.234.250.117:8776/v3/40d9de036960447dafd7d74d306cf189",
+            "url": "http://vim-mocker:8776/v3/40d9de036960447dafd7d74d306cf189",
             "interface": "public",
             "region": "RegionOne",
             "region_id": "RegionOne",
@@ -51,21 +51,21 @@ auth_token = {
       {
         "endpoints": [
           {
-            "url": "http://131.234.250.117:8004/v1/40d9de036960447dafd7d74d306cf189",
+            "url": "http://vim-mocker:8004/v1/40d9de036960447dafd7d74d306cf189",
             "interface": "internal",
             "region": "RegionOne",
             "region_id": "RegionOne",
             "id": "807619b9f1914908939f64995152b700"
           },
           {
-            "url": "http://131.234.250.117:8004/v1/40d9de036960447dafd7d74d306cf189",
+            "url": "http://vim-mocker:8004/v1/40d9de036960447dafd7d74d306cf189",
             "interface": "admin",
             "region": "RegionOne",
             "region_id": "RegionOne",
             "id": "98f35de9a78440b2869d6fb14635f4d8"
           },
           {
-            "url": "http://131.234.250.117:8004/v1/40d9de036960447dafd7d74d306cf189",
+            "url": "http://vim-mocker:8004/v1/40d9de036960447dafd7d74d306cf189",
             "interface": "public",
             "region": "RegionOne",
             "region_id": "RegionOne",
@@ -79,21 +79,21 @@ auth_token = {
       {
         "endpoints": [
           {
-            "url": "http://131.234.250.117:8774/v2.1",
+            "url": "http://vim-mocker:8774/v2.1",
             "interface": "admin",
             "region": "RegionOne",
             "region_id": "RegionOne",
             "id": "20df919f79bb4b3c83145a0329016e62"
           },
           {
-            "url": "http://131.234.250.117:8774/v2.1",
+            "url": "http://vim-mocker:8774/v2.1",
             "interface": "internal",
             "region": "RegionOne",
             "region_id": "RegionOne",
             "id": "83be8def65514b09b48ab5ec021caded"
           },
           {
-            "url": "http://131.234.250.117:8774/v2.1",
+            "url": "http://vim-mocker:8774/v2.1",
             "interface": "public",
             "region": "RegionOne",
             "region_id": "RegionOne",
@@ -107,21 +107,21 @@ auth_token = {
       {
         "endpoints": [
           {
-            "url": "http://131.234.250.117/placement",
+            "url": "http://vim-mocker/placement",
             "interface": "public",
             "region": "RegionOne",
             "region_id": "RegionOne",
             "id": "59f86280fe8b43d288381d0304c1ef17"
           },
           {
-            "url": "http://131.234.250.117/placement",
+            "url": "http://vim-mocker/placement",
             "interface": "admin",
             "region": "RegionOne",
             "region_id": "RegionOne",
             "id": "6ae4f5c6c62e491d992a76997ebea3ce"
           },
           {
-            "url": "http://131.234.250.117/placement",
+            "url": "http://vim-mocker/placement",
             "interface": "internal",
             "region": "RegionOne",
             "region_id": "RegionOne",
@@ -135,21 +135,21 @@ auth_token = {
       {
         "endpoints": [
           {
-            "url": "http://131.234.250.117:8000/v1",
+            "url": "http://vim-mocker:8000/v1",
             "interface": "admin",
             "region": "RegionOne",
             "region_id": "RegionOne",
             "id": "27de018a33914b01a495895aa9f47174"
           },
           {
-            "url": "http://131.234.250.117:8000/v1",
+            "url": "http://vim-mocker:8000/v1",
             "interface": "internal",
             "region": "RegionOne",
             "region_id": "RegionOne",
             "id": "4158b0a62d9d41deb730a5c79eaa6767"
           },
           {
-            "url": "http://131.234.250.117:8000/v1",
+            "url": "http://vim-mocker:8000/v1",
             "interface": "public",
             "region": "RegionOne",
             "region_id": "RegionOne",
@@ -163,21 +163,21 @@ auth_token = {
       {
         "endpoints": [
           {
-            "url": "http://131.234.250.117:8774/v2/40d9de036960447dafd7d74d306cf189",
+            "url": "http://vim-mocker:8774/v2/40d9de036960447dafd7d74d306cf189",
             "interface": "public",
             "region": "RegionOne",
             "region_id": "RegionOne",
             "id": "276148bfdb0b47678ca76a6a17c91d9f"
           },
           {
-            "url": "http://131.234.250.117:8774/v2/40d9de036960447dafd7d74d306cf189",
+            "url": "http://vim-mocker:8774/v2/40d9de036960447dafd7d74d306cf189",
             "interface": "admin",
             "region": "RegionOne",
             "region_id": "RegionOne",
             "id": "60bf0a6f1c90412a82dbc0d7aa1a1603"
           },
           {
-            "url": "http://131.234.250.117:8774/v2/40d9de036960447dafd7d74d306cf189",
+            "url": "http://vim-mocker:8774/v2/40d9de036960447dafd7d74d306cf189",
             "interface": "internal",
             "region": "RegionOne",
             "region_id": "RegionOne",
@@ -191,21 +191,21 @@ auth_token = {
       {
         "endpoints": [
           {
-            "url": "http://131.234.250.117:9292",
+            "url": "http://vim-mocker:9292",
             "interface": "internal",
             "region": "RegionOne",
             "region_id": "RegionOne",
             "id": "407c7e97ce5a4cf1b04485d99a025b1d"
           },
           {
-            "url": "http://131.234.250.117:9292",
+            "url": "http://vim-mocker:9292",
             "interface": "admin",
             "region": "RegionOne",
             "region_id": "RegionOne",
             "id": "8ee6107692e344d29ea2a962b70b1a28"
           },
           {
-            "url": "http://131.234.250.117:9292",
+            "url": "http://vim-mocker:9292",
             "interface": "public",
             "region": "RegionOne",
             "region_id": "RegionOne",
@@ -219,21 +219,21 @@ auth_token = {
       {
         "endpoints": [
           {
-            "url": "http://131.234.250.117:9696/",
+            "url": "http://vim-mocker:9696/",
             "interface": "public",
             "region": "RegionOne",
             "region_id": "RegionOne",
             "id": "43110874c56a4dbab5184d843c79fab9"
           },
           {
-            "url": "http://131.234.250.117:9696/",
+            "url": "http://vim-mocker:9696/",
             "interface": "admin",
             "region": "RegionOne",
             "region_id": "RegionOne",
             "id": "9c41e12bb35940c386217133292f7dda"
           },
           {
-            "url": "http://131.234.250.117:9696/",
+            "url": "http://vim-mocker:9696/",
             "interface": "internal",
             "region": "RegionOne",
             "region_id": "RegionOne",
@@ -247,21 +247,21 @@ auth_token = {
       {
         "endpoints": [
           {
-            "url": "http://131.234.250.117:8776/v1/40d9de036960447dafd7d74d306cf189",
+            "url": "http://vim-mocker:8776/v1/40d9de036960447dafd7d74d306cf189",
             "interface": "admin",
             "region": "RegionOne",
             "region_id": "RegionOne",
             "id": "12e63481f7024133a81984477424f4e5"
           },
           {
-            "url": "http://131.234.250.117:8776/v1/40d9de036960447dafd7d74d306cf189",
+            "url": "http://vim-mocker:8776/v1/40d9de036960447dafd7d74d306cf189",
             "interface": "public",
             "region": "RegionOne",
             "region_id": "RegionOne",
             "id": "5234fa07dba44b0190ef396db7360560"
           },
           {
-            "url": "http://131.234.250.117:8776/v1/40d9de036960447dafd7d74d306cf189",
+            "url": "http://vim-mocker:8776/v1/40d9de036960447dafd7d74d306cf189",
             "interface": "internal",
             "region": "RegionOne",
             "region_id": "RegionOne",
@@ -275,21 +275,21 @@ auth_token = {
       {
         "endpoints": [
           {
-            "url": "http://131.234.250.117:8776/v2/40d9de036960447dafd7d74d306cf189",
+            "url": "http://vim-mocker:8776/v2/40d9de036960447dafd7d74d306cf189",
             "interface": "internal",
             "region": "RegionOne",
             "region_id": "RegionOne",
             "id": "9ab3ecb6ceb447a8904eabd08bb1cdef"
           },
           {
-            "url": "http://131.234.250.117:8776/v2/40d9de036960447dafd7d74d306cf189",
+            "url": "http://vim-mocker:8776/v2/40d9de036960447dafd7d74d306cf189",
             "interface": "admin",
             "region": "RegionOne",
             "region_id": "RegionOne",
             "id": "d0650f149a4a465f950fd2eda3fdc36c"
           },
           {
-            "url": "http://131.234.250.117:8776/v2/40d9de036960447dafd7d74d306cf189",
+            "url": "http://vim-mocker:8776/v2/40d9de036960447dafd7d74d306cf189",
             "interface": "public",
             "region": "RegionOne",
             "region_id": "RegionOne",
@@ -303,21 +303,21 @@ auth_token = {
       {
         "endpoints": [
           {
-            "url": "http://131.234.250.117/identity_admin",
+            "url": "http://vim-mocker/identity_admin",
             "interface": "admin",
             "region": "RegionOne",
             "region_id": "RegionOne",
             "id": "3145d5e1d48343feb7e59c71bd0e41df"
           },
           {
-            "url": "http://131.234.250.117/identity",
+            "url": "http://vim-mocker/identity",
             "interface": "public",
             "region": "RegionOne",
             "region_id": "RegionOne",
             "id": "37ec5b9565b34f26b191792bd6b03c52"
           },
           {
-            "url": "http://131.234.250.117/identity",
+            "url": "http://vim-mocker/identity",
             "interface": "internal",
             "region": "RegionOne",
             "region_id": "RegionOne",

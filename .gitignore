@@ -219,3 +219,8 @@ src/adaptor/docs/doc
 src/adaptor/docs/doclatex
 
 EXP_RESULTS
+
+results/Common Results
+results/results_test
+
+vim-mocker/docs/pishahang_os_records
