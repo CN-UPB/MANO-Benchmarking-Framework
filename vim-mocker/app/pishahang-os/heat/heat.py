@@ -136,4 +136,4 @@ def stack_resources_status(project_id, stack_name, stack_id, resource_name):
 
 if __name__ == '__main__':
     threading.Thread(target=update_thread).start()
-    app.run(debug=True, host='0.0.0.0', port=8004)
+    app.run(debug=True, threaded=True, host='0.0.0.0', port=8004)
