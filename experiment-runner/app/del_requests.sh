@@ -1,0 +1,1 @@
+docker exec son-postgres psql -h localhost -U postgres -d gatekeeper -c "DELETE FROM requests"

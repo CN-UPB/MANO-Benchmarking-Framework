@@ -4,6 +4,7 @@ app = Flask(__name__)
 import sys
 import docker
 import json
+import subprocess
 
 client = docker.DockerClient(base_url='unix://container/path/docker.sock')
 
@@ -87,7 +88,19 @@ def docker_names():
         return str(e)
 
 
+@app.route('/del_requests')
+def del_requests():
+    try:
+        result = subprocess.check_output(
+            ['docker exec son-postgres psql -h localhost -U postgres -d gatekeeper -c "DELETE FROM requests"'], shell=True)
+    except subprocess.CalledProcessError as e:
+        return "An error occurred while trying to fetch task status updates."
+
+    return 'Success %s' % (result)
+
+
+
 
 if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0', port=9000)
+    app.run(debug=True, host='0.0.0.0', port=5055)
 

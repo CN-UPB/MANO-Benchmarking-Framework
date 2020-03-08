@@ -6,6 +6,6 @@ finish() {
     chown -R ${user_id} /data
 }
 
-echo "Running Flask server"
+echo "Started Experiment Container"
 
-python3 app/app.py
+# python3 app/app.py

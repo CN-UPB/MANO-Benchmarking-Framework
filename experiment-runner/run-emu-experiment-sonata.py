@@ -24,27 +24,29 @@ from novaclient import client as nvclient
 
 docker_client = docker.DockerClient(base_url='unix://container/path/docker.sock')
 
-DOCKER_EXCLUDE = ['experiment-runner']
+DOCKER_EXCLUDE = []
 
-IDLE_SLEEP = 0.1
-NS_TERMINATION_SLEEP = 20
-REQUESTS_PER_MINUTE = 15
-INTER_EXPERIMENT_SLEEP = 300
+IDLE_SLEEP = 1
+# NS_TERMINATION_SLEEP = 20
+# REQUESTS_PER_MINUTE = 15
+INTER_EXPERIMENT_SLEEP = 60
+NO_ACTIVITY_COUNT = 12
 
 USERNAME = "pishahang"
 PASSWORD = "1234"
 HOST_URL = "thesismano4.cs.upb.de"
+APP_SERVER_PORT = 5055
 
 AUTH_URL = "http://131.234.29.169/identity/v3"
 OS_USERNAME = "demo"
 OS_PASSWORD = "1234"
 
-EXPERIMENT_REFERENCE = "LOW_10_RPM"
+EXPERIMENT_REFERENCE = "vim-mocker"
 IMAGES = ["cirros"]
-INSTANCES = [5]
+INSTANCES = [25]
 CASES = [1]
-RUNS = 1
-REQUESTS_PER_MINUTE = [10]
+RUNS = 5
+REQUESTS_PER_MINUTE = list(range(20, 25))
 
 IS_EXPERIMENT_VNF_INSTANCES_BASED = True
 SKIP_EXPERIMENT_IF_ERRORS = False
@@ -54,6 +56,19 @@ cases_vnfs = {
     2: 3,
     3: 5
 }
+
+# 131.234.28.240:5000/del_requests
+
+
+def remove_requests(host=HOST_URL, port=APP_SERVER_PORT) :
+    _base_path = 'http://{0}:{1}/del_requests'.format(host, port)
+
+    try:
+        r = requests.get(_base_path, verify=False)
+        print(r.text)
+    except Exception as e:
+        print("Scale debug could'nt be set")
+
 
 def sonata_cleanup():
 
@@ -294,7 +309,7 @@ for _image in IMAGES:
                     print("PHASE 1 : Recording idle metrics...")
                     experiment_timestamps["start_time"] = int(time.time())
 
-                    time.sleep(60*IDLE_SLEEP)
+                    time.sleep(IDLE_SLEEP)
 
                     print("PHASE 2 : Starting Instantiation Sequence...")
 
@@ -321,7 +336,8 @@ for _image in IMAGES:
 
                     def successRatioThread():
                         global experiment_complete
-                        TIME_OUT = 60*NS_TERMINATION_SLEEP
+                        # TIME_OUT = 60*NS_TERMINATION_SLEEP
+                        TIME_OUT = no_instantiate * 60
                         QUERY_FREQUENCY = 10
                         COUNTER = 0
 
@@ -331,6 +347,10 @@ for _image in IMAGES:
                                 TOTAL_INSTANCES = _instances
                             else:
                                 TOTAL_INSTANCES = int(cases_vnfs[_case]*_instances)
+
+                            _sr_old = "0,0,0"
+                            _no_change_count = 0
+
                             while(COUNTER < TIME_OUT):
                                 try:
                                     _requests = json.loads(sonata_nslcm.get_ns_instances_request_status(
@@ -346,9 +366,25 @@ for _image in IMAGES:
                                                         build=(max(0, BUILD_INSTANCES)),
                                                         error=(max(0, ERROR_INSTANCES)))
 
+                                    _sr_now = "{active},{build},{error}".format(
+                                                        active=(max(0, ACTIVE_INSTANCES)),
+                                                        build=(max(0, BUILD_INSTANCES)),
+                                                        error=(max(0, ERROR_INSTANCES)))
+
+                                    if _sr_old == _sr_now:
+                                        _no_change_count += 1
+                                        print("No activity increased: ", str(_no_change_count))
+                                        if _no_change_count > NO_ACTIVITY_COUNT:
+                                            print("ERROR: Stopping due to no activity")
+                                            break
+                                    else:
+                                        _no_change_count = 0
+
 
                                     print(_successratio)
                                     print("###")
+                                    
+                                    _sr_old = _sr_now
                                     
                                     _file.write(_successratio)
 
@@ -446,7 +482,7 @@ for _image in IMAGES:
 
                     print("PHASE 3 : Recording Metrics Post NS ...")
 
-                    time.sleep(60*IDLE_SLEEP)
+                    time.sleep(IDLE_SLEEP)
 
                     experiment_timestamps["end_time"] = int(time.time())                                 
 
@@ -534,4 +570,5 @@ for _image in IMAGES:
                     if experiment_complete:
                         os.rename(nit, "{nit}-Complete".format(nit=nit))
                     # delete_stacks()
+                    remove_requests()
                     time.sleep(INTER_EXPERIMENT_SLEEP)

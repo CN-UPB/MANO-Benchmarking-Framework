@@ -50,3 +50,10 @@ MANO Benchmarking Framework (MBF) is a result of a small script that was used to
         -v /var/run/docker.sock:/container/path/docker.sock \
         -v /home/sonatamano/pg-scrambLe/phishahang/Pishahang-master/son-mano-framework/plugins/son-mano-scaling/debugnorm:/debugscale \
         experiment-runner
+
+# Add vim-mocker vims
+
++ Enter vim address as `vim-mocker`.
++ Other details can be anything
+
+![add vim](/MANO-Benchmarking-Framework/vim-mocker/docs/vim-details.png)
