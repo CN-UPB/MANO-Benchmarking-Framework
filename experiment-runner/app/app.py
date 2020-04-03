@@ -98,7 +98,31 @@ def del_requests():
 
     return 'Success %s' % (result)
 
+@app.route('/restart_pishahang')
+def restart_pishahang():
+    try:
+        result = subprocess.check_output(
+            ['bash /home/thesismano4/MANO-Benchmarking-Framework/vim-mocker/run_docker_pishahang_os.sh'], shell=True)
+        result = subprocess.check_output(
+            ['bash /home/thesismano4/Pishahang/run_pishahang_changes.sh 131.234.28.240'], shell=True)
+    except subprocess.CalledProcessError as e:
+        return "An error occurred while trying to fetch task status updates."
 
+    return 'Success %s' % (result)
+
+@app.route('/get_pishahang_status')
+def get_pishahang_status():
+    try:
+        result = subprocess.check_output(
+            ['docker exec son-postgres psql -h localhost -U postgres -d gatekeeper -c "SELECT count(*) FILTER (WHERE status = \'READY\') AS active, count(*) FILTER (WHERE status = \'INSTANTIATING\') AS build, count(*) FILTER (WHERE status = \'ERROR\') AS error FROM requests;"'], shell=True)
+        
+        result = result.split()
+        _result = '{ready},{init},{error}'.format(ready=int(result[6]), init=int(result[8]), error=int(result[10]))
+
+    except subprocess.CalledProcessError as e:
+        return "An error occurred while trying to fetch task status updates."
+
+    return _result
 
 
 if __name__ == '__main__':
