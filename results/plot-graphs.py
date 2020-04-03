@@ -11,6 +11,8 @@ import seaborn as sns
 import matplotlib.dates as mdates
 import datetime as dt
 import statistics
+from csv import reader
+
 # from scipy.interpolate import spline
 
 
@@ -54,7 +56,9 @@ PISH_MEM_RPM_DOC_GRAPH = False
 
 OSM_RPM_DOC_AGG_GRAPH = False
 PISH_CPU_RPM_DOC_AGG_GRAPH = False
-PISH_MEM_RPM_DOC_AGG_GRAPH = True
+PISH_MEM_RPM_DOC_AGG_GRAPH = False
+
+RPM_END_TO_END_TIMES = True
 
 
 
@@ -85,6 +89,8 @@ _LIFECYCLE_PATH = "/home/bhargavi/Documents/PG-SCRAMBLE/pg-scrambLe/experiments/
 
 INPUT_PATH = "/home/bhargavi/Downloads/Overnight_1/Final"
 OUTPUT_PATH = "/home/bhargavi/Downloads/Overnight_1/Graphs"
+
+RPM_E2E_PATH = "/home/bhargavi/Downloads/e2e-inittimes/230"
 
 RUNS = 3 # Not fully supported
 CASES = 3 # Not fully supported
@@ -2507,7 +2513,40 @@ if PISH_MEM_RPM_DOC_AGG_GRAPH:
    
     plt.savefig('{}/{}.png'.format(OUTPUT_PATH, "Pishahang - Aggregate Max MEM") ,bbox_inches='tight',dpi=100)
 
- 
+
+#########################################
+# END TO END TIMES
+#########################################
+
+if RPM_END_TO_END_TIMES:
+    pishahang_e2e_files = [y for x in os.walk(RPM_E2E_PATH) for y in glob(os.path.join(x[0], 'end-to-end-time.csv'))]
+    pishahang_data_dict = {}
+    rpmset = []  
+    runset = [] 
+    etimeset = []
+    for _e2e_file in pishahang_e2e_files:
+        rpm = Path(_e2e_file).parent.name.split("_rpm")[1].split("_")[0]   
+        rpmset.append(int(rpm))
+        run =  Path(_e2e_file).parent.name.split("rpm")[1].split("_")[1].split("-")[0]   
+        runset.append(run)
+        etime = (pd.read_csv(_e2e_file)["end-to-end-time"][0])
+        etimeset.append(etime)
+    dict = {'rpm': rpmset, 'run': runset, 'E2E': etimeset}
+    df = pd.DataFrame(dict)
+    df = df.sort_values('rpm')
+    df = df = df.groupby(['rpm']).agg(['mean', 'std', 'min', 'max']).reset_index()
+    dataf = df['E2E'].reset_index()
+    sns.set(style='whitegrid', palette='muted', font_scale=1.5)
+    fig, ax = plt.subplots(figsize=(35,20))
+    plt.title('E2E v/s RPM', fontsize=30)
+    plt.xlabel('RPM', fontsize=25)
+    plt.ylabel('End-to-End time(sec)', fontsize=25)
+    index = np.arange(len(dataf['mean']))
+    width = 0.30 
+    ax.bar(index, dataf['mean'], yerr=dataf['std'], label = "E2E", alpha=0.5, capsize=10)
+    plt.xticks(index, df['rpm'])
+    plt.legend(loc='center left', bbox_to_anchor=(1, 0.5))
+    plt.savefig('{}/{}.png'.format(OUTPUT_PATH, "Pishahang - RPM vs E2E") ,bbox_inches='tight',dpi=100)
 
 #########################################
 #########################################
