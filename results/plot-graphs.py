@@ -51,7 +51,7 @@ LIFECYCLE_GRAPH = False
 
 
 OSM_RPM_DOC_GRAPH = False
-PISH_CPU_RPM_DOC_GRAPH = False
+PISH_CPU_RPM_DOC_GRAPH = True
 PISH_MEM_RPM_DOC_GRAPH = False
 
 OSM_RPM_DOC_AGG_GRAPH = False
@@ -59,7 +59,7 @@ PISH_CPU_RPM_DOC_AGG_GRAPH = False
 PISH_MEM_RPM_DOC_AGG_GRAPH = False
 
 RPM_END_TO_END_TIMES = False
-RPM_INDIVIDUAL_TIMES = True
+RPM_INDIVIDUAL_TIMES = False
 
 
 
@@ -88,8 +88,8 @@ _SUCCESS_RATIO_PATH = "/home/bhargavi/Documents/PG-SCRAMBLE/pg-scrambLe/experime
 _I_E2E_PATH = "/home/bhargavi/Documents/PG-SCRAMBLE/pg-scrambLe/experiments/results/Common Results/data_csv/OSM Results/data_csv"
 _LIFECYCLE_PATH = "/home/bhargavi/Documents/PG-SCRAMBLE/pg-scrambLe/experiments/results/test"
 
-INPUT_PATH = "/home/bhargavi/Downloads/Overnight_1/Final"
-OUTPUT_PATH = "/home/ashwin/Documents/MSc/pg-scramble/MANO-Benchmarking-Framework/results/Common Results/vim-mocker/Graphs"
+INPUT_PATH = "/home/bhargavi/Downloads/Bar graphs/150-3000-Final"
+OUTPUT_PATH = "/home/bhargavi/Downloads/Bar graphs/Graphs"
 
 
 RUNS = 3 # Not fully supported
@@ -110,7 +110,7 @@ success_ratio_file = [y for x in os.walk(_SUCCESS_RATIO_PATH) for y in glob(os.p
 i_e2e_file = [y for x in os.walk(_I_E2E_PATH) for y in glob(os.path.join(x[0], 'individual-build-times.csv'))]
 cpu_lifecycle_file = [y for x in os.walk(_LIFECYCLE_PATH) for y in glob(os.path.join(x[0], 'system-cpu.csv'))]
 
-osm_rpm_doc_cpu_files = [y for x in os.walk(INPUT_PATH) for y in glob(os.path.join(x[0], '*-CPU-RPM-Final-Results.csv'))]
+#osm_rpm_doc_cpu_files = [y for x in os.walk(INPUT_PATH) for y in glob(os.path.join(x[0], '*-CPU-RPM-Final-Results.csv'))]
 pish_rpm_doc_cpu_files = [y for x in os.walk(INPUT_PATH) for y in glob(os.path.join(x[0], '*-CPU-RPM-Final-Results.csv'))]
 pish_rpm_doc_mem_files = [y for x in os.walk(INPUT_PATH) for y in glob(os.path.join(x[0], '*-MEM-RPM-Final-Results.csv'))]
 
@@ -2085,7 +2085,7 @@ if OSM_RPM_DOC_GRAPH:
     plt.savefig('{}/{}.png'.format(OUTPUT_PATH, "OSM - RPM vs Max CPU") ,bbox_inches='tight',dpi=100) 
 
 ##############################################
-# PISHAHANG RPM vs DOC graphs   PISH_MEM_RPM_DOC_GRAPH
+# PISHAHANG RPM vs DOC graphs
 ##############################################
 
 #mean CPU
@@ -2125,52 +2125,49 @@ if PISH_CPU_RPM_DOC_GRAPH:
         _max_dict_temp["rpm"] = _maxrpm
         maxdata.append(_max_dict_temp.copy())
 
-    
+    #mean - df
     df = pd.DataFrame(data)
-    _docker_list = df.columns.values.tolist()
-    _docker_wanted_list = ['servicelifecyclemanagement-cpu','son-catalogue-repos-cpu','son-monitor-prometheus-cpu','son-monitor-influxdb-cpu','son-gtkkpi-cpu','son-monitor-pushgateway-cpu','son-keycloak-cpu','son-broker-cpu','son-sp-infrabstract-cpu','son-monitor-probe-cpu','vim-mocker-cpu','functionlifecyclemanagement-cpu','specificmanagerregistry-cpu','son-gtkrec-cpu','sdn-plugin-cpu','placementplugin-cpu','son-gtkapi-cpu','pluginmanager-cpu','placementexecutive-cpu','dummyplugin-cpu']
-    _docker_list_mean_cpu = [d for d in _docker_list if d not in _docker_wanted_list]
+    df = df.T
+    df = df.reset_index()
+    df.columns = [*df.columns[:-1], 'CPU Mean']
+   
+   # max - dataframe
     dataframe = pd.DataFrame(maxdata)
-    df = df.sort_values('rpm')
-    sns.set(style='whitegrid', palette='muted', font_scale=1.5)
-    plt.figure(figsize=(30,20))
-    plt.title('RPM v/s Mean CPU usage', fontsize=30)
-    plt.xlabel('RPM', fontsize=25)
-    plt.ylabel('Mean CPU', fontsize=25)
-    for _d in df.columns:
-        if _d in _docker_list_mean_cpu:
-            continue
-        plt.plot(df['rpm'],df[_d],label = _d)
-        plt.legend(loc='center left', bbox_to_anchor=(1, 0.5))
-
-    plt.savefig('{}/{}.png'.format(OUTPUT_PATH, "Pishahang - RPM vs Mean CPU") ,bbox_inches='tight',dpi=100)
-
-    #mean MEM
+    dataframe = dataframe.T
+    dataframe = dataframe.reset_index()
+    dataframe.columns = [*dataframe.columns[:-1], 'CPU Max']
+   
 
     
-
-
-    #max CPU
-
     
-    dataframe = dataframe.sort_values('rpm')
+    _docker_wanted_list = ['servicelifecyclemanagement-cpu','son-catalogue-repos-cpu','son-keycloak-cpu','son-broker-cpu','son-sp-infrabstract-cpu','functionlifecyclemanagement-cpu','sdn-plugin-cpu','placementplugin-cpu','son-gtkapi-cpu','pluginmanager-cpu']
     _docker_list = df.columns.values.tolist()
-    _docker_wanted_list = ['servicelifecyclemanagement-cpu','son-catalogue-repos-cpu','son-monitor-prometheus-cpu','son-monitor-influxdb-cpu','son-gtkkpi-cpu','son-monitor-pushgateway-cpu','son-keycloak-cpu','son-broker-cpu','son-sp-infrabstract-cpu','son-monitor-probe-cpu','vim-mocker-cpu','functionlifecyclemanagement-cpu','specificmanagerregistry-cpu','son-gtkrec-cpu','sdn-plugin-cpu','placementplugin-cpu','son-gtkapi-cpu','pluginmanager-cpu','placementexecutive-cpu','dummyplugin-cpu']
-    _docker_list = [d for d in _docker_list if d not in _docker_wanted_list]
-    plt.figure(figsize=(30,20))
-    plt.title('RPM v/s Max CPU usage', fontsize=30)
-    plt.xlabel('RPM', fontsize=25)
-    plt.ylabel('Max CPU', fontsize=25)
-    for _df in dataframe.columns:
-        if _df in _docker_list:
-            continue
-        plt.plot(dataframe['rpm'],dataframe[_df],label = _df)
-        plt.legend(loc='center left', bbox_to_anchor=(1, 0.5))
+    df = df[df['index'].isin(_docker_wanted_list)]
+    dataframe = dataframe[dataframe['index'].isin(_docker_wanted_list)]
+    dfinal = df.merge(dataframe, how='inner', on='index')
+    dfinal = dfinal.sort_values('CPU Max')
+    #_docker_list_mean_cpu = [d for d in _docker_list if d not in _docker_wanted_list]
+   
+    #sns.set(style='whitegrid', palette='muted', font_scale=1.5)
+    #fig, ax = plt.subplots(figsize=(35,20))
+    plt.figure(figsize=(20,10))
+    plt.title('Dockers v/s CPU usage', fontsize=30)
+    plt.xlabel('Mean CPU', fontsize=25)
+    plt.ylabel('Dockers', fontsize=25)
+    width = 0.35  
+    ind = np.arange(len(_docker_wanted_list)) 
+    a2= plt.barh(ind, dfinal['CPU Mean'], width , alpha=0.5, capsize=10)
+    a1= plt.barh(ind + width, dfinal['CPU Max'], width,  alpha=0.5, capsize=10)
+    plt.legend((a2[0],a1[0]),('Mean', 'Max'), loc='lower right')  
 
+    plt.yticks(ind, dfinal['index'])
 
-    #plt.show()
-    plt.savefig('{}/{}.png'.format(OUTPUT_PATH, "Pishahang - RPM vs Max CPU") ,bbox_inches='tight',dpi=100) 
     
+    plt.savefig('{}/{}.png'.format(OUTPUT_PATH, "Pishahang - RPM vs CPU Usage") ,bbox_inches='tight',dpi=100)
+
+    
+
+
 
 
 ##############################################
@@ -2212,45 +2209,42 @@ if PISH_MEM_RPM_DOC_GRAPH:
         _max_dict_temp["rpm"] = _maxrpm
         maxdata.append(_max_dict_temp.copy())
 
-    
+     #mean - df
     df = pd.DataFrame(data)
-    _docker_list = df.columns.values.tolist()
-    _docker_wanted_list = ['servicelifecyclemanagement-mem_usage','son-catalogue-repos-mem_usage','son-monitor-prometheus-mem_usage','son-monitor-influxdb-mem_usage','son-gtkkpi-mem_usage','son-monitor-pushgateway-mem_usage','son-keycloak-mem_usage','son-broker-mem_usage','son-sp-infrabstract-mem_usage','son-monitor-probe-mem_usage','vim-mocker-mem_usage','functionlifecyclemanagement-mem_usage','specificmanagerregistry-mem_usage','son-gtkrec-mem_usage','sdn-plugin-mem_usage','placementplugin-mem_usage','son-gtkapi-mem_usage','pluginmanager-mem_usage','placementexecutive-mem_usage','dummyplugin-mem_usage']
-    _docker_list = [d for d in _docker_list if d not in _docker_wanted_list]
+    df = df.T
+    df = df.reset_index()
+    df.columns = [*df.columns[:-1], 'MEM Mean']
+   
+   # max - dataframe
     dataframe = pd.DataFrame(maxdata)
-    df = df.sort_values('rpm')
-    sns.set(style='whitegrid', palette='muted', font_scale=1.5)
-    plt.figure(figsize=(30,20))
-    plt.title('RPM v/s Mean MEM usage', fontsize=30)
-    plt.xlabel('RPM', fontsize=25)
-    plt.ylabel('Mean MEM', fontsize=25)
-    for _d in df.columns:
-        if _d in _docker_list:
-            continue
-        plt.plot(df['rpm'],df[_d],label = _d)
-        plt.legend(loc='center left', bbox_to_anchor=(1, 0.5))
+    dataframe = dataframe.T
+    dataframe = dataframe.reset_index()
+    dataframe.columns = [*dataframe.columns[:-1], 'MEM Max']
 
-    plt.savefig('{}/{}.png'.format(OUTPUT_PATH, "Pishahang - RPM vs Mean MEM") ,bbox_inches='tight',dpi=100)
-
-#mem max
-    dataframe = dataframe.sort_values('rpm')
+    _docker_wanted_list = ['servicelifecyclemanagement-mem_usage','son-catalogue-repos-mem_usage','son-keycloak-mem_usage','son-broker-mem_usage','son-sp-infrabstract-mem_usage','functionlifecyclemanagement-mem_usage','sdn-plugin-mem_usage','placementplugin-mem_usage','son-gtkapi-mem_usage','pluginmanager-mem_usage']
     _docker_list = df.columns.values.tolist()
-    _docker_wanted_list = ['servicelifecyclemanagement-mem_usage','son-catalogue-repos-mem_usage','son-monitor-prometheus-mem_usage','son-monitor-influxdb-mem_usage','son-gtkkpi-mem_usage','son-monitor-pushgateway-mem_usage','son-keycloak-mem_usage','son-broker-mem_usage','son-sp-infrabstract-mem_usage','son-monitor-probe-mem_usage','vim-mocker-mem_usage','functionlifecyclemanagement-mem_usage','specificmanagerregistry-mem_usage','son-gtkrec-mem_usage','sdn-plugin-mem_usage','placementplugin-mem_usage','son-gtkapi-mem_usage','pluginmanager-mem_usage','placementexecutive-mem_usage','dummyplugin-mem_usage']
-    _docker_list = [d for d in _docker_list if d not in _docker_wanted_list]
-    plt.figure(figsize=(30,20))
-    plt.title('RPM v/s Max MEM usage', fontsize=30)
-    plt.xlabel('RPM', fontsize=25)
-    plt.ylabel('Max MEM', fontsize=25)
-    for _df in dataframe.columns:
-        if _df in _docker_list:
-            continue
-        plt.plot(dataframe['rpm'],dataframe[_df],label = _df)
-        plt.legend(loc='center left', bbox_to_anchor=(1, 0.5))
+    df = df[df['index'].isin(_docker_wanted_list)]
+    dataframe = dataframe[dataframe['index'].isin(_docker_wanted_list)]
+    dfinal = df.merge(dataframe, how='inner', on='index')
+    dfinal = dfinal.sort_values('MEM Max')
+    #_docker_list_mean_cpu = [d for d in _docker_list if d not in _docker_wanted_list]
+   
+    #sns.set(style='whitegrid', palette='muted', font_scale=1.5)
+    #fig, ax = plt.subplots(figsize=(35,20))
+    plt.figure(figsize=(20,10))
+    plt.title('Dockers v/s MEM usage', fontsize=30)
+    plt.xlabel('Mean MEM', fontsize=25)
+    plt.ylabel('Dockers', fontsize=25)
+    width = 0.35  
+    ind = np.arange(len(_docker_wanted_list)) 
+    a2= plt.barh(ind, dfinal['MEM Mean'], width , alpha=0.5, capsize=10)
+    a1= plt.barh(ind + width, dfinal['MEM Max'], width,  alpha=0.5, capsize=10)
+    plt.legend((a2[0],a1[0]),('Mean', 'Max'), loc='lower right')  
 
+    plt.yticks(ind, dfinal['index'])
 
-    #plt.show()
-    plt.savefig('{}/{}.png'.format(OUTPUT_PATH, "Pishahang - RPM vs Max MEM") ,bbox_inches='tight',dpi=100) 
-
+    
+    plt.savefig('{}/{}.png'.format(OUTPUT_PATH, "Pishahang - RPM vs MEM Usage") ,bbox_inches='tight',dpi=100)
 
 
 
@@ -2261,7 +2255,7 @@ if PISH_MEM_RPM_DOC_GRAPH:
 
 if OSM_RPM_DOC_AGG_GRAPH:
     data_dict = {}
-    for _rpm_doc_cpu_files in osm_rpm_doc_cpu_files:
+    for _rpm_doc_cpu_files in pish_rpm_doc_cpu_files:
         _title = (Path(_rpm_doc_cpu_files).name).split("-CPU")[0]
         df = pd.read_csv(_rpm_doc_cpu_files)
         
@@ -2556,7 +2550,7 @@ if RPM_END_TO_END_TIMES:
 #########################################
 
 if RPM_INDIVIDUAL_TIMES:
-    RPM_E2E_PATH = "/home/ashwin/Documents/WHB-Hadi/ScalabilityPaper/VIM-MOCKER/150-final/150"
+    RPM_E2E_PATH = "/home/bhargavi/Downloads/Bar graphs/150-3000-Final"
     pishahang_ind_files = [y for x in os.walk(RPM_E2E_PATH) for y in glob(os.path.join(x[0], 'individual-times.csv'))]
     pishahang_data_dict = {}
     rpmset = []  
