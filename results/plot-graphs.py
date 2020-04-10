@@ -2223,7 +2223,7 @@ if PISH_MEM_RPM_DOC_GRAPH:
         _dict_temp["rpm"] = _rpm
         data.append(_dict_temp.copy())
     for _rpm, _data in sorted(data_dict.items()):
-        _dict_temp = {k:v["mean"] for (k,v) in _data.items()}
+        _dict_temp = {k:v["sd"] for (k,v) in _data.items()}
         _dict_temp["rpm"] = _rpm
         data.append(_dict_temp.copy())
     
@@ -2233,7 +2233,7 @@ if PISH_MEM_RPM_DOC_GRAPH:
         _max_dict_temp["rpm"] = _maxrpm
         maxdata.append(_max_dict_temp.copy())
     for _maxrpm, _maxdata in sorted(data_dict.items()):
-        _max_dict_temp = {k:v["max"] for (k,v) in _maxdata.items()}
+        _max_dict_temp = {k:v["maxsd"] for (k,v) in _maxdata.items()}
         _max_dict_temp["rpm"] = _maxrpm
         maxdata.append(_max_dict_temp.copy())
 
