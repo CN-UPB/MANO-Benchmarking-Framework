@@ -52,7 +52,7 @@ LIFECYCLE_GRAPH = False
 
 OSM_RPM_DOC_GRAPH = False
 PISH_CPU_RPM_DOC_GRAPH = True
-PISH_MEM_RPM_DOC_GRAPH = False
+PISH_MEM_RPM_DOC_GRAPH = True
 
 OSM_RPM_DOC_AGG_GRAPH = False
 PISH_CPU_RPM_DOC_AGG_GRAPH = False
@@ -2118,52 +2118,72 @@ if PISH_CPU_RPM_DOC_GRAPH:
         _dict_temp = {k:v["mean"] for (k,v) in _data.items()}
         _dict_temp["rpm"] = _rpm
         data.append(_dict_temp.copy())
-    
+
+    for _rpm, _data in sorted(data_dict.items()):
+        _dict_temp = {k:v["sd"] for (k,v) in _data.items()}
+        _dict_temp["rpm"] = _rpm
+        data.append(_dict_temp.copy())
+
+
+
     maxdata = []
     for _maxrpm, _maxdata in sorted(data_dict.items()):
         _max_dict_temp = {k:v["max"] for (k,v) in _maxdata.items()}
         _max_dict_temp["rpm"] = _maxrpm
         maxdata.append(_max_dict_temp.copy())
 
+    for _rpm, _data in sorted(data_dict.items()):
+        _dict_temp = {k:v["maxsd"] for (k,v) in _data.items()}
+        _dict_temp["rpm"] = _rpm
+        maxdata.append(_dict_temp.copy())
+
     #mean - df
     df = pd.DataFrame(data)
     df = df.T
     df = df.reset_index()
-    df.columns = [*df.columns[:-1], 'CPU Mean']
+    df.columns = ['dockers', 'CPU Mean', 'CPU SD']
    
    # max - dataframe
     dataframe = pd.DataFrame(maxdata)
     dataframe = dataframe.T
     dataframe = dataframe.reset_index()
-    dataframe.columns = [*dataframe.columns[:-1], 'CPU Max']
+    dataframe.columns = ['dockers', 'CPU Max', 'CPU Max SD']
    
 
-    
+    #dfinal - merge dataframes
     
     _docker_wanted_list = ['servicelifecyclemanagement-cpu','son-catalogue-repos-cpu','son-keycloak-cpu','son-broker-cpu','son-sp-infrabstract-cpu','functionlifecyclemanagement-cpu','sdn-plugin-cpu','placementplugin-cpu','son-gtkapi-cpu','pluginmanager-cpu']
     _docker_list = df.columns.values.tolist()
-    df = df[df['index'].isin(_docker_wanted_list)]
-    dataframe = dataframe[dataframe['index'].isin(_docker_wanted_list)]
-    dfinal = df.merge(dataframe, how='inner', on='index')
+    df = df[df['dockers'].isin(_docker_wanted_list)]
+    dataframe = dataframe[dataframe['dockers'].isin(_docker_wanted_list)]
+    dfinal = df.merge(dataframe, how='inner', on='dockers')
     dfinal = dfinal.sort_values('CPU Max')
-    #_docker_list_mean_cpu = [d for d in _docker_list if d not in _docker_wanted_list]
-   
-    #sns.set(style='whitegrid', palette='muted', font_scale=1.5)
-    #fig, ax = plt.subplots(figsize=(35,20))
+
+    #calculate aggregate
+
+    mean_agg = dfinal['CPU Mean'].sum()
+    meansd_agg = dfinal['CPU SD'].sum()
+    max_agg = dfinal['CPU Max'].sum()
+    maxsd_agg = dfinal['CPU Max SD'].sum()
+    dfinal.loc[len(dfinal.dockers)]=['Aggregate', mean_agg, meansd_agg, max_agg, maxsd_agg]
+
+
+
+
     plt.figure(figsize=(20,10))
-    plt.title('Dockers v/s CPU usage', fontsize=30)
-    plt.xlabel('Mean CPU', fontsize=25)
+    plt.title('Dockers v/s CPU usage : 150-3000', fontsize=30)
+    plt.xlabel('CPU Usage', fontsize=25)
     plt.ylabel('Dockers', fontsize=25)
     width = 0.35  
-    ind = np.arange(len(_docker_wanted_list)) 
-    a2= plt.barh(ind, dfinal['CPU Mean'], width , alpha=0.5, capsize=10)
-    a1= plt.barh(ind + width, dfinal['CPU Max'], width,  alpha=0.5, capsize=10)
-    plt.legend((a2[0],a1[0]),('Mean', 'Max'), loc='lower right')  
+    ind = np.arange(len(dfinal.index)) 
+    a2= plt.barh(ind, dfinal['CPU Mean'], width , xerr = dfinal['CPU SD'],alpha=0.5, capsize=10,color = 'b')
+    a1= plt.barh(ind + width, dfinal['CPU Max'], width, xerr = dfinal['CPU Max SD'] , alpha=0.5, capsize=10, color = 'g')
+    plt.legend((a2[0],a1[0]),('Max', 'Mean'), loc='lower right')  
 
-    plt.yticks(ind, dfinal['index'])
+    plt.yticks(ind, dfinal['dockers'])
 
     
-    plt.savefig('{}/{}.png'.format(OUTPUT_PATH, "Pishahang - RPM vs CPU Usage") ,bbox_inches='tight',dpi=100)
+    plt.savefig('{}/{}.png'.format(OUTPUT_PATH, "Pishahang - CPU vs Dockers") ,bbox_inches='tight',dpi=100)
 
     
 
@@ -2202,8 +2222,16 @@ if PISH_MEM_RPM_DOC_GRAPH:
         _dict_temp = {k:v["mean"] for (k,v) in _data.items()}
         _dict_temp["rpm"] = _rpm
         data.append(_dict_temp.copy())
+    for _rpm, _data in sorted(data_dict.items()):
+        _dict_temp = {k:v["mean"] for (k,v) in _data.items()}
+        _dict_temp["rpm"] = _rpm
+        data.append(_dict_temp.copy())
     
     maxdata = []
+    for _maxrpm, _maxdata in sorted(data_dict.items()):
+        _max_dict_temp = {k:v["max"] for (k,v) in _maxdata.items()}
+        _max_dict_temp["rpm"] = _maxrpm
+        maxdata.append(_max_dict_temp.copy())
     for _maxrpm, _maxdata in sorted(data_dict.items()):
         _max_dict_temp = {k:v["max"] for (k,v) in _maxdata.items()}
         _max_dict_temp["rpm"] = _maxrpm
@@ -2213,38 +2241,46 @@ if PISH_MEM_RPM_DOC_GRAPH:
     df = pd.DataFrame(data)
     df = df.T
     df = df.reset_index()
-    df.columns = [*df.columns[:-1], 'MEM Mean']
+    df.columns = ['dockers', 'MEM Mean', 'MEM SD']
    
    # max - dataframe
     dataframe = pd.DataFrame(maxdata)
     dataframe = dataframe.T
     dataframe = dataframe.reset_index()
-    dataframe.columns = [*dataframe.columns[:-1], 'MEM Max']
+    dataframe.columns = ['dockers', 'MEM Max', 'MEM Max SD']
+
+    # #dfinal - merge dataframes
 
     _docker_wanted_list = ['servicelifecyclemanagement-mem_usage','son-catalogue-repos-mem_usage','son-keycloak-mem_usage','son-broker-mem_usage','son-sp-infrabstract-mem_usage','functionlifecyclemanagement-mem_usage','sdn-plugin-mem_usage','placementplugin-mem_usage','son-gtkapi-mem_usage','pluginmanager-mem_usage']
     _docker_list = df.columns.values.tolist()
-    df = df[df['index'].isin(_docker_wanted_list)]
-    dataframe = dataframe[dataframe['index'].isin(_docker_wanted_list)]
-    dfinal = df.merge(dataframe, how='inner', on='index')
+    df = df[df['dockers'].isin(_docker_wanted_list)]
+    dataframe = dataframe[dataframe['dockers'].isin(_docker_wanted_list)]
+    dfinal = df.merge(dataframe, how='inner', on='dockers')
     dfinal = dfinal.sort_values('MEM Max')
-    #_docker_list_mean_cpu = [d for d in _docker_list if d not in _docker_wanted_list]
-   
-    #sns.set(style='whitegrid', palette='muted', font_scale=1.5)
-    #fig, ax = plt.subplots(figsize=(35,20))
+
+    #calculate aggregate
+
+    mean_agg = dfinal['MEM Mean'].sum()
+    meansd_agg = dfinal['MEM SD'].sum()
+    max_agg = dfinal['MEM Max'].sum()
+    maxsd_agg = dfinal['MEM Max SD'].sum()
+    dfinal.loc[len(dfinal.dockers)]=['Aggregate', mean_agg,meansd_agg, max_agg,maxsd_agg]
+
+
     plt.figure(figsize=(20,10))
-    plt.title('Dockers v/s MEM usage', fontsize=30)
-    plt.xlabel('Mean MEM', fontsize=25)
+    plt.title('Dockers v/s MEM usage : 150-3000', fontsize=30)
+    plt.xlabel('MEM Usage', fontsize=25)
     plt.ylabel('Dockers', fontsize=25)
     width = 0.35  
-    ind = np.arange(len(_docker_wanted_list)) 
-    a2= plt.barh(ind, dfinal['MEM Mean'], width , alpha=0.5, capsize=10)
-    a1= plt.barh(ind + width, dfinal['MEM Max'], width,  alpha=0.5, capsize=10)
-    plt.legend((a2[0],a1[0]),('Mean', 'Max'), loc='lower right')  
+    ind = np.arange(len(dfinal.index)) 
+    a2= plt.barh(ind, dfinal['MEM Mean'], width , xerr = dfinal['MEM SD'], alpha=0.5, capsize=10,color = 'b')
+    a1= plt.barh(ind + width, dfinal['MEM Max'], width,xerr = dfinal['MEM Max SD'],  alpha=0.5, capsize=10,color = 'g') 
+    plt.legend((a2[0],a1[0]),('Max', 'Mean'), loc='lower right')  
 
-    plt.yticks(ind, dfinal['index'])
+    plt.yticks(ind, dfinal['dockers'])
 
     
-    plt.savefig('{}/{}.png'.format(OUTPUT_PATH, "Pishahang - RPM vs MEM Usage") ,bbox_inches='tight',dpi=100)
+    plt.savefig('{}/{}.png'.format(OUTPUT_PATH, "Pishahang - MEM vs Dockers") ,bbox_inches='tight',dpi=100)
 
 
 
