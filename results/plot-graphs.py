@@ -2169,15 +2169,15 @@ if PISH_CPU_RPM_DOC_GRAPH:
 
 
 
-
+    sns.set(style='whitegrid', palette='muted', font_scale=1.5)
     plt.figure(figsize=(20,10))
     plt.title('Dockers v/s CPU usage : 150-3000', fontsize=30)
     plt.xlabel('CPU Usage', fontsize=25)
     plt.ylabel('Dockers', fontsize=25)
     width = 0.35  
     ind = np.arange(len(dfinal.index)) 
-    a2= plt.barh(ind, dfinal['CPU Mean'], width , xerr = dfinal['CPU SD'],alpha=0.5, capsize=10,color = 'b')
-    a1= plt.barh(ind + width, dfinal['CPU Max'], width, xerr = dfinal['CPU Max SD'] , alpha=0.5, capsize=10, color = 'g')
+    a2= plt.barh(ind, dfinal['CPU Mean'], width , xerr = dfinal['CPU SD'],alpha=0.5, capsize=3,color = 'b')
+    a1= plt.barh(ind + width, dfinal['CPU Max'], width, xerr = dfinal['CPU Max SD'] , alpha=0.5, capsize=3, color = 'g')
     plt.legend((a2[0],a1[0]),('Max', 'Mean'), loc='lower right')  
 
     plt.yticks(ind, dfinal['dockers'])
@@ -2266,15 +2266,15 @@ if PISH_MEM_RPM_DOC_GRAPH:
     maxsd_agg = dfinal['MEM Max SD'].sum()
     dfinal.loc[len(dfinal.dockers)]=['Aggregate', mean_agg,meansd_agg, max_agg,maxsd_agg]
 
-
+    sns.set(style='whitegrid', palette='muted', font_scale=1.5)
     plt.figure(figsize=(20,10))
     plt.title('Dockers v/s MEM usage : 150-3000', fontsize=30)
     plt.xlabel('MEM Usage', fontsize=25)
     plt.ylabel('Dockers', fontsize=25)
     width = 0.35  
     ind = np.arange(len(dfinal.index)) 
-    a2= plt.barh(ind, dfinal['MEM Mean'], width , xerr = dfinal['MEM SD'], alpha=0.5, capsize=10,color = 'b')
-    a1= plt.barh(ind + width, dfinal['MEM Max'], width,xerr = dfinal['MEM Max SD'],  alpha=0.5, capsize=10,color = 'g') 
+    a2= plt.barh(ind, dfinal['MEM Mean'], width , xerr = dfinal['MEM SD'], alpha=0.5, capsize=3,color = 'b')
+    a1= plt.barh(ind + width, dfinal['MEM Max'], width,xerr = dfinal['MEM Max SD'],  alpha=0.5, capsize=3,color = 'g') 
     plt.legend((a2[0],a1[0]),('Max', 'Mean'), loc='lower right')  
 
     plt.yticks(ind, dfinal['dockers'])
