@@ -10,8 +10,8 @@ import json
 import statistics
 import csv
 
-_PATH = "/home/ashwin/Documents/WHB-Hadi/ScalabilityPaper/FINAL-150-3000rpm/150-final-1/150"
-_OUT_PATH = "/home/ashwin/Documents/MSc/pg-scramble/MANO-Benchmarking-Framework/results/vim-mocker/Final"
+_PATH = "/home/ashwin/Documents/WHB-Hadi/ScalabilityPaper/Data/50_many_rpm/50vsManyRPM/50"
+_OUT_PATH = "/home/ashwin/Documents/WHB-Hadi/ScalabilityPaper/Data/50_many_rpm/50vsManyRPM/Final"
 
 
 RPM = True

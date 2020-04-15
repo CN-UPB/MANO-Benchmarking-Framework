@@ -58,11 +58,17 @@ OSM_RPM_DOC_AGG_GRAPH = False
 PISH_CPU_RPM_DOC_AGG_GRAPH = True
 PISH_MEM_RPM_DOC_AGG_GRAPH = True
 
+# Scalability Paper
+
+PISH_CPU_RPM_DOC_GRAPH = False
+PISH_MEM_RPM_DOC_GRAPH = False
 RPM_END_TO_END_TIMES = False
 RPM_INDIVIDUAL_TIMES = False
 
+INPUT_PATH = "/home/ashwin/Documents/MSc/pg-scramble/MANO-Benchmarking-Framework/results/Common Results/vim-mocker/Final"
+OUTPUT_PATH = "/home/ashwin/Documents/MSc/pg-scramble/MANO-Benchmarking-Framework/results/Common Results/Graphs"
 
-
+# --------------
 
 CPU_MAX_SCALE = 125
 MEM_MAX_SCALE = 2750
@@ -90,7 +96,6 @@ _LIFECYCLE_PATH = "/home/bhargavi/Documents/PG-SCRAMBLE/pg-scrambLe/experiments/
 
 INPUT_PATH = "/home/bhargavi/Downloads/50vsManyRPM-2/50vsManyRPM/Final"
 OUTPUT_PATH = "/home/bhargavi/Downloads/50vsManyRPM-2/50vsManyRPM/Graphs"
-
 
 RUNS = 3 # Not fully supported
 CASES = 3 # Not fully supported
@@ -2177,8 +2182,8 @@ if PISH_CPU_RPM_DOC_GRAPH:
     width = 0.35  
     ind = np.arange(len(dfinal.index)) 
     a2= plt.barh(ind, dfinal['CPU Mean'], width , xerr = dfinal['CPU SD'],alpha=0.5, capsize=3,color = 'b')
-    a1= plt.barh(ind + width, dfinal['CPU Max'], width, xerr = dfinal['CPU Max SD'] , alpha=0.5, capsize=3, color = 'g')
-    plt.legend((a2[0],a1[0]),('Max', 'Mean'), loc='lower right')  
+    a1= plt.barh(ind + width, dfinal['CPU Max'], width, xerr = dfinal['CPU Max SD'] , alpha=0.5, capsize=3, color = 'r')
+    plt.legend((a2[0],a1[0]),('Mean', 'Max'), loc='lower right')  
 
     plt.yticks(ind, dfinal['dockers'])
 
@@ -2274,8 +2279,8 @@ if PISH_MEM_RPM_DOC_GRAPH:
     width = 0.35  
     ind = np.arange(len(dfinal.index)) 
     a2= plt.barh(ind, dfinal['MEM Mean'], width , xerr = dfinal['MEM SD'], alpha=0.5, capsize=3,color = 'b')
-    a1= plt.barh(ind + width, dfinal['MEM Max'], width,xerr = dfinal['MEM Max SD'],  alpha=0.5, capsize=3,color = 'g') 
-    plt.legend((a2[0],a1[0]),('Max', 'Mean'), loc='lower right')  
+    a1= plt.barh(ind + width, dfinal['MEM Max'], width,xerr = dfinal['MEM Max SD'],  alpha=0.5, capsize=3,color = 'r') 
+    plt.legend((a2[0],a1[0]),('Mean', 'Max'), loc='lower right')  
 
     plt.yticks(ind, dfinal['dockers'])
 
@@ -2289,7 +2294,7 @@ if PISH_MEM_RPM_DOC_GRAPH:
 # OSM aggregation graphs  
 ##############################################
 
-if OSM_RPM_DOC_AGG_GRAPH:
+if PISH_CPU_RPM_DOC_AGG_GRAPH:
     data_dict = {}
     for _rpm_doc_cpu_files in pish_rpm_doc_cpu_files:
         _title = (Path(_rpm_doc_cpu_files).name).split("-CPU")[0]
@@ -2359,7 +2364,7 @@ if OSM_RPM_DOC_AGG_GRAPH:
 # Pishahang CPU aggregation graphs  
 ##############################################
 
-if PISH_CPU_RPM_DOC_AGG_GRAPH:
+if OSM_RPM_DOC_AGG_GRAPH:
     data_dict = {}
     for _rpm_doc_cpu_files in pish_rpm_doc_cpu_files:
         _title = (Path(_rpm_doc_cpu_files).name).split("-CPU")[0]
@@ -2543,7 +2548,7 @@ if PISH_MEM_RPM_DOC_AGG_GRAPH:
 #########################################
 
 if RPM_END_TO_END_TIMES:
-    RPM_E2E_PATH = "/home/ashwin/Documents/WHB-Hadi/ScalabilityPaper/VIM-MOCKER/150-final/150"
+    RPM_E2E_PATH = "/home/ashwin/Documents/WHB-Hadi/ScalabilityPaper/Data/FINAL-150-3000rpm/150-final-1/150"
     pishahang_e2e_files = [y for x in os.walk(RPM_E2E_PATH) for y in glob(os.path.join(x[0], 'end-to-end-time.csv'))]
     pishahang_data_dict = {}
     rpmset = []  
@@ -2568,7 +2573,8 @@ if RPM_END_TO_END_TIMES:
     plt.ylabel('End-to-End time(sec)', fontsize=25)
     index = np.arange(len(dataf['mean']))
     width = 0.30 
-    ax.bar(index, dataf['mean'], yerr=dataf['std'], label = "E2E", alpha=0.5, capsize=10)
+    ax.bar(index, dataf['mean'], width=width, yerr=dataf['std'], label = "E2E", alpha=0.5, capsize=10, color = 'b')
+    ax.bar(index+width, dataf['max'], width=width, label = "E2E", alpha=0.5, capsize=10, color = 'r')
     plt.xticks(index, df['rpm'])
     plt.legend(loc='center left', bbox_to_anchor=(1, 0.5))
     plt.savefig('{}/{}.png'.format(OUTPUT_PATH, "Pishahang - RPM vs E2E") ,bbox_inches='tight',dpi=100)
@@ -2580,7 +2586,7 @@ if RPM_END_TO_END_TIMES:
 #########################################
 
 if RPM_INDIVIDUAL_TIMES:
-    RPM_E2E_PATH = "/home/bhargavi/Downloads/Bar graphs/150-3000-Final"
+    RPM_E2E_PATH = "/home/ashwin/Documents/WHB-Hadi/ScalabilityPaper/Data/FINAL-150-3000rpm/150-final-1/150"
     pishahang_ind_files = [y for x in os.walk(RPM_E2E_PATH) for y in glob(os.path.join(x[0], 'individual-times.csv'))]
     pishahang_data_dict = {}
     rpmset = []  
@@ -2613,7 +2619,7 @@ if RPM_INDIVIDUAL_TIMES:
 
     df = pd.DataFrame(dict)
     df = df.sort_values('rpm')
-    df = df = df.groupby(['rpm']).agg(['mean']).reset_index()
+    df = df = df.groupby(['rpm']).agg(['mean', 'std']).reset_index()
 
     dataf = df.reset_index()
 
@@ -2628,9 +2634,9 @@ if RPM_INDIVIDUAL_TIMES:
     width = 0.30 
 
     # ax.bar(index-width, dataf['mean']['mean'], yerr=dataf['std']['mean'], label = "mean", alpha=0.5, capsize=10)
-    ax.bar(index-width, dataf['mean']['mean'], width=width, label = "mean", alpha=0.5, capsize=10)
-    ax.bar(index, dataf['max']['mean'], width=width, label = "max", alpha=0.5, capsize=10)
-    ax.bar(index+width, dataf['min']['mean'], width=width,  label = "min", alpha=0.5, capsize=10)
+    ax.bar(index-width, dataf['mean']['mean'],  yerr=dataf['mean']['std'], width=width, label = "mean", alpha=0.5, capsize=10, color = 'b')
+    ax.bar(index, dataf['max']['mean'], yerr=dataf['max']['std'], width=width, label = "max", alpha=0.5, capsize=10, color = 'r')
+    ax.bar(index+width, dataf['min']['mean'], yerr=dataf['min']['std'], width=width,  label = "min", alpha=0.5, capsize=10, color = 'g')
 
     plt.xticks(index, df['rpm'])
     plt.legend(loc='center left', bbox_to_anchor=(1, 0.5))

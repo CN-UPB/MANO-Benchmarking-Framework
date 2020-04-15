@@ -1,14 +1,16 @@
 import wrappers
 import json
+import time
+from dateutil import parser
 
-USERNAME = "sonata"
+USERNAME = "pishahang"
 PASSWORD = "1234"
 
 DEL_NSD = False
 DEL_VNFD = False
 DEL_INSTANCES = False
 
-HOST_URL = "manodemo2.cs.upb.de"
+HOST_URL = "thesismano4.cs.upb.de"
 
 sonata_nsd = wrappers.SONATAClient.Nsd(HOST_URL)
 sonata_auth = wrappers.SONATAClient.Auth(HOST_URL)
@@ -57,7 +59,8 @@ if DEL_VNFD:
 
     print(vnf_list)
 
-TEST = False
+
+TEST = True
 if TEST:
     while True:
 
@@ -65,10 +68,20 @@ if TEST:
                                 token=_token["token"]["access_token"], limit=1000))
         _ns_list = json.loads(_ns_list["data"])
 
+        _requests = json.loads(sonata_nslcm.get_ns_instances_request_status(
+                                    token=_token["token"]["access_token"], limit=1000))
+        _requests = json.loads(_requests["data"])
+
         _ns = None
-        for _n in _ns_list:
+        for _r in _requests:
             try:
-                print(_n['nsState'])
+                server_created = parser.parse(_r['began_at'])
+                if int(server_created.strftime("%s")) >= int(1):
+                    print(_r['status'])
+                    # ERROR
+                    # INSTANTIATING
+                    # READY
+                    
                 # _ns = _n['_id']
                 # if _ns:
                 #     response = json.loads(osm_nslcm.post_ns_instances_nsinstanceid_terminate(
@@ -77,6 +90,7 @@ if TEST:
                 #     print(response)
                 time.sleep(1)
             except Exception as e:
+                print(e)
                 pass
 
         print("\n")
