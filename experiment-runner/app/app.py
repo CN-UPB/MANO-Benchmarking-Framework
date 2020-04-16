@@ -5,6 +5,8 @@ import sys
 import docker
 import json
 import subprocess
+import re
+import statistics
 
 client = docker.DockerClient(base_url='unix://container/path/docker.sock')
 
@@ -125,6 +127,39 @@ def get_pishahang_status():
     return _result
 
 
+@app.route('/get_pishahang_init_times')
+def get_pishahang_init_times():
+    try:
+        cmd = 'docker exec son-postgres psql -h localhost -U postgres -d gatekeeper -c "Select extract(epoch from updated_at-created_at) from requests;"'
+
+        result = subprocess.check_output([cmd], shell=True)
+        result = result.split(b'\n')
+
+        new_map = []
+        for item in result:
+            try:
+                flitem = float(item)
+            except ValueError:
+                continue
+            new_map.append(flitem)
+
+        _result = "{mean},{std},{max},{min}".format(
+            mean=statistics.stdev(new_map),
+            std=statistics.mean(new_map),
+            max=max(new_map),
+            min=min(new_map)
+        )
+
+    except subprocess.CalledProcessError as e:
+        return "An error occurred while trying to fetch task status updates."
+
+    return _result
+
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=5055)
 
+
+# sudo lsof -i :5055
+# nohup sudo python3 -m flask run --host=0.0.0.0 --port 5055 &
+# curl localhost:5055/restart_pishahang
+# curl localhost:5055/del_requests

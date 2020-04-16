@@ -16,8 +16,14 @@ pkill python3
 # python3 app/pishahang-os/heat/heat.py & \
 # python3 app/pishahang-os/nova/nova.py & \
 
+# DEBUG
+python3 app/pishahang-os/auth/app.py & \
+python3 app/pishahang-os/glance/app.py & \
+python3 app/pishahang-os/heat/app.py & \
+python3 app/pishahang-os/nova/app.py & \
+
 # if OSM-Nova
-python3 app/osm-os/auth/auth.py & \
-python3 app/osm-os/glance/glance.py & \
-python3 app/osm-os/neutron/neutron.py & \
-python3 app/osm-os/nova/nova.py & \
+# python3 app/osm-os/auth/auth.py & \
+# python3 app/osm-os/glance/glance.py & \
+# python3 app/osm-os/neutron/neutron.py & \
+# python3 app/osm-os/nova/nova.py & \
