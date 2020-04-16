@@ -11,10 +11,10 @@ echo "Running Flask servers..."
 pkill python3
 
 # If heat
-# python3 app/pishahang-os/auth/auth.py & \
-# python3 app/pishahang-os/glance/glance.py & \
-# python3 app/pishahang-os/heat/heat.py & \
-# python3 app/pishahang-os/nova/nova.py & \
+python3 app/pishahang-os/auth/auth.py & \
+python3 app/pishahang-os/glance/glance.py & \
+python3 app/pishahang-os/heat/heat.py & \
+python3 app/pishahang-os/nova/nova.py & \
 
 # DEBUG
 python3 app/pishahang-os/auth/app.py & \
