@@ -94,7 +94,7 @@ def docker_names():
 def del_requests():
     try:
         result = subprocess.check_output(
-            ['docker exec son-postgres psql -h localhost -U postgres -d gatekeeper -c "DELETE FROM requests"'], shell=True)
+            ['docker exec pishahang_son-monitor-postgres_1 psql -h localhost -U postgres -d gatekeeper -c "DELETE FROM requests"'], shell=True)
     except subprocess.CalledProcessError as e:
         return "An error occurred while trying to fetch task status updates."
 
@@ -116,7 +116,7 @@ def restart_pishahang():
 def get_pishahang_status():
     try:
         result = subprocess.check_output(
-            ['docker exec son-postgres psql -h localhost -U postgres -d gatekeeper -c "SELECT count(*) FILTER (WHERE status = \'READY\') AS active, count(*) FILTER (WHERE status = \'INSTANTIATING\') AS build, count(*) FILTER (WHERE status = \'ERROR\') AS error FROM requests;"'], shell=True)
+            ['docker exec pishahang_son-monitor-postgres_1 psql -h localhost -U postgres -d gatekeeper -c "SELECT count(*) FILTER (WHERE status = \'READY\') AS active, count(*) FILTER (WHERE status = \'INSTANTIATING\') AS build, count(*) FILTER (WHERE status = \'ERROR\') AS error FROM requests;"'], shell=True)
         
         result = result.split()
         _result = '{ready},{init},{error}'.format(ready=int(result[6]), init=int(result[8]), error=int(result[10]))
@@ -130,7 +130,7 @@ def get_pishahang_status():
 @app.route('/get_pishahang_init_times')
 def get_pishahang_init_times():
     try:
-        cmd = 'docker exec son-postgres psql -h localhost -U postgres -d gatekeeper -c "Select extract(epoch from updated_at-created_at) from requests;"'
+        cmd = 'docker exec pishahang_son-monitor-postgres_1 psql -h localhost -U postgres -d gatekeeper -c "Select extract(epoch from updated_at-created_at) from requests;"'
 
         result = subprocess.check_output([cmd], shell=True)
         result = result.split(b'\n')
