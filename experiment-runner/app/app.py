@@ -144,8 +144,8 @@ def get_pishahang_init_times():
             new_map.append(flitem)
 
         _result = "{mean},{std},{max},{min}".format(
-            mean=statistics.stdev(new_map),
-            std=statistics.mean(new_map),
+            mean=statistics.mean(new_map),
+            std=statistics.stdev(new_map),
             max=max(new_map),
             min=min(new_map)
         )
