@@ -344,3 +344,129 @@ auth_token = {
     "issued_at": "2020-03-08T15:27:10.000000Z"
   }
 }
+
+tokens = {
+  "access": {
+    "token": {
+      "issued_at": "2014-01-30T15:30:58.819Z",
+      "expires": "2999-01-30T15:30:58.819Z",
+      "id": "fc394f2ab2df4114bde39905f800dc57",
+      "tenant": {
+        "description": None,
+        "enabled": True,
+        "id": "fc394f2ab2df4114bde39905f800dc57",
+        "name": "tenantName"
+      }
+    },
+    "user": {
+      "username": "username",
+      "name": "tenantName",
+      "roles_links": [
+        
+      ],
+      "id": "fc394f2ab2df4114bde39905f800dc57",
+      "roles": [
+        {
+          "name": "Member"
+        }
+      ]
+    },
+    "region_name": "RegionOne",
+    "serviceCatalog": [
+      {
+        "endpoints": [
+          {
+            "adminURL": "http://thesismano2.cs.upb.de:9775/v2.1/fc394f2ab2df4114bde39905f800dc57",
+            "region": "RegionOne",
+            "internalURL": "http://thesismano2.cs.upb.de:9775/v2.1/fc394f2ab2df4114bde39905f800dc57",
+            "id": "2dad48f09e2a447a9bf852bcd93548ef",
+            "publicURL": "http://thesismano2.cs.upb.de:9775/v2.1/fc394f2ab2df4114bde39905f800dc57"
+          }
+        ],
+        "endpoints_links": [
+          
+        ],
+        "type": "compute",
+        "name": "nova"
+      },
+      {
+        "endpoints": [
+          {
+            "adminURL": "http://thesismano2.cs.upb.de:6001/v2.0",
+            "region": "RegionOne",
+            "internalURL": "http://thesismano2.cs.upb.de:6001/v2.0",
+            "id": "2dad48f09e2a447a9bf852bcd93543fc",
+            "publicURL": "http://thesismano2.cs.upb.de:6001/v2"
+          }
+        ],
+        "endpoints_links": [
+          
+        ],
+        "type": "identity",
+        "name": "keystone"
+      },
+      {
+        "endpoints": [
+          {
+            "adminURL": "http://thesismano2.cs.upb.de:10697",
+            "region": "RegionOne",
+            "internalURL": "http://thesismano2.cs.upb.de:10697",
+            "id": "2dad48f09e2a447a9bf852bcd93548cf",
+            "publicURL": "http://thesismano2.cs.upb.de:10697"
+          }
+        ],
+        "endpoints_links": [
+          
+        ],
+        "type": "network",
+        "name": "neutron"
+      },
+      {
+        "endpoints": [
+          {
+            "adminURL": "http://thesismano2.cs.upb.de:10243",
+            "region": "RegionOne",
+            "internalURL": "http://thesismano2.cs.upb.de:10243",
+            "id": "2dad48f09e2a447a9bf852bcd93548cf",
+            "publicURL": "http://thesismano2.cs.upb.de:10243"
+          }
+        ],
+        "endpoints_links": [
+          
+        ],
+        "type": "image",
+        "name": "glance"
+      },
+      {
+        "endpoints": [
+          {
+            "adminURL": "http://thesismano2.cs.upb.de:9005/v1/fc394f2ab2df4114bde39905f800dc57",
+            "region": "RegionOne",
+            "internalURL": "http://thesismano2.cs.upb.de:9005/v1/fc394f2ab2df4114bde39905f800dc57",
+            "id": "2dad48f09e2a447a9bf852bcd93548bf",
+            "publicURL": "http://thesismano2.cs.upb.de:9005/v1/fc394f2ab2df4114bde39905f800dc57"
+          }
+        ],
+        "endpoints_links": [
+          
+        ],
+        "type": "orchestration",
+        "name": "heat"
+      }
+    ],
+    "metadata": [
+      {
+        "is_admin": 0,
+        "roles": [
+          "7598ac3c634d4c3da4b9126a5f67ca2b"
+        ]
+      }
+    ],
+    "trust": {
+      "id": "394998fa61f14736b1f0c1f322882949",
+      "trustee_user_id": "269348fdd9374b8885da1418e0730af1",
+      "trustor_user_id": "3ec3164f750146be97f21559ee4d9c51",
+      "impersonation": False
+    }
+  }
+}

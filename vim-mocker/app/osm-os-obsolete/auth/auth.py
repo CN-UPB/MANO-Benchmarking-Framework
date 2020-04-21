@@ -4,7 +4,7 @@ app = Flask(__name__)
 import json
 import static_response
 
-@app.route('/identity/v3/auth/tokens', methods=['POST'])
+@app.route('/v2.0/auth/tokens', methods=['POST'])
 def auth():
     resp = Response(json.dumps(static_response.auth_token), 
                         status=201, 
@@ -13,6 +13,14 @@ def auth():
 
     return resp
 
+@app.route('/v2.0/tokens', methods=['POST'])
+def auth_tokens():
+    resp = Response(json.dumps(static_response.tokens), 
+                        status=201, 
+                        mimetype='application/json')
+ 
+    return resp
+
 if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0', port=80)
+    app.run(debug=True, host='0.0.0.0', port=6001)
 

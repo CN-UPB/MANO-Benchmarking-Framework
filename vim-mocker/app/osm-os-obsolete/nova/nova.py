@@ -18,8 +18,8 @@ lock = threading.Lock()
 #             stack_map['uptime'] = stack_map.get('uptime', 0) + 1
 #         time.sleep(1.0)
 
-@app.route('/v2.1/flavors', methods=['POST'])
-def flavors():
+@app.route('/v2.1/<id>/flavors', methods=['POST'])
+def flavors(id):
     _data = request.json
 
     return Response(json.dumps(static_response.flavor_create(_data)), 
@@ -33,16 +33,21 @@ def flavors_detail():
                         status=200, 
                         mimetype='application/json')
 
+@app.route('/v2.1/<id>/flavors/detail', methods=['GET'])
+def flavors_id_detail(id):        
+    return Response(json.dumps(static_response.flavors_detail), 
+                        status=200, 
+                        mimetype='application/json')
 
-@app.route('/v2.1/flavors/<id>/os-extra_specs', methods=['GET'])
-def flavors_extra(id):
+@app.route('/v2.1/<id1>/flavors/<id>/os-extra_specs', methods=['GET'])
+def flavors_extra(id1, id):
     return Response(json.dumps(static_response.flavor_extra), 
                         status=200, 
                         mimetype='application/json')
 
 
-@app.route('/v2.1/servers', methods=['POST'])
-def servers():
+@app.route('/v2.1/<id>/servers', methods=['POST'])
+def servers(id):
     global server_map
     _server_id = str(uuid.uuid4())
     app.logger.info('Server creation request Name : %s', _server_id)
@@ -55,19 +60,19 @@ def servers():
                         mimetype='application/json')
 
 
-@app.route('/v2.1/servers/detail', methods=['GET'])
-def servers_detail():        
+@app.route('/v2.1/<id>/servers/detail', methods=['GET'])
+def servers_detail(id):        
     with lock:
         return Response(json.dumps(static_response.servers_details(server_map)), 
                             status=200, 
                             mimetype='application/json')
 
 
-@app.route('/v2.1/servers/<server_id>', methods=['GET'])
-def server_id(server_id):        
-    return Response(json.dumps(static_response.server_id(server_id)), 
-                        status=200, 
-                        mimetype='application/json')
+# @app.route('/v2.1/<id>/servers/<server_id>', methods=['GET'])
+# def server_id(id, server_id):        
+#     return Response(json.dumps(static_response.server_id(server_id)), 
+#                         status=200, 
+#                         mimetype='application/json')
 
 
 @app.route('/v2.1/<req_type>/<req_id>', methods=['DELETE'])
@@ -84,5 +89,5 @@ def delete_data(req_type, req_id):
 
 if __name__ == '__main__':
     # threading.Thread(target=update_thread).start()
-    app.run(debug=True, host='0.0.0.0', port=8774)
+    app.run(debug=True, host='0.0.0.0', port=9775)
 

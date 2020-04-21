@@ -6,14 +6,14 @@ stack_created = {
     "id": "{stack_id}",
     "links": [
       {
-        "href": "http://vim-mocker:8004/v1/40d9de036960447dafd7d74d306cf189/stacks/{stack_name}/{stack_id}",
+        "href": "http://thesismano2.cs.upb.de:8004/v1/40d9de036960447dafd7d74d306cf189/stacks/{stack_name}/{stack_id}",
         "rel": "self"
       }
     ]
   }
 }
 
-found = "http://vim-mocker:8004/v1/40d9de036960447dafd7d74d306cf189/stacks/{stack_name}/{stack_id}"
+found = "http://thesismano2.cs.upb.de:8004/v1/40d9de036960447dafd7d74d306cf189/stacks/{stack_name}/{stack_id}"
 
 
 def create_started_0(stack_id, stack_name):
@@ -34,7 +34,7 @@ def create_started_0(stack_id, stack_name):
       "creation_time": "2020-03-02T14:05:54Z",
       "links": [
         {
-          "href": "http://vim-mocker:8004/v1/40d9de036960447dafd7d74d306cf189/stacks/{stack_name}/{stack_id}".format(stack_name=stack_name, stack_id=stack_id),
+          "href": "http://thesismano2.cs.upb.de:8004/v1/40d9de036960447dafd7d74d306cf189/stacks/{stack_name}/{stack_id}".format(stack_name=stack_name, stack_id=stack_id),
           "rel": "self"
         }
       ],
@@ -77,7 +77,7 @@ def create_complete_1(stack_id, stack_name):
       "creation_time": "2020-03-02T14:05:54Z",
       "links": [
         {
-          "href": "http://vim-mocker:8004/v1/40d9de036960447dafd7d74d306cf189/stacks/{stack_name}/{stack_id}".format(stack_name=stack_name, stack_id=stack_id),
+          "href": "http://thesismano2.cs.upb.de:8004/v1/40d9de036960447dafd7d74d306cf189/stacks/{stack_name}/{stack_id}".format(stack_name=stack_name, stack_id=stack_id),
           "rel": "self"
         }
       ],
@@ -120,7 +120,7 @@ def stack_update_started_2(stack_id, stack_name):
       "creation_time": "2020-03-02T14:05:54Z",
       "links": [
         {
-          "href": "http://vim-mocker:8004/v1/40d9de036960447dafd7d74d306cf189/stacks/{stack_name}/{stack_id}".format(stack_name=stack_name, stack_id=stack_id),
+          "href": "http://thesismano2.cs.upb.de:8004/v1/40d9de036960447dafd7d74d306cf189/stacks/{stack_name}/{stack_id}".format(stack_name=stack_name, stack_id=stack_id),
           "rel": "self"
         }
       ],
@@ -162,7 +162,7 @@ def stack_update_completed_3(stack_id, stack_name):
       "creation_time": "2020-03-02T14:05:54Z",
       "links": [
         {
-          "href": "http://vim-mocker:8004/v1/40d9de036960447dafd7d74d306cf189/stacks/{stack_name}/{stack_id}".format(stack_name=stack_name, stack_id=stack_id),
+          "href": "http://thesismano2.cs.upb.de:8004/v1/40d9de036960447dafd7d74d306cf189/stacks/{stack_name}/{stack_id}".format(stack_name=stack_name, stack_id=stack_id),
           "rel": "self"
         }
       ],
@@ -330,11 +330,11 @@ def resources(stack_id, stack_name):
         "resource_name": "cirros-image-1_6b4c2ba0-02f2-4e77-8185-e770c4757f3b_spAddressCloudConfig",
         "links": [
           {
-            "href": "http://vim-mocker:8004/v1/40d9de036960447dafd7d74d306cf189/stacks/{stack_name}/{stack_id}/resources/cirros-image-1_6b4c2ba0-02f2-4e77-8185-e770c4757f3b_spAddressCloudConfig".format(stack_name=stack_name, stack_id=stack_id),
+            "href": "http://thesismano2.cs.upb.de:8004/v1/40d9de036960447dafd7d74d306cf189/stacks/{stack_name}/{stack_id}/resources/cirros-image-1_6b4c2ba0-02f2-4e77-8185-e770c4757f3b_spAddressCloudConfig".format(stack_name=stack_name, stack_id=stack_id),
             "rel": "self"
           },
           {
-            "href": "http://vim-mocker:8004/v1/40d9de036960447dafd7d74d306cf189/stacks/{stack_name}/{stack_id}".format(stack_name=stack_name, stack_id=stack_id),
+            "href": "http://thesismano2.cs.upb.de:8004/v1/40d9de036960447dafd7d74d306cf189/stacks/{stack_name}/{stack_id}".format(stack_name=stack_name, stack_id=stack_id),
             "rel": "stack"
           }
         ],
@@ -353,11 +353,11 @@ def resources(stack_id, stack_name):
         "resource_name": "SonataService.output.internal.6b4c2ba0-02f2-4e77-8185-e770c4757f3b",
         "links": [
           {
-            "href": "http://vim-mocker:8004/v1/40d9de036960447dafd7d74d306cf189/stacks/{stack_name}/{stack_id}/resources/SonataService.output.internal.6b4c2ba0-02f2-4e77-8185-e770c4757f3b".format(stack_name=stack_name, stack_id=stack_id),
+            "href": "http://thesismano2.cs.upb.de:8004/v1/40d9de036960447dafd7d74d306cf189/stacks/{stack_name}/{stack_id}/resources/SonataService.output.internal.6b4c2ba0-02f2-4e77-8185-e770c4757f3b".format(stack_name=stack_name, stack_id=stack_id),
             "rel": "self"
           },
           {
-            "href": "http://vim-mocker:8004/v1/40d9de036960447dafd7d74d306cf189/stacks/{stack_name}/{stack_id}".format(stack_name=stack_name, stack_id=stack_id),
+            "href": "http://thesismano2.cs.upb.de:8004/v1/40d9de036960447dafd7d74d306cf189/stacks/{stack_name}/{stack_id}".format(stack_name=stack_name, stack_id=stack_id),
             "rel": "stack"
           }
         ],
@@ -376,11 +376,11 @@ def resources(stack_id, stack_name):
         "resource_name": "SonataService.input.internal.6b4c2ba0-02f2-4e77-8185-e770c4757f3b",
         "links": [
           {
-            "href": "http://vim-mocker:8004/v1/40d9de036960447dafd7d74d306cf189/stacks/{stack_name}/{stack_id}/resources/SonataService.input.internal.6b4c2ba0-02f2-4e77-8185-e770c4757f3b".format(stack_name=stack_name, stack_id=stack_id),
+            "href": "http://thesismano2.cs.upb.de:8004/v1/40d9de036960447dafd7d74d306cf189/stacks/{stack_name}/{stack_id}/resources/SonataService.input.internal.6b4c2ba0-02f2-4e77-8185-e770c4757f3b".format(stack_name=stack_name, stack_id=stack_id),
             "rel": "self"
           },
           {
-            "href": "http://vim-mocker:8004/v1/40d9de036960447dafd7d74d306cf189/stacks/{stack_name}/{stack_id}".format(stack_name=stack_name, stack_id=stack_id),
+            "href": "http://thesismano2.cs.upb.de:8004/v1/40d9de036960447dafd7d74d306cf189/stacks/{stack_name}/{stack_id}".format(stack_name=stack_name, stack_id=stack_id),
             "rel": "stack"
           }
         ],
@@ -399,11 +399,11 @@ def resources(stack_id, stack_name):
         "resource_name": "SonataService.input.subnet.6b4c2ba0-02f2-4e77-8185-e770c4757f3b",
         "links": [
           {
-            "href": "http://vim-mocker:8004/v1/40d9de036960447dafd7d74d306cf189/stacks/{stack_name}/{stack_id}/resources/SonataService.input.subnet.6b4c2ba0-02f2-4e77-8185-e770c4757f3b".format(stack_name=stack_name, stack_id=stack_id),
+            "href": "http://thesismano2.cs.upb.de:8004/v1/40d9de036960447dafd7d74d306cf189/stacks/{stack_name}/{stack_id}/resources/SonataService.input.subnet.6b4c2ba0-02f2-4e77-8185-e770c4757f3b".format(stack_name=stack_name, stack_id=stack_id),
             "rel": "self"
           },
           {
-            "href": "http://vim-mocker:8004/v1/40d9de036960447dafd7d74d306cf189/stacks/{stack_name}/{stack_id}".format(stack_name=stack_name, stack_id=stack_id),
+            "href": "http://thesismano2.cs.upb.de:8004/v1/40d9de036960447dafd7d74d306cf189/stacks/{stack_name}/{stack_id}".format(stack_name=stack_name, stack_id=stack_id),
             "rel": "stack"
           }
         ],
@@ -422,11 +422,11 @@ def resources(stack_id, stack_name):
         "resource_name": "SonataService.mgmt.subnet.6b4c2ba0-02f2-4e77-8185-e770c4757f3b",
         "links": [
           {
-            "href": "http://vim-mocker:8004/v1/40d9de036960447dafd7d74d306cf189/stacks/{stack_name}/{stack_id}/resources/SonataService.mgmt.subnet.6b4c2ba0-02f2-4e77-8185-e770c4757f3b".format(stack_name=stack_name, stack_id=stack_id),
+            "href": "http://thesismano2.cs.upb.de:8004/v1/40d9de036960447dafd7d74d306cf189/stacks/{stack_name}/{stack_id}/resources/SonataService.mgmt.subnet.6b4c2ba0-02f2-4e77-8185-e770c4757f3b".format(stack_name=stack_name, stack_id=stack_id),
             "rel": "self"
           },
           {
-            "href": "http://vim-mocker:8004/v1/40d9de036960447dafd7d74d306cf189/stacks/{stack_name}/{stack_id}".format(stack_name=stack_name, stack_id=stack_id),
+            "href": "http://thesismano2.cs.upb.de:8004/v1/40d9de036960447dafd7d74d306cf189/stacks/{stack_name}/{stack_id}".format(stack_name=stack_name, stack_id=stack_id),
             "rel": "stack"
           }
         ],
@@ -445,11 +445,11 @@ def resources(stack_id, stack_name):
         "resource_name": "SonataService.output.subnet.6b4c2ba0-02f2-4e77-8185-e770c4757f3b",
         "links": [
           {
-            "href": "http://vim-mocker:8004/v1/40d9de036960447dafd7d74d306cf189/stacks/{stack_name}/{stack_id}/resources/SonataService.output.subnet.6b4c2ba0-02f2-4e77-8185-e770c4757f3b".format(stack_name=stack_name, stack_id=stack_id),
+            "href": "http://thesismano2.cs.upb.de:8004/v1/40d9de036960447dafd7d74d306cf189/stacks/{stack_name}/{stack_id}/resources/SonataService.output.subnet.6b4c2ba0-02f2-4e77-8185-e770c4757f3b".format(stack_name=stack_name, stack_id=stack_id),
             "rel": "self"
           },
           {
-            "href": "http://vim-mocker:8004/v1/40d9de036960447dafd7d74d306cf189/stacks/{stack_name}/{stack_id}".format(stack_name=stack_name, stack_id=stack_id),
+            "href": "http://thesismano2.cs.upb.de:8004/v1/40d9de036960447dafd7d74d306cf189/stacks/{stack_name}/{stack_id}".format(stack_name=stack_name, stack_id=stack_id),
             "rel": "stack"
           }
         ],
@@ -468,11 +468,11 @@ def resources(stack_id, stack_name):
         "resource_name": "SonataService.input.net.6b4c2ba0-02f2-4e77-8185-e770c4757f3b",
         "links": [
           {
-            "href": "http://vim-mocker:8004/v1/40d9de036960447dafd7d74d306cf189/stacks/{stack_name}/{stack_id}/resources/SonataService.input.net.6b4c2ba0-02f2-4e77-8185-e770c4757f3b".format(stack_name=stack_name, stack_id=stack_id),
+            "href": "http://thesismano2.cs.upb.de:8004/v1/40d9de036960447dafd7d74d306cf189/stacks/{stack_name}/{stack_id}/resources/SonataService.input.net.6b4c2ba0-02f2-4e77-8185-e770c4757f3b".format(stack_name=stack_name, stack_id=stack_id),
             "rel": "self"
           },
           {
-            "href": "http://vim-mocker:8004/v1/40d9de036960447dafd7d74d306cf189/stacks/{stack_name}/{stack_id}".format(stack_name=stack_name, stack_id=stack_id),
+            "href": "http://thesismano2.cs.upb.de:8004/v1/40d9de036960447dafd7d74d306cf189/stacks/{stack_name}/{stack_id}".format(stack_name=stack_name, stack_id=stack_id),
             "rel": "stack"
           }
         ],
@@ -491,11 +491,11 @@ def resources(stack_id, stack_name):
         "resource_name": "SonataService.mgmt.net.6b4c2ba0-02f2-4e77-8185-e770c4757f3b",
         "links": [
           {
-            "href": "http://vim-mocker:8004/v1/40d9de036960447dafd7d74d306cf189/stacks/{stack_name}/{stack_id}/resources/SonataService.mgmt.net.6b4c2ba0-02f2-4e77-8185-e770c4757f3b".format(stack_name=stack_name, stack_id=stack_id),
+            "href": "http://thesismano2.cs.upb.de:8004/v1/40d9de036960447dafd7d74d306cf189/stacks/{stack_name}/{stack_id}/resources/SonataService.mgmt.net.6b4c2ba0-02f2-4e77-8185-e770c4757f3b".format(stack_name=stack_name, stack_id=stack_id),
             "rel": "self"
           },
           {
-            "href": "http://vim-mocker:8004/v1/40d9de036960447dafd7d74d306cf189/stacks/{stack_name}/{stack_id}".format(stack_name=stack_name, stack_id=stack_id),
+            "href": "http://thesismano2.cs.upb.de:8004/v1/40d9de036960447dafd7d74d306cf189/stacks/{stack_name}/{stack_id}".format(stack_name=stack_name, stack_id=stack_id),
             "rel": "stack"
           }
         ],
@@ -514,11 +514,11 @@ def resources(stack_id, stack_name):
         "resource_name": "SonataService.output.net.6b4c2ba0-02f2-4e77-8185-e770c4757f3b",
         "links": [
           {
-            "href": "http://vim-mocker:8004/v1/40d9de036960447dafd7d74d306cf189/stacks/{stack_name}/{stack_id}/resources/SonataService.output.net.6b4c2ba0-02f2-4e77-8185-e770c4757f3b".format(stack_name=stack_name, stack_id=stack_id),
+            "href": "http://thesismano2.cs.upb.de:8004/v1/40d9de036960447dafd7d74d306cf189/stacks/{stack_name}/{stack_id}/resources/SonataService.output.net.6b4c2ba0-02f2-4e77-8185-e770c4757f3b".format(stack_name=stack_name, stack_id=stack_id),
             "rel": "self"
           },
           {
-            "href": "http://vim-mocker:8004/v1/40d9de036960447dafd7d74d306cf189/stacks/{stack_name}/{stack_id}".format(stack_name=stack_name, stack_id=stack_id),
+            "href": "http://thesismano2.cs.upb.de:8004/v1/40d9de036960447dafd7d74d306cf189/stacks/{stack_name}/{stack_id}".format(stack_name=stack_name, stack_id=stack_id),
             "rel": "stack"
           }
         ],
@@ -537,15 +537,15 @@ def resources(stack_id, stack_name):
         "resource_name": "cirros-image-1.cirros-image-1.6b4c2ba0-02f2-4e77-8185-e770c4757f3b",
         "links": [
           {
-            "href": "http://vim-mocker:8004/v1/40d9de036960447dafd7d74d306cf189/stacks/{stack_name}/{stack_id}/resources/cirros-image-1.cirros-image-1.6b4c2ba0-02f2-4e77-8185-e770c4757f3b".format(stack_name=stack_name, stack_id=stack_id),
+            "href": "http://thesismano2.cs.upb.de:8004/v1/40d9de036960447dafd7d74d306cf189/stacks/{stack_name}/{stack_id}/resources/cirros-image-1.cirros-image-1.6b4c2ba0-02f2-4e77-8185-e770c4757f3b".format(stack_name=stack_name, stack_id=stack_id),
             "rel": "self"
           },
           {
-            "href": "http://vim-mocker:8004/v1/40d9de036960447dafd7d74d306cf189/stacks/{stack_name}/{stack_id}".format(stack_name=stack_name, stack_id=stack_id),
+            "href": "http://thesismano2.cs.upb.de:8004/v1/40d9de036960447dafd7d74d306cf189/stacks/{stack_name}/{stack_id}".format(stack_name=stack_name, stack_id=stack_id),
             "rel": "stack"
           },
           {
-            "href": "http://vim-mocker:8004/v1/40d9de036960447dafd7d74d306cf189/stacks/{stack_name}-cirros-image-1.cirros-image-1.6b4c2ba0-02f2-4e77-8185-e770c4757f3b-tzgmdqfr6ur2/a45679f4-643a-4ba4-845a-c3c9ade12b6b".format(stack_name=stack_name),
+            "href": "http://thesismano2.cs.upb.de:8004/v1/40d9de036960447dafd7d74d306cf189/stacks/{stack_name}-cirros-image-1.cirros-image-1.6b4c2ba0-02f2-4e77-8185-e770c4757f3b-tzgmdqfr6ur2/a45679f4-643a-4ba4-845a-c3c9ade12b6b".format(stack_name=stack_name),
             "rel": "nested"
           }
         ],
@@ -564,11 +564,11 @@ def resources(stack_id, stack_name):
         "resource_name": "SonataService.internal.subnet.6b4c2ba0-02f2-4e77-8185-e770c4757f3b",
         "links": [
           {
-            "href": "http://vim-mocker:8004/v1/40d9de036960447dafd7d74d306cf189/stacks/{stack_name}/{stack_id}/resources/SonataService.internal.subnet.6b4c2ba0-02f2-4e77-8185-e770c4757f3b".format(stack_name=stack_name, stack_id=stack_id),
+            "href": "http://thesismano2.cs.upb.de:8004/v1/40d9de036960447dafd7d74d306cf189/stacks/{stack_name}/{stack_id}/resources/SonataService.internal.subnet.6b4c2ba0-02f2-4e77-8185-e770c4757f3b".format(stack_name=stack_name, stack_id=stack_id),
             "rel": "self"
           },
           {
-            "href": "http://vim-mocker:8004/v1/40d9de036960447dafd7d74d306cf189/stacks/{stack_name}/{stack_id}".format(stack_name=stack_name, stack_id=stack_id),
+            "href": "http://thesismano2.cs.upb.de:8004/v1/40d9de036960447dafd7d74d306cf189/stacks/{stack_name}/{stack_id}".format(stack_name=stack_name, stack_id=stack_id),
             "rel": "stack"
           }
         ],
@@ -587,11 +587,11 @@ def resources(stack_id, stack_name):
         "resource_name": "SonataService.external.subnet.6b4c2ba0-02f2-4e77-8185-e770c4757f3b",
         "links": [
           {
-            "href": "http://vim-mocker:8004/v1/40d9de036960447dafd7d74d306cf189/stacks/{stack_name}/{stack_id}/resources/SonataService.external.subnet.6b4c2ba0-02f2-4e77-8185-e770c4757f3b".format(stack_name=stack_name, stack_id=stack_id),
+            "href": "http://thesismano2.cs.upb.de:8004/v1/40d9de036960447dafd7d74d306cf189/stacks/{stack_name}/{stack_id}/resources/SonataService.external.subnet.6b4c2ba0-02f2-4e77-8185-e770c4757f3b".format(stack_name=stack_name, stack_id=stack_id),
             "rel": "self"
           },
           {
-            "href": "http://vim-mocker:8004/v1/40d9de036960447dafd7d74d306cf189/stacks/{stack_name}/{stack_id}".format(stack_name=stack_name, stack_id=stack_id),
+            "href": "http://thesismano2.cs.upb.de:8004/v1/40d9de036960447dafd7d74d306cf189/stacks/{stack_name}/{stack_id}".format(stack_name=stack_name, stack_id=stack_id),
             "rel": "stack"
           }
         ],
@@ -610,11 +610,11 @@ def resources(stack_id, stack_name):
         "resource_name": "SonataService.internal.net.6b4c2ba0-02f2-4e77-8185-e770c4757f3b",
         "links": [
           {
-            "href": "http://vim-mocker:8004/v1/40d9de036960447dafd7d74d306cf189/stacks/{stack_name}/{stack_id}/resources/SonataService.internal.net.6b4c2ba0-02f2-4e77-8185-e770c4757f3b".format(stack_name=stack_name, stack_id=stack_id),
+            "href": "http://thesismano2.cs.upb.de:8004/v1/40d9de036960447dafd7d74d306cf189/stacks/{stack_name}/{stack_id}/resources/SonataService.internal.net.6b4c2ba0-02f2-4e77-8185-e770c4757f3b".format(stack_name=stack_name, stack_id=stack_id),
             "rel": "self"
           },
           {
-            "href": "http://vim-mocker:8004/v1/40d9de036960447dafd7d74d306cf189/stacks/{stack_name}/{stack_id}".format(stack_name=stack_name, stack_id=stack_id),
+            "href": "http://thesismano2.cs.upb.de:8004/v1/40d9de036960447dafd7d74d306cf189/stacks/{stack_name}/{stack_id}".format(stack_name=stack_name, stack_id=stack_id),
             "rel": "stack"
           }
         ],
@@ -634,11 +634,11 @@ def resources(stack_id, stack_name):
         "resource_name": "cirros-image-1.cirros-image-1.eth0.6b4c2ba0-02f2-4e77-8185-e770c4757f3b",
         "links": [
           {
-            "href": "http://vim-mocker:8004/v1/40d9de036960447dafd7d74d306cf189/stacks/{stack_name}/{stack_id}/resources/cirros-image-1.cirros-image-1.eth0.6b4c2ba0-02f2-4e77-8185-e770c4757f3b".format(stack_name=stack_name, stack_id=stack_id),
+            "href": "http://thesismano2.cs.upb.de:8004/v1/40d9de036960447dafd7d74d306cf189/stacks/{stack_name}/{stack_id}/resources/cirros-image-1.cirros-image-1.eth0.6b4c2ba0-02f2-4e77-8185-e770c4757f3b".format(stack_name=stack_name, stack_id=stack_id),
             "rel": "self"
           },
           {
-            "href": "http://vim-mocker:8004/v1/40d9de036960447dafd7d74d306cf189/stacks/{stack_name}/{stack_id}".format(stack_name=stack_name, stack_id=stack_id),
+            "href": "http://thesismano2.cs.upb.de:8004/v1/40d9de036960447dafd7d74d306cf189/stacks/{stack_name}/{stack_id}".format(stack_name=stack_name, stack_id=stack_id),
             "rel": "stack"
           }
         ],
@@ -657,11 +657,11 @@ def resources(stack_id, stack_name):
         "resource_name": "SonataService.ext.internal.6b4c2ba0-02f2-4e77-8185-e770c4757f3b",
         "links": [
           {
-            "href": "http://vim-mocker:8004/v1/40d9de036960447dafd7d74d306cf189/stacks/{stack_name}/{stack_id}/resources/SonataService.ext.internal.6b4c2ba0-02f2-4e77-8185-e770c4757f3b".format(stack_name=stack_name, stack_id=stack_id),
+            "href": "http://thesismano2.cs.upb.de:8004/v1/40d9de036960447dafd7d74d306cf189/stacks/{stack_name}/{stack_id}/resources/SonataService.ext.internal.6b4c2ba0-02f2-4e77-8185-e770c4757f3b".format(stack_name=stack_name, stack_id=stack_id),
             "rel": "self"
           },
           {
-            "href": "http://vim-mocker:8004/v1/40d9de036960447dafd7d74d306cf189/stacks/{stack_name}/{stack_id}".format(stack_name=stack_name, stack_id=stack_id),
+            "href": "http://thesismano2.cs.upb.de:8004/v1/40d9de036960447dafd7d74d306cf189/stacks/{stack_name}/{stack_id}".format(stack_name=stack_name, stack_id=stack_id),
             "rel": "stack"
           }
         ],
@@ -680,11 +680,11 @@ def resources(stack_id, stack_name):
         "resource_name": "SonataService.external.net.6b4c2ba0-02f2-4e77-8185-e770c4757f3b",
         "links": [
           {
-            "href": "http://vim-mocker:8004/v1/40d9de036960447dafd7d74d306cf189/stacks/{stack_name}/{stack_id}/resources/SonataService.external.net.6b4c2ba0-02f2-4e77-8185-e770c4757f3b".format(stack_name=stack_name, stack_id=stack_id),
+            "href": "http://thesismano2.cs.upb.de:8004/v1/40d9de036960447dafd7d74d306cf189/stacks/{stack_name}/{stack_id}/resources/SonataService.external.net.6b4c2ba0-02f2-4e77-8185-e770c4757f3b".format(stack_name=stack_name, stack_id=stack_id),
             "rel": "self"
           },
           {
-            "href": "http://vim-mocker:8004/v1/40d9de036960447dafd7d74d306cf189/stacks/{stack_name}/{stack_id}".format(stack_name=stack_name, stack_id=stack_id),
+            "href": "http://thesismano2.cs.upb.de:8004/v1/40d9de036960447dafd7d74d306cf189/stacks/{stack_name}/{stack_id}".format(stack_name=stack_name, stack_id=stack_id),
             "rel": "stack"
           }
         ],
@@ -703,11 +703,11 @@ def resources(stack_id, stack_name):
         "resource_name": "SonataService.mgmt.internal.6b4c2ba0-02f2-4e77-8185-e770c4757f3b",
         "links": [
           {
-            "href": "http://vim-mocker:8004/v1/40d9de036960447dafd7d74d306cf189/stacks/{stack_name}/{stack_id}/resources/SonataService.mgmt.internal.6b4c2ba0-02f2-4e77-8185-e770c4757f3b".format(stack_name=stack_name, stack_id=stack_id),
+            "href": "http://thesismano2.cs.upb.de:8004/v1/40d9de036960447dafd7d74d306cf189/stacks/{stack_name}/{stack_id}/resources/SonataService.mgmt.internal.6b4c2ba0-02f2-4e77-8185-e770c4757f3b".format(stack_name=stack_name, stack_id=stack_id),
             "rel": "self"
           },
           {
-            "href": "http://vim-mocker:8004/v1/40d9de036960447dafd7d74d306cf189/stacks/{stack_name}/{stack_id}".format(stack_name=stack_name, stack_id=stack_id),
+            "href": "http://thesismano2.cs.upb.de:8004/v1/40d9de036960447dafd7d74d306cf189/stacks/{stack_name}/{stack_id}".format(stack_name=stack_name, stack_id=stack_id),
             "rel": "stack"
           }
         ],
@@ -733,11 +733,11 @@ def resources_status(stack_id, stack_name, resource_name):
       "description": "",
       "links": [
         {
-          "href": "http://vim-mocker:8004/v1/40d9de036960447dafd7d74d306cf189/stacks/{stack_name}/{stack_id}/resources/{resource_name}".format(stack_name=stack_name, stack_id=stack_id, resource_name=resource_name),
+          "href": "http://thesismano2.cs.upb.de:8004/v1/40d9de036960447dafd7d74d306cf189/stacks/{stack_name}/{stack_id}/resources/{resource_name}".format(stack_name=stack_name, stack_id=stack_id, resource_name=resource_name),
           "rel": "self"
         },
         {
-          "href": "http://vim-mocker:8004/v1/40d9de036960447dafd7d74d306cf189/stacks/{stack_name}/{stack_id}".format(stack_name=stack_name, stack_id=stack_id),
+          "href": "http://thesismano2.cs.upb.de:8004/v1/40d9de036960447dafd7d74d306cf189/stacks/{stack_name}/{stack_id}".format(stack_name=stack_name, stack_id=stack_id),
           "rel": "stack"
         }
       ],
@@ -765,11 +765,11 @@ resources_status_individual = {
     "description": "",
     "links": [
       {
-        "href": "http://vim-mocker:8004/v1/40d9de036960447dafd7d74d306cf189/stacks/SonataService-6b4c2ba0-02f2-4e77-8185-e770c4757f3b/1a2d5e94-c803-486d-b49d-67f712a37b84/resources/cirros-image-1_6b4c2ba0-02f2-4e77-8185-e770c4757f3b_spAddressCloudConfig",
+        "href": "http://thesismano2.cs.upb.de:8004/v1/40d9de036960447dafd7d74d306cf189/stacks/SonataService-6b4c2ba0-02f2-4e77-8185-e770c4757f3b/1a2d5e94-c803-486d-b49d-67f712a37b84/resources/cirros-image-1_6b4c2ba0-02f2-4e77-8185-e770c4757f3b_spAddressCloudConfig",
         "rel": "self"
       },
       {
-        "href": "http://vim-mocker:8004/v1/40d9de036960447dafd7d74d306cf189/stacks/SonataService-6b4c2ba0-02f2-4e77-8185-e770c4757f3b/1a2d5e94-c803-486d-b49d-67f712a37b84",
+        "href": "http://thesismano2.cs.upb.de:8004/v1/40d9de036960447dafd7d74d306cf189/stacks/SonataService-6b4c2ba0-02f2-4e77-8185-e770c4757f3b/1a2d5e94-c803-486d-b49d-67f712a37b84",
         "rel": "stack"
       }
     ],
@@ -794,11 +794,11 @@ resources_status_individual = {
     "description": "",
     "links": [
       {
-        "href": "http://vim-mocker:8004/v1/40d9de036960447dafd7d74d306cf189/stacks/SonataService-6b4c2ba0-02f2-4e77-8185-e770c4757f3b/1a2d5e94-c803-486d-b49d-67f712a37b84/resources/SonataService.output.internal.6b4c2ba0-02f2-4e77-8185-e770c4757f3b",
+        "href": "http://thesismano2.cs.upb.de:8004/v1/40d9de036960447dafd7d74d306cf189/stacks/SonataService-6b4c2ba0-02f2-4e77-8185-e770c4757f3b/1a2d5e94-c803-486d-b49d-67f712a37b84/resources/SonataService.output.internal.6b4c2ba0-02f2-4e77-8185-e770c4757f3b",
         "rel": "self"
       },
       {
-        "href": "http://vim-mocker:8004/v1/40d9de036960447dafd7d74d306cf189/stacks/SonataService-6b4c2ba0-02f2-4e77-8185-e770c4757f3b/1a2d5e94-c803-486d-b49d-67f712a37b84",
+        "href": "http://thesismano2.cs.upb.de:8004/v1/40d9de036960447dafd7d74d306cf189/stacks/SonataService-6b4c2ba0-02f2-4e77-8185-e770c4757f3b/1a2d5e94-c803-486d-b49d-67f712a37b84",
         "rel": "stack"
       }
     ],
@@ -823,11 +823,11 @@ resources_status_individual = {
     "description": "",
     "links": [
       {
-        "href": "http://vim-mocker:8004/v1/40d9de036960447dafd7d74d306cf189/stacks/SonataService-6b4c2ba0-02f2-4e77-8185-e770c4757f3b/1a2d5e94-c803-486d-b49d-67f712a37b84/resources/SonataService.input.internal.6b4c2ba0-02f2-4e77-8185-e770c4757f3b",
+        "href": "http://thesismano2.cs.upb.de:8004/v1/40d9de036960447dafd7d74d306cf189/stacks/SonataService-6b4c2ba0-02f2-4e77-8185-e770c4757f3b/1a2d5e94-c803-486d-b49d-67f712a37b84/resources/SonataService.input.internal.6b4c2ba0-02f2-4e77-8185-e770c4757f3b",
         "rel": "self"
       },
       {
-        "href": "http://vim-mocker:8004/v1/40d9de036960447dafd7d74d306cf189/stacks/SonataService-6b4c2ba0-02f2-4e77-8185-e770c4757f3b/1a2d5e94-c803-486d-b49d-67f712a37b84",
+        "href": "http://thesismano2.cs.upb.de:8004/v1/40d9de036960447dafd7d74d306cf189/stacks/SonataService-6b4c2ba0-02f2-4e77-8185-e770c4757f3b/1a2d5e94-c803-486d-b49d-67f712a37b84",
         "rel": "stack"
       }
     ],
@@ -852,11 +852,11 @@ resources_status_individual = {
     "description": "",
     "links": [
       {
-        "href": "http://vim-mocker:8004/v1/40d9de036960447dafd7d74d306cf189/stacks/SonataService-6b4c2ba0-02f2-4e77-8185-e770c4757f3b/1a2d5e94-c803-486d-b49d-67f712a37b84/resources/SonataService.input.subnet.6b4c2ba0-02f2-4e77-8185-e770c4757f3b",
+        "href": "http://thesismano2.cs.upb.de:8004/v1/40d9de036960447dafd7d74d306cf189/stacks/SonataService-6b4c2ba0-02f2-4e77-8185-e770c4757f3b/1a2d5e94-c803-486d-b49d-67f712a37b84/resources/SonataService.input.subnet.6b4c2ba0-02f2-4e77-8185-e770c4757f3b",
         "rel": "self"
       },
       {
-        "href": "http://vim-mocker:8004/v1/40d9de036960447dafd7d74d306cf189/stacks/SonataService-6b4c2ba0-02f2-4e77-8185-e770c4757f3b/1a2d5e94-c803-486d-b49d-67f712a37b84",
+        "href": "http://thesismano2.cs.upb.de:8004/v1/40d9de036960447dafd7d74d306cf189/stacks/SonataService-6b4c2ba0-02f2-4e77-8185-e770c4757f3b/1a2d5e94-c803-486d-b49d-67f712a37b84",
         "rel": "stack"
       }
     ],
@@ -914,11 +914,11 @@ resources_status_individual = {
     "description": "",
     "links": [
       {
-        "href": "http://vim-mocker:8004/v1/40d9de036960447dafd7d74d306cf189/stacks/SonataService-6b4c2ba0-02f2-4e77-8185-e770c4757f3b/1a2d5e94-c803-486d-b49d-67f712a37b84/resources/SonataService.mgmt.subnet.6b4c2ba0-02f2-4e77-8185-e770c4757f3b",
+        "href": "http://thesismano2.cs.upb.de:8004/v1/40d9de036960447dafd7d74d306cf189/stacks/SonataService-6b4c2ba0-02f2-4e77-8185-e770c4757f3b/1a2d5e94-c803-486d-b49d-67f712a37b84/resources/SonataService.mgmt.subnet.6b4c2ba0-02f2-4e77-8185-e770c4757f3b",
         "rel": "self"
       },
       {
-        "href": "http://vim-mocker:8004/v1/40d9de036960447dafd7d74d306cf189/stacks/SonataService-6b4c2ba0-02f2-4e77-8185-e770c4757f3b/1a2d5e94-c803-486d-b49d-67f712a37b84",
+        "href": "http://thesismano2.cs.upb.de:8004/v1/40d9de036960447dafd7d74d306cf189/stacks/SonataService-6b4c2ba0-02f2-4e77-8185-e770c4757f3b/1a2d5e94-c803-486d-b49d-67f712a37b84",
         "rel": "stack"
       }
     ],
@@ -976,11 +976,11 @@ resources_status_individual = {
     "description": "",
     "links": [
       {
-        "href": "http://vim-mocker:8004/v1/40d9de036960447dafd7d74d306cf189/stacks/SonataService-6b4c2ba0-02f2-4e77-8185-e770c4757f3b/1a2d5e94-c803-486d-b49d-67f712a37b84/resources/SonataService.output.subnet.6b4c2ba0-02f2-4e77-8185-e770c4757f3b",
+        "href": "http://thesismano2.cs.upb.de:8004/v1/40d9de036960447dafd7d74d306cf189/stacks/SonataService-6b4c2ba0-02f2-4e77-8185-e770c4757f3b/1a2d5e94-c803-486d-b49d-67f712a37b84/resources/SonataService.output.subnet.6b4c2ba0-02f2-4e77-8185-e770c4757f3b",
         "rel": "self"
       },
       {
-        "href": "http://vim-mocker:8004/v1/40d9de036960447dafd7d74d306cf189/stacks/SonataService-6b4c2ba0-02f2-4e77-8185-e770c4757f3b/1a2d5e94-c803-486d-b49d-67f712a37b84",
+        "href": "http://thesismano2.cs.upb.de:8004/v1/40d9de036960447dafd7d74d306cf189/stacks/SonataService-6b4c2ba0-02f2-4e77-8185-e770c4757f3b/1a2d5e94-c803-486d-b49d-67f712a37b84",
         "rel": "stack"
       }
     ],
@@ -1038,11 +1038,11 @@ resources_status_individual = {
     "description": "",
     "links": [
       {
-        "href": "http://vim-mocker:8004/v1/40d9de036960447dafd7d74d306cf189/stacks/SonataService-6b4c2ba0-02f2-4e77-8185-e770c4757f3b/1a2d5e94-c803-486d-b49d-67f712a37b84/resources/SonataService.input.net.6b4c2ba0-02f2-4e77-8185-e770c4757f3b",
+        "href": "http://thesismano2.cs.upb.de:8004/v1/40d9de036960447dafd7d74d306cf189/stacks/SonataService-6b4c2ba0-02f2-4e77-8185-e770c4757f3b/1a2d5e94-c803-486d-b49d-67f712a37b84/resources/SonataService.input.net.6b4c2ba0-02f2-4e77-8185-e770c4757f3b",
         "rel": "self"
       },
       {
-        "href": "http://vim-mocker:8004/v1/40d9de036960447dafd7d74d306cf189/stacks/SonataService-6b4c2ba0-02f2-4e77-8185-e770c4757f3b/1a2d5e94-c803-486d-b49d-67f712a37b84",
+        "href": "http://thesismano2.cs.upb.de:8004/v1/40d9de036960447dafd7d74d306cf189/stacks/SonataService-6b4c2ba0-02f2-4e77-8185-e770c4757f3b/1a2d5e94-c803-486d-b49d-67f712a37b84",
         "rel": "stack"
       }
     ],
@@ -1097,11 +1097,11 @@ resources_status_individual = {
     "description": "",
     "links": [
       {
-        "href": "http://vim-mocker:8004/v1/40d9de036960447dafd7d74d306cf189/stacks/SonataService-6b4c2ba0-02f2-4e77-8185-e770c4757f3b/1a2d5e94-c803-486d-b49d-67f712a37b84/resources/SonataService.mgmt.net.6b4c2ba0-02f2-4e77-8185-e770c4757f3b",
+        "href": "http://thesismano2.cs.upb.de:8004/v1/40d9de036960447dafd7d74d306cf189/stacks/SonataService-6b4c2ba0-02f2-4e77-8185-e770c4757f3b/1a2d5e94-c803-486d-b49d-67f712a37b84/resources/SonataService.mgmt.net.6b4c2ba0-02f2-4e77-8185-e770c4757f3b",
         "rel": "self"
       },
       {
-        "href": "http://vim-mocker:8004/v1/40d9de036960447dafd7d74d306cf189/stacks/SonataService-6b4c2ba0-02f2-4e77-8185-e770c4757f3b/1a2d5e94-c803-486d-b49d-67f712a37b84",
+        "href": "http://thesismano2.cs.upb.de:8004/v1/40d9de036960447dafd7d74d306cf189/stacks/SonataService-6b4c2ba0-02f2-4e77-8185-e770c4757f3b/1a2d5e94-c803-486d-b49d-67f712a37b84",
         "rel": "stack"
       }
     ],
@@ -1156,11 +1156,11 @@ resources_status_individual = {
     "description": "",
     "links": [
       {
-        "href": "http://vim-mocker:8004/v1/40d9de036960447dafd7d74d306cf189/stacks/SonataService-6b4c2ba0-02f2-4e77-8185-e770c4757f3b/1a2d5e94-c803-486d-b49d-67f712a37b84/resources/SonataService.output.net.6b4c2ba0-02f2-4e77-8185-e770c4757f3b",
+        "href": "http://thesismano2.cs.upb.de:8004/v1/40d9de036960447dafd7d74d306cf189/stacks/SonataService-6b4c2ba0-02f2-4e77-8185-e770c4757f3b/1a2d5e94-c803-486d-b49d-67f712a37b84/resources/SonataService.output.net.6b4c2ba0-02f2-4e77-8185-e770c4757f3b",
         "rel": "self"
       },
       {
-        "href": "http://vim-mocker:8004/v1/40d9de036960447dafd7d74d306cf189/stacks/SonataService-6b4c2ba0-02f2-4e77-8185-e770c4757f3b/1a2d5e94-c803-486d-b49d-67f712a37b84",
+        "href": "http://thesismano2.cs.upb.de:8004/v1/40d9de036960447dafd7d74d306cf189/stacks/SonataService-6b4c2ba0-02f2-4e77-8185-e770c4757f3b/1a2d5e94-c803-486d-b49d-67f712a37b84",
         "rel": "stack"
       }
     ],
@@ -1215,15 +1215,15 @@ resources_status_individual = {
     "description": "",
     "links": [
       {
-        "href": "http://vim-mocker:8004/v1/40d9de036960447dafd7d74d306cf189/stacks/SonataService-6b4c2ba0-02f2-4e77-8185-e770c4757f3b/1a2d5e94-c803-486d-b49d-67f712a37b84/resources/cirros-image-1.cirros-image-1.6b4c2ba0-02f2-4e77-8185-e770c4757f3b",
+        "href": "http://thesismano2.cs.upb.de:8004/v1/40d9de036960447dafd7d74d306cf189/stacks/SonataService-6b4c2ba0-02f2-4e77-8185-e770c4757f3b/1a2d5e94-c803-486d-b49d-67f712a37b84/resources/cirros-image-1.cirros-image-1.6b4c2ba0-02f2-4e77-8185-e770c4757f3b",
         "rel": "self"
       },
       {
-        "href": "http://vim-mocker:8004/v1/40d9de036960447dafd7d74d306cf189/stacks/SonataService-6b4c2ba0-02f2-4e77-8185-e770c4757f3b/1a2d5e94-c803-486d-b49d-67f712a37b84",
+        "href": "http://thesismano2.cs.upb.de:8004/v1/40d9de036960447dafd7d74d306cf189/stacks/SonataService-6b4c2ba0-02f2-4e77-8185-e770c4757f3b/1a2d5e94-c803-486d-b49d-67f712a37b84",
         "rel": "stack"
       },
       {
-        "href": "http://vim-mocker:8004/v1/40d9de036960447dafd7d74d306cf189/stacks/SonataService-6b4c2ba0-02f2-4e77-8185-e770c4757f3b-cirros-image-1.cirros-image-1.6b4c2ba0-02f2-4e77-8185-e770c4757f3b-tzgmdqfr6ur2/a45679f4-643a-4ba4-845a-c3c9ade12b6b",
+        "href": "http://thesismano2.cs.upb.de:8004/v1/40d9de036960447dafd7d74d306cf189/stacks/SonataService-6b4c2ba0-02f2-4e77-8185-e770c4757f3b-cirros-image-1.cirros-image-1.6b4c2ba0-02f2-4e77-8185-e770c4757f3b-tzgmdqfr6ur2/a45679f4-643a-4ba4-845a-c3c9ade12b6b",
         "rel": "nested"
       }
     ],
@@ -1253,11 +1253,11 @@ resources_status_individual = {
     "description": "",
     "links": [
       {
-        "href": "http://vim-mocker:8004/v1/40d9de036960447dafd7d74d306cf189/stacks/SonataService-6b4c2ba0-02f2-4e77-8185-e770c4757f3b/1a2d5e94-c803-486d-b49d-67f712a37b84/resources/SonataService.internal.subnet.6b4c2ba0-02f2-4e77-8185-e770c4757f3b",
+        "href": "http://thesismano2.cs.upb.de:8004/v1/40d9de036960447dafd7d74d306cf189/stacks/SonataService-6b4c2ba0-02f2-4e77-8185-e770c4757f3b/1a2d5e94-c803-486d-b49d-67f712a37b84/resources/SonataService.internal.subnet.6b4c2ba0-02f2-4e77-8185-e770c4757f3b",
         "rel": "self"
       },
       {
-        "href": "http://vim-mocker:8004/v1/40d9de036960447dafd7d74d306cf189/stacks/SonataService-6b4c2ba0-02f2-4e77-8185-e770c4757f3b/1a2d5e94-c803-486d-b49d-67f712a37b84",
+        "href": "http://thesismano2.cs.upb.de:8004/v1/40d9de036960447dafd7d74d306cf189/stacks/SonataService-6b4c2ba0-02f2-4e77-8185-e770c4757f3b/1a2d5e94-c803-486d-b49d-67f712a37b84",
         "rel": "stack"
       }
     ],
@@ -1315,11 +1315,11 @@ resources_status_individual = {
     "description": "",
     "links": [
       {
-        "href": "http://vim-mocker:8004/v1/40d9de036960447dafd7d74d306cf189/stacks/SonataService-6b4c2ba0-02f2-4e77-8185-e770c4757f3b/1a2d5e94-c803-486d-b49d-67f712a37b84/resources/SonataService.external.subnet.6b4c2ba0-02f2-4e77-8185-e770c4757f3b",
+        "href": "http://thesismano2.cs.upb.de:8004/v1/40d9de036960447dafd7d74d306cf189/stacks/SonataService-6b4c2ba0-02f2-4e77-8185-e770c4757f3b/1a2d5e94-c803-486d-b49d-67f712a37b84/resources/SonataService.external.subnet.6b4c2ba0-02f2-4e77-8185-e770c4757f3b",
         "rel": "self"
       },
       {
-        "href": "http://vim-mocker:8004/v1/40d9de036960447dafd7d74d306cf189/stacks/SonataService-6b4c2ba0-02f2-4e77-8185-e770c4757f3b/1a2d5e94-c803-486d-b49d-67f712a37b84",
+        "href": "http://thesismano2.cs.upb.de:8004/v1/40d9de036960447dafd7d74d306cf189/stacks/SonataService-6b4c2ba0-02f2-4e77-8185-e770c4757f3b/1a2d5e94-c803-486d-b49d-67f712a37b84",
         "rel": "stack"
       }
     ],
@@ -1377,11 +1377,11 @@ resources_status_individual = {
     "description": "",
     "links": [
       {
-        "href": "http://vim-mocker:8004/v1/40d9de036960447dafd7d74d306cf189/stacks/SonataService-6b4c2ba0-02f2-4e77-8185-e770c4757f3b/1a2d5e94-c803-486d-b49d-67f712a37b84/resources/SonataService.internal.net.6b4c2ba0-02f2-4e77-8185-e770c4757f3b",
+        "href": "http://thesismano2.cs.upb.de:8004/v1/40d9de036960447dafd7d74d306cf189/stacks/SonataService-6b4c2ba0-02f2-4e77-8185-e770c4757f3b/1a2d5e94-c803-486d-b49d-67f712a37b84/resources/SonataService.internal.net.6b4c2ba0-02f2-4e77-8185-e770c4757f3b",
         "rel": "self"
       },
       {
-        "href": "http://vim-mocker:8004/v1/40d9de036960447dafd7d74d306cf189/stacks/SonataService-6b4c2ba0-02f2-4e77-8185-e770c4757f3b/1a2d5e94-c803-486d-b49d-67f712a37b84",
+        "href": "http://thesismano2.cs.upb.de:8004/v1/40d9de036960447dafd7d74d306cf189/stacks/SonataService-6b4c2ba0-02f2-4e77-8185-e770c4757f3b/1a2d5e94-c803-486d-b49d-67f712a37b84",
         "rel": "stack"
       }
     ],
@@ -1437,11 +1437,11 @@ resources_status_individual = {
     "description": "",
     "links": [
       {
-        "href": "http://vim-mocker:8004/v1/40d9de036960447dafd7d74d306cf189/stacks/SonataService-6b4c2ba0-02f2-4e77-8185-e770c4757f3b/1a2d5e94-c803-486d-b49d-67f712a37b84/resources/cirros-image-1.cirros-image-1.eth0.6b4c2ba0-02f2-4e77-8185-e770c4757f3b",
+        "href": "http://thesismano2.cs.upb.de:8004/v1/40d9de036960447dafd7d74d306cf189/stacks/SonataService-6b4c2ba0-02f2-4e77-8185-e770c4757f3b/1a2d5e94-c803-486d-b49d-67f712a37b84/resources/cirros-image-1.cirros-image-1.eth0.6b4c2ba0-02f2-4e77-8185-e770c4757f3b",
         "rel": "self"
       },
       {
-        "href": "http://vim-mocker:8004/v1/40d9de036960447dafd7d74d306cf189/stacks/SonataService-6b4c2ba0-02f2-4e77-8185-e770c4757f3b/1a2d5e94-c803-486d-b49d-67f712a37b84",
+        "href": "http://thesismano2.cs.upb.de:8004/v1/40d9de036960447dafd7d74d306cf189/stacks/SonataService-6b4c2ba0-02f2-4e77-8185-e770c4757f3b/1a2d5e94-c803-486d-b49d-67f712a37b84",
         "rel": "stack"
       }
     ],
@@ -1508,11 +1508,11 @@ resources_status_individual = {
     "description": "",
     "links": [
       {
-        "href": "http://vim-mocker:8004/v1/40d9de036960447dafd7d74d306cf189/stacks/SonataService-6b4c2ba0-02f2-4e77-8185-e770c4757f3b/1a2d5e94-c803-486d-b49d-67f712a37b84/resources/SonataService.ext.internal.6b4c2ba0-02f2-4e77-8185-e770c4757f3b",
+        "href": "http://thesismano2.cs.upb.de:8004/v1/40d9de036960447dafd7d74d306cf189/stacks/SonataService-6b4c2ba0-02f2-4e77-8185-e770c4757f3b/1a2d5e94-c803-486d-b49d-67f712a37b84/resources/SonataService.ext.internal.6b4c2ba0-02f2-4e77-8185-e770c4757f3b",
         "rel": "self"
       },
       {
-        "href": "http://vim-mocker:8004/v1/40d9de036960447dafd7d74d306cf189/stacks/SonataService-6b4c2ba0-02f2-4e77-8185-e770c4757f3b/1a2d5e94-c803-486d-b49d-67f712a37b84",
+        "href": "http://thesismano2.cs.upb.de:8004/v1/40d9de036960447dafd7d74d306cf189/stacks/SonataService-6b4c2ba0-02f2-4e77-8185-e770c4757f3b/1a2d5e94-c803-486d-b49d-67f712a37b84",
         "rel": "stack"
       }
     ],
@@ -1537,11 +1537,11 @@ resources_status_individual = {
     "description": "",
     "links": [
       {
-        "href": "http://vim-mocker:8004/v1/40d9de036960447dafd7d74d306cf189/stacks/SonataService-6b4c2ba0-02f2-4e77-8185-e770c4757f3b/1a2d5e94-c803-486d-b49d-67f712a37b84/resources/SonataService.external.net.6b4c2ba0-02f2-4e77-8185-e770c4757f3b",
+        "href": "http://thesismano2.cs.upb.de:8004/v1/40d9de036960447dafd7d74d306cf189/stacks/SonataService-6b4c2ba0-02f2-4e77-8185-e770c4757f3b/1a2d5e94-c803-486d-b49d-67f712a37b84/resources/SonataService.external.net.6b4c2ba0-02f2-4e77-8185-e770c4757f3b",
         "rel": "self"
       },
       {
-        "href": "http://vim-mocker:8004/v1/40d9de036960447dafd7d74d306cf189/stacks/SonataService-6b4c2ba0-02f2-4e77-8185-e770c4757f3b/1a2d5e94-c803-486d-b49d-67f712a37b84",
+        "href": "http://thesismano2.cs.upb.de:8004/v1/40d9de036960447dafd7d74d306cf189/stacks/SonataService-6b4c2ba0-02f2-4e77-8185-e770c4757f3b/1a2d5e94-c803-486d-b49d-67f712a37b84",
         "rel": "stack"
       }
     ],
@@ -1596,11 +1596,11 @@ resources_status_individual = {
     "description": "",
     "links": [
       {
-        "href": "http://vim-mocker:8004/v1/40d9de036960447dafd7d74d306cf189/stacks/SonataService-6b4c2ba0-02f2-4e77-8185-e770c4757f3b/1a2d5e94-c803-486d-b49d-67f712a37b84/resources/SonataService.mgmt.internal.6b4c2ba0-02f2-4e77-8185-e770c4757f3b",
+        "href": "http://thesismano2.cs.upb.de:8004/v1/40d9de036960447dafd7d74d306cf189/stacks/SonataService-6b4c2ba0-02f2-4e77-8185-e770c4757f3b/1a2d5e94-c803-486d-b49d-67f712a37b84/resources/SonataService.mgmt.internal.6b4c2ba0-02f2-4e77-8185-e770c4757f3b",
         "rel": "self"
       },
       {
-        "href": "http://vim-mocker:8004/v1/40d9de036960447dafd7d74d306cf189/stacks/SonataService-6b4c2ba0-02f2-4e77-8185-e770c4757f3b/1a2d5e94-c803-486d-b49d-67f712a37b84",
+        "href": "http://thesismano2.cs.upb.de:8004/v1/40d9de036960447dafd7d74d306cf189/stacks/SonataService-6b4c2ba0-02f2-4e77-8185-e770c4757f3b/1a2d5e94-c803-486d-b49d-67f712a37b84",
         "rel": "stack"
       }
     ],

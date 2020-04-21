@@ -115,7 +115,30 @@ images = {
       "virtual_size": None,
       "min_ram": 0,
       "schema": "/v2/schemas/image"
-    }
+    },
+    {
+      "id": "bb756931-28c6-4696-b08b-ff3abe183fa2",
+      "name": "ubuntu:xenial",
+      "checksum": "2dad48f09e2a447a9bf852bcd93548c1",
+      "container_format": "docker",
+      "disk_format": "raw",
+      "size": 1,
+      "created_at": "2016-03-15T15:09:07.000000",
+      "deleted": False,
+      "deleted_at": None,
+      "is_public": True,
+      "min_disk": 1,
+      "min_ram": 128,
+      "owner": "3dad48f09e2a447a9bf852bcd93548c1",
+      "properties": {
+        
+      },
+      "protected": False,
+      "status": "active",
+      "updated_at": "2016-03-15T15:09:07.000000",
+      "virtual_size": 1,
+      "marker": None
+    }    
   ],
   "schema": "/v2/schemas/images",
   "first": "/v2/images?limit=100"

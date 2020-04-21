@@ -1,88 +1,129 @@
 networks = {
   "networks": [
     {
-      "provider:physical_network": None,
-      "ipv6_address_scope": None,
-      "revision_number": 5,
-      "port_security_enabled": True,
-      "mtu": 1450,
-      "id": "244b9ff4-5085-4db6-8e6e-e43565576988",
-      "router:external": False,
-      "availability_zone_hints": [
-        
-      ],
-      "availability_zones": [
-        "nova"
-      ],
-      "ipv4_address_scope": None,
       "shared": False,
-      "project_id": "40d9de036960447dafd7d74d306cf189",
-      "status": "ACTIVE",
+      "name": "default",
       "subnets": [
-        "5e8f553c-daee-4954-9e3f-e9aca59ddd49"
+        "b784c464-9425-4f0d-a2b7-f76d79ec6b89"
       ],
-      "description": "",
-      "tags": [
-        
-      ],
-      "updated_at": "2020-02-25T10:03:47Z",
-      "provider:segmentation_id": 54,
-      "name": "large-priv",
-      "admin_state_up": True,
-      "tenant_id": "40d9de036960447dafd7d74d306cf189",
-      "created_at": "2020-02-25T10:03:46Z",
-      "provider:network_type": "vxlan"
+      "status": "ACTIVE",
+      "tenant_id": "abcdefghijklmnopqrstuvwxyz123456",
+      "id": "d2b30ddd-b397-4aef-ac50-3bf9ad83d3c7",
+      "admin_state_up": True
     }
   ]
 }
 
-def ports(port_details):
-  _ports = {
-    "port": {
-      "status": "DOWN",
-      "binding:host_id": "",
-      "description": "",
-      "allowed_address_pairs": [
-        
-      ],
-      "tags": [
-        
-      ],
-      "extra_dhcp_opts": [
-        
-      ],
-      "updated_at": "2020-03-08T15:27:17Z",
-      "device_owner": "",
-      "revision_number": 5,
-      "binding:profile": {
-        
-      },
-      "port_security_enabled": True,
-      "fixed_ips": [
-        {
-          "subnet_id": "5e8f553c-daee-4954-9e3f-e9aca59ddd49",
-          "ip_address": "10.0.100.16"
-        }
-      ],
-      "id": "e9901e10-36d8-4c84-9db1-b852cdc63808",
-      "security_groups": [
-        "a2167217-dae9-4469-afe0-29d2c87a1110"
-      ],
-      "device_id": "",
-      "name": "vdu-eth0",
-      "admin_state_up": True,
-      "network_id": port_details["port"]["network_id"],
-      "tenant_id": "40d9de036960447dafd7d74d306cf189",
-      "binding:vif_details": {
-        
-      },
-      "binding:vnic_type": "normal",
-      "binding:vif_type": "unbound",
-      "mac_address": "fa:16:3e:db:cc:6a",
-      "project_id": "40d9de036960447dafd7d74d306cf189",
-      "created_at": "2020-03-08T15:27:17Z"
-    }
+network = {
+  "network": {
+    "admin_state_up": True,
+    "subnets": [
+      "611b346b-54e8-461f-88fe-7d1aa14cec56"
+    ],
+    "tenant_id": "abcdefghijklmnopqrstuvwxyz123456",
+    "id": "a6367ddd-9a3f-4fef-8ae7-22ee6c7e763d",
+    "shared": False,
+    "status": "ACTIVE",
+    "name": "default"
   }
+}
+
+def ports_details(server_list):
+  _servers_details = {"servers": [] }
+  for _s in server_list:
+    _server =  {
+      "name": "dc1_as-1-stress-VM-1",
+      "full_name": "dc1_as-1-stress-VM-1",
+      "id": _s,
+      "template_name": "as-1-stress-VM-1",
+      "flavor": {
+        "id": "72936ae1-56e0-44f0-a689-58080967dc6c",
+        "links": [
+          {
+            "href": "http://thesismano2.cs.upb.de:9775/v2.1/fc394f2ab2df4114bde39905f800dc57/flavors/72936ae1-56e0-44f0-a689-58080967dc6c",
+            "rel": "bookmark"
+          }
+        ]
+      },
+      "image": {
+        "id": "95bd65e3-3048-428f-8a9c-4705a67a55e9",
+        "links": [
+          {
+            "href": "http://thesismano2.cs.upb.de:9775/v2.1/fc394f2ab2df4114bde39905f800dc57/images/95bd65e3-3048-428f-8a9c-4705a67a55e9",
+            "rel": "bookmark"
+          }
+        ]
+      },
+      "command": None,
+      "status": "ACTIVE",
+      "OS-EXT-STS:power_state": 1,
+      "OS-EXT-STS:task_state": None,
+      "links": [
+        {
+          "href": "http://thesismano2.cs.upb.de:9775/v2.1/fc394f2ab2df4114bde39905f800dc57/servers/{server_id}".format(server_id=_s)
+        }
+      ]
+    }
+    
+    _servers_details["servers"].append(_server)    
+
+  return _servers_details
+
+floatingips = {
+  "floatingips": [
+    {
+      "floating_ip_address": "10.10.193.37"
+    }
+  ]
+}
+
+def port(port_details):
+  _port = {
+    "port":
+      {
+        "admin_state_up": True,
+        "device_id": "257614cc-e178-4c92-9c61-3b28d40eca44",
+        "device_owner": "",
+        "fixed_ips": [
+          {
+            "ip_address": "192.168.100.4",
+            "subnet_id": "b784c464-9425-4f0d-a2b7-f76d79ec6b89"
+          }
+        ],
+        "id": "0a20b7e1-fa3e-409f-9cea-f7f7c84aaf8c",
+        "mac_address": None,
+        "name": port_details["port"]["name"],
+        "network_id": port_details["port"]["network_id"],
+        "status": "ACTIVE",
+        "tenant_id": "abcdefghijklmnopqrstuvwxyz123456"
+      }
+  }
+
+  return _port
+
+def ports():
+  _ports = {
+    "ports": [
+      {
+        "admin_state_up": True,
+        "device_id": "257614cc-e178-4c92-9c61-3b28d40eca44",
+        "device_owner": "",
+        "fixed_ips": [
+          {
+            "ip_address": "192.168.100.4",
+            "subnet_id": "b784c464-9425-4f0d-a2b7-f76d79ec6b89"
+          }
+        ],
+        "id": "0a20b7e1-fa3e-409f-9cea-f7f7c84aaf8c",
+        "mac_address": None,
+        "name":"vdu-eth0",
+        "network_id": "d2b30ddd-b397-4aef-ac50-3bf9ad83d3c7",
+        "status": "ACTIVE",
+        "tenant_id": "abcdefghijklmnopqrstuvwxyz123456"
+      }
+    ]
+  }
+
 
   return _ports
 
@@ -91,37 +132,15 @@ def networks_status(_id):
   _networks_status = {
     "networks": [
       {
-        "provider:physical_network": None,
-        "ipv6_address_scope": None,
-        "revision_number": 5,
-        "port_security_enabled": True,
-        "mtu": 1450,
-        "id": _id,
-        "router:external": False,
-        "availability_zone_hints": [
-          
-        ],
-        "availability_zones": [
-          "nova"
-        ],
-        "ipv4_address_scope": None,
-        "shared": False,
-        "project_id": "40d9de036960447dafd7d74d306cf189",
         "status": "ACTIVE",
         "subnets": [
-          "5e8f553c-daee-4954-9e3f-e9aca59ddd49"
+          "b784c464-9425-4f0d-a2b7-f76d79ec6b89"
         ],
-        "description": "",
-        "tags": [
-          
-        ],
-        "updated_at": "2020-02-25T10:03:47Z",
-        "provider:segmentation_id": 54,
-        "name": "large-priv",
+        "name": "default",
         "admin_state_up": True,
-        "tenant_id": "40d9de036960447dafd7d74d306cf189",
-        "created_at": "2020-02-25T10:03:46Z",
-        "provider:network_type": "vxlan"
+        "tenant_id": "abcdefghijklmnopqrstuvwxyz123456",
+        "id": _id,
+        "shared": False
       }
     ]
   }
@@ -129,43 +148,31 @@ def networks_status(_id):
   return _networks_status
 
 def subnets(subnet_id):
-  _subnets = {
+  _subnets =  {
     "subnet": {
-      "service_types": [
-        
-      ],
-      "description": "",
-      "enable_dhcp": True,
-      "tags": [
-        
-      ],
-      "network_id": "244b9ff4-5085-4db6-8e6e-e43565576988",
-      "tenant_id": "40d9de036960447dafd7d74d306cf189",
-      "created_at": "2020-02-25T10:03:47Z",
+      "name": "default-sub",
+      "network_id": "d2b30ddd-b397-4aef-ac50-3bf9ad83d3c7",
+      "tenant_id": "abcdefghijklmnopqrstuvwxyz123456",
+      "created_at": "2020-03-08T15:27:19Z",
       "dns_nameservers": [
-        "8.8.8.8"
+        
       ],
-      "updated_at": "2020-02-25T10:03:47Z",
-      "gateway_ip": "10.0.100.1",
-      "ipv6_ra_mode": None,
       "allocation_pools": [
         {
-          "start": "10.0.100.2",
-          "end": "10.0.100.254"
+          "start": "192.168.100.0",
+          "end": "192.168.100.255"
         }
       ],
-      "host_routes": [
+      "host_routers": [
         
       ],
-      "revision_number": 2,
-      "ip_version": 4,
-      "ipv6_address_mode": None,
-      "cidr": "10.0.100.0/24",
-      "project_id": "40d9de036960447dafd7d74d306cf189",
+      "gateway_ip": None,
+      "ip_version": "4",
+      "cidr": "192.168.100.0/24",
+      "updated_at": None,
       "id": subnet_id,
-      "subnetpool_id": None,
-      "name": "large-sub"
+      "enable_dhcp": False
     }
   }
-  
+
   return _subnets
