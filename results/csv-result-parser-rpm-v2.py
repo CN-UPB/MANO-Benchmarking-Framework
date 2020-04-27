@@ -10,13 +10,15 @@ import json
 import statistics
 import csv
 
-_PATH = "/home/ashwin/Documents/WHB-Hadi/ScalabilityPaper/FINAL-150-3000rpm/150-final-1/150"
-_OUT_PATH = "/home/ashwin/Documents/MSc/pg-scramble/MANO-Benchmarking-Framework/results/vim-mocker/Final"
+_PATH = "/home/ashwin/Documents/WHB-Hadi/ScalabilityPaper/Data/rpm-instances-1"
+_OUT_PATH = "/home/ashwin/Documents/WHB-Hadi/ScalabilityPaper/Data/rpm-instances-1/Final"
 
 
-RPM = True
+RPM_SYSTEM = False
+RPM = False
 DOCKERS = False
 CASES = False
+INIT_TIMES = True
 
 SKIP_COMPLETE = False
 
@@ -44,10 +46,71 @@ def average_mem(csv_filepath):
     print("MEM Mean: {} \t Min: {} \t Max: {} \n".format( _mean, _min, _max))
     return {"mean": float(_mean), "min": float(_min), "max": float(_max)} 
 
+def average_sys_ram(csv_filepath):
+    # print(ntpath.basename(csv_filepath))
+    df=pd.read_csv(csv_filepath)
+
+    _min = df['used'].min()
+    _max = df['used'].max()
+    _mean = df['used'].mean()
+
+    print("MEM Mean: {} \t Min: {} \t Max: {} \n".format( _mean, _min, _max))
+    return {"mean": float(_mean), "min": float(_min), "max": float(_max)} 
+
+def average_sys_cpu(csv_filepath):
+    # print(ntpath.basename(csv_filepath))
+    df=pd.read_csv(csv_filepath)
+
+    df['totalsyscpu'] = df['user'] + df['system'] 
+
+    _max = df['totalsyscpu'].max()
+    _min = df['totalsyscpu'].min()
+    _mean = df['totalsyscpu'].mean()
+
+    print("System CPU Mean: {} \t Min: {} \t Max: {} \n".format( _mean, _min, _max))
+    return {"mean": float(_mean), "min": float(_min), "max": float(_max)} 
+
+def average_sys_load(csv_filepath):
+    # print(ntpath.basename(csv_filepath))
+    df=pd.read_csv(csv_filepath)
+
+    load1_max = df['load1'].max()
+    load1_min = df['load1'].min()
+    load1_mean = df['load1'].mean()
+
+    load5_max = df['load5'].max()
+    load5_min = df['load5'].min()
+    load5_mean = df['load5'].mean()
+
+    load15_max = df['load15'].max()
+    load15_min = df['load15'].min()
+    load15_mean = df['load15'].mean()
+
+    print("Load1 Mean: {} \t Min: {} \t Max: {} \n".format( load1_mean, load1_min, load1_max))
+    return {"mean1": float(load1_mean), "min1": float(load1_min), "max1": float(load1_max),
+            "mean5": float(load5_mean), "min5": float(load5_min), "max5": float(load5_max),
+            "mean15": float(load15_mean), "min15": float(load15_min), "max15": float(load15_max)} 
+
+def read_init_times(csv_filepath):
+    # print(ntpath.basename(csv_filepath))
+    df=pd.read_csv(csv_filepath)
+
+    _max = df["max"][0]
+    _min = df["min"][0]
+    _mean = df["mean"][0]
+    _std =df["std"][0]
+
+    print("Init Mean: {} \t Std: {} \t Min: {} \t Max: {} \n".format( _mean, _std, _min, _max))
+    return {"mean": float(_mean), "std": float(_std), "min": float(_min), "max": float(_max)} 
+
+
+    
 start_time = time.time()
 
 cpu_files = [y for x in os.walk(_PATH) for y in glob(os.path.join(x[0], '*-cpu.csv'))]
 mem_files = [y for x in os.walk(_PATH) for y in glob(os.path.join(x[0], '*-mem_usage.csv'))]
+sys_files = [y for x in os.walk(_PATH) for y in glob(os.path.join(x[0], 'system-*.csv'))]
+individual_times_files = [y for x in os.walk(_PATH) for y in glob(os.path.join(x[0], 'individual-times.csv'))]
 
 result_cpu_dict = {}
 result_mem_dict = {}
@@ -55,6 +118,71 @@ result_docker_cpu_dict = {}
 result_docker_mem_dict = {}
 result_rpm_cpu_dict = {}
 result_rpm_mem_dict = {}
+
+result_sys_cpu_dict = {}
+result_sys_load_dict = {}
+result_sys_ram_dict = {}
+
+result_individual_times_dict = {}
+
+for _sys_file in sys_files:
+    print(Path(_sys_file).parent.name)
+    print(Path(_sys_file).name)
+
+    _case, _run = Path(_sys_file).parent.name.split("_Run")
+
+    if SKIP_COMPLETE:
+        if "Complete" not in _run:
+            continue
+
+    if "Complete" in _run:
+        lost_req = 0
+    else:
+        lost_req = int(_run.split("-")[1])
+
+    _run = _run.split("-")[0]
+    _rpm = _case.split("-")[1].split("_rpm")[1]
+    _case = _case.split("-")[1]
+
+    _docker = Path(_sys_file).name
+    _docker = _docker.split(".")[0]
+
+    if ntpath.basename(_sys_file) == "system-cpu.csv":
+
+        if not _case in result_sys_cpu_dict:
+            result_sys_cpu_dict[_case] = {}
+
+        if not _docker in result_sys_cpu_dict[_case]:
+            result_sys_cpu_dict[_case][_docker] = {}
+
+        # average_cpu(_cpu_file)
+
+        result_sys_cpu_dict[_case][_docker][_run] = average_sys_cpu(_sys_file)
+        result_sys_cpu_dict[_case][_docker][_run]['lost'] = lost_req
+
+    if ntpath.basename(_sys_file) == "system-load.csv":
+
+        if not _case in result_sys_load_dict:
+            result_sys_load_dict[_case] = {}
+
+        if not _docker in result_sys_load_dict[_case]:
+            result_sys_load_dict[_case][_docker] = {}
+
+        # average_cpu(_cpu_file)
+
+        result_sys_load_dict[_case][_docker][_run] = average_sys_load(_sys_file)
+
+    if ntpath.basename(_sys_file) == "system-ram.csv":
+
+        if not _case in result_sys_ram_dict:
+            result_sys_ram_dict[_case] = {}
+
+        if not _docker in result_sys_ram_dict[_case]:
+            result_sys_ram_dict[_case][_docker] = {}
+
+        # average_cpu(_cpu_file)
+
+        result_sys_ram_dict[_case][_docker][_run] = average_sys_ram(_sys_file)
 
 for _cpu_file in cpu_files:
     print(Path(_cpu_file).parent.name)
@@ -141,9 +269,40 @@ for _mem_file in mem_files:
     result_docker_mem_dict[_docker][_case][_run] = average_mem(_mem_file)
     result_rpm_mem_dict[_docker][_rpm][_run] = average_mem(_mem_file)
 
+for _ind_file in individual_times_files:
+    print(Path(_ind_file).parent.name)
+    print(Path(_ind_file).name)
+
+    if ntpath.basename(_ind_file) == "system-cpu.csv":
+        continue
+
+    _case, _run = Path(_ind_file).parent.name.split("_Run")
+
+    if SKIP_COMPLETE:
+        if "Complete" not in _run:
+            continue
+
+    _run = _run.split("-")[0]
+    _rpm = _case.split("-")[1].split("_rpm")[1]
+    _case = _case.split("-")[1]
+
+    _docker = Path(_ind_file).name
+    _docker = _docker.split(".")[0]
+
+    if not _case in result_individual_times_dict:
+        result_individual_times_dict[_case] = {}
+
+    if not _docker in result_individual_times_dict[_case]:
+        result_individual_times_dict[_case][_docker] = {}
+
+    # average_cpu(_cpu_file)
+
+    result_individual_times_dict[_case][_docker][_run] = read_init_times(_ind_file)
+
 
 print(json.dumps(result_cpu_dict, sort_keys=True, indent=4))
 print(json.dumps(result_mem_dict, sort_keys=True, indent=4))
+print(json.dumps(result_sys_ram_dict, sort_keys=True, indent=4))
 
 if DOCKERS:
     for _docker, _dockerValue in result_docker_cpu_dict.items():
@@ -232,8 +391,109 @@ if RPM:
 
                 writer.writerow([_caseName, _meanofMeans, _stddevofMeans, _meanofMax, _stddevofMax, _meanofMin, _stddevofMin])
 
-
 # RPM END
+
+if RPM_SYSTEM:
+
+    with open('{outpath}/System-CPU-Final-Results.csv'.format(outpath=_OUT_PATH), mode='w') as system_cpu_resultsfile:
+        fieldnames = ['RPM', 'CPU Mean', 'CPU SD', 'CPU Max', 'CPU Max SD', 'CPU Min', 'CPU Min SD' ]
+        writer = csv.writer(system_cpu_resultsfile, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
+        writer.writerow(fieldnames)
+        for _case, _caseV in result_sys_cpu_dict.items():
+            print(_case)
+            for _rpm, _caseValue in _caseV.items():
+                _caseName = _case.split("_")[2]
+                _meanofMeans = statistics.mean([_caseValue[v]['mean'] for v in _caseValue])
+                _stddevofMeans = statistics.pstdev([_caseValue[v]['mean'] for v in _caseValue])
+
+                _meanofMax = statistics.mean([_caseValue[v]['max'] for v in _caseValue])
+                _stddevofMax = statistics.pstdev([_caseValue[v]['max'] for v in _caseValue])
+
+                _meanofMin = statistics.mean([_caseValue[v]['min'] for v in _caseValue])
+                _stddevofMin = statistics.pstdev([_caseValue[v]['min'] for v in _caseValue])
+
+                writer.writerow([_caseName, _meanofMeans, _stddevofMeans, _meanofMax, _stddevofMax, _meanofMin, _stddevofMin])
+
+    with open('{outpath}/Lost-Requests-Final-Results.csv'.format(outpath=_OUT_PATH), mode='w') as system_cpu_resultsfile:
+        fieldnames = ['RPM', 'Lost' ]
+        writer = csv.writer(system_cpu_resultsfile, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
+        writer.writerow(fieldnames)
+        for _case, _caseV in result_sys_cpu_dict.items():
+            print(_case)
+            for _rpm, _caseValue in _caseV.items():
+                _caseName = _case.split("_")[2]
+                _meanofMeans = statistics.mean([_caseValue[v]['lost'] for v in _caseValue])
+                _stddevofMeans = statistics.pstdev([_caseValue[v]['lost'] for v in _caseValue])
+
+                writer.writerow([_caseName, _meanofMeans, _stddevofMeans])
+
+    with open('{outpath}/System-RAM-Final-Results.csv'.format(outpath=_OUT_PATH), mode='w') as system_ram_resultsfile:
+        fieldnames = ['RPM', 'MEM Mean', 'MEM SD', 'MEM Max', 'MEM Max SD', 'MEM Min', 'MEM Min SD']
+        writer = csv.writer(system_ram_resultsfile, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
+        writer.writerow(fieldnames)
+        for _case, _caseV in result_sys_ram_dict.items():
+            print(_case)
+            for _rpm, _caseValue in _caseV.items():
+                _caseName = _case.split("_")[2]
+                _meanofMeans = statistics.mean([_caseValue[v]['mean'] for v in _caseValue])
+                _stddevofMeans = statistics.pstdev([_caseValue[v]['mean'] for v in _caseValue])
+
+                _meanofMax = statistics.mean([_caseValue[v]['max'] for v in _caseValue])
+                _stddevofMax = statistics.pstdev([_caseValue[v]['max'] for v in _caseValue])
+
+                _meanofMin = statistics.mean([_caseValue[v]['min'] for v in _caseValue])
+                _stddevofMin = statistics.pstdev([_caseValue[v]['min'] for v in _caseValue])
+
+                writer.writerow([_caseName, _meanofMeans, _stddevofMeans, _meanofMax, _stddevofMax, _meanofMin, _stddevofMin])
+
+                # print(_dockerName)
+                # print(_dockerValue["1"]["mean"], _dockerValue["2"]["mean"], _dockerValue["3"]["mean"])
+                # print(_meanofMeans)
+                # print(_stddevofMeans)
+                # print(_meanofMax)
+                # print(_meanofMin)
+
+    # for _case, _caseValue in result_sys_load_dict.items():
+    #     print(_case)
+    #     with open('{outpath}/{case}-System-Load-Final-Results.csv'.format(outpath=_OUT_PATH, case=_case), mode='w') as system_load_resultsfile:
+    #         fieldnames = ['Load1 Run1', 'Load5 Run1', 'Load15 Run1', 'Load1 Run2', 'Load5 Run2', 'Load15 Run2', 'Load1 Run3', 'Load5 Run3', 'Load15 Run3', 'Load1 Mean', 'Load1 SD', 'Load5 Mean', 'Load5 SD', 'Load15 Mean', 'Load15 SD','Load1 Max', 'Load1 Min','Load5 Max', 'Load5 Min','Load15 Max', 'Load15 Min', 'Load1 Max SD', 'Load5 Max SD', 'Load15 Max SD']
+    #         writer = csv.writer(system_load_resultsfile, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
+    #         writer.writerow(fieldnames)
+
+    #         for _docker, _dockerValue in _caseValue.items():
+    #             _dockerName = _docker
+    #             _meanofMeans1 = statistics.mean([_dockerValue["1"]["mean1"], _dockerValue["2"]["mean1"], _dockerValue["3"]["mean1"]])
+    #             _meanofMeans5 = statistics.mean([_dockerValue["1"]["mean5"], _dockerValue["2"]["mean5"], _dockerValue["3"]["mean5"]])
+    #             _meanofMeans15 = statistics.mean([_dockerValue["1"]["mean15"], _dockerValue["2"]["mean15"], _dockerValue["3"]["mean15"]])
+
+    #             _stddevofMeans1 = statistics.pstdev([_dockerValue["1"]["mean1"], _dockerValue["2"]["mean1"], _dockerValue["3"]["mean1"]])
+    #             _stddevofMeans5 = statistics.pstdev([_dockerValue["1"]["mean5"], _dockerValue["2"]["mean5"], _dockerValue["3"]["mean5"]])
+    #             _stddevofMeans15 = statistics.pstdev([_dockerValue["1"]["mean15"], _dockerValue["2"]["mean15"], _dockerValue["3"]["mean15"]])
+    #             _stddevofMax1 = statistics.pstdev([_dockerValue["1"]["max1"], _dockerValue["2"]["max1"], _dockerValue["3"]["max1"]])
+    #             _stddevofMax5 = statistics.pstdev([_dockerValue["1"]["max5"], _dockerValue["2"]["max5"], _dockerValue["3"]["max5"]])
+    #             _stddevofMax15 = statistics.pstdev([_dockerValue["1"]["max15"], _dockerValue["2"]["max15"], _dockerValue["3"]["max15"]])
+
+    #             _meanofMax1 = statistics.mean([_dockerValue["1"]["max1"], _dockerValue["2"]["max1"], _dockerValue["3"]["max1"]])
+    #             _meanofMax5 = statistics.mean([_dockerValue["1"]["max5"], _dockerValue["2"]["max5"], _dockerValue["3"]["max5"]])
+    #             _meanofMax15 = statistics.mean([_dockerValue["1"]["max15"], _dockerValue["2"]["max15"], _dockerValue["3"]["max15"]])
+
+    #             _meanofMin1 = statistics.mean([_dockerValue["1"]["min1"], _dockerValue["2"]["min1"], _dockerValue["3"]["min1"]])
+    #             _meanofMin5 = statistics.mean([_dockerValue["1"]["min5"], _dockerValue["2"]["min5"], _dockerValue["3"]["min5"]])
+    #             _meanofMin15 = statistics.mean([_dockerValue["1"]["min15"], _dockerValue["2"]["min15"], _dockerValue["3"]["min15"]])
+
+    #             # print(_dockerName)
+    #             # print(_dockerValue["1"]["mean"], _dockerValue["2"]["mean"], _dockerValue["3"]["mean"])
+    #             # print(_meanofMeans)
+    #             # print(_stddevofMeans)
+    #             # print(_meanofMax)
+    #             # print(_meanofMin)
+
+    #             writer.writerow([_dockerValue["1"]["mean1"], _dockerValue["1"]["mean5"], _dockerValue["1"]["mean15"],_dockerValue["2"]["mean1"], _dockerValue["2"]["mean5"], _dockerValue["2"]["mean15"],_dockerValue["3"]["mean1"], _dockerValue["3"]["mean5"], _dockerValue["3"]["mean15"],_meanofMeans1, _stddevofMeans1,_meanofMeans5, _stddevofMeans5,_meanofMeans15, _stddevofMeans15,
+    #             _meanofMax1, _meanofMin1, _meanofMax5, _meanofMin5,_meanofMax15, _meanofMin15, _stddevofMax1, _stddevofMax5, _stddevofMax15])
+                
+    #             #_meanofMeans, _stddevofMeans, _meanofMax, _meanofMin,
+
+
 if CASES:
     for _case, _caseValue in result_cpu_dict.items():
         print(_case)
@@ -290,6 +550,83 @@ if CASES:
 
                 writer.writerow([_dockerName, _meanofMeans, _stddevofMeans, _meanofMax, _stddevofMax, _meanofMin, _stddevofMin])
 
+if INIT_TIMES:
+    with open('{outpath}/Individual-Times-Final-Results.csv'.format(outpath=_OUT_PATH), mode='w') as system_cpu_resultsfile:
+        fieldnames = ['RPM', 'Mean', 'SD', 'Max', 'Max SD', 'Min', 'Min SD' ]
+        writer = csv.writer(system_cpu_resultsfile, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
+        writer.writerow(fieldnames)
+        for _case, _caseV in result_individual_times_dict.items():
+            print(_case)
+            for _rpm, _caseValue in _caseV.items():
+                _caseName = _case.split("_")[2]
+                _meanofMeans = statistics.mean([_caseValue[v]['mean'] for v in _caseValue])
+                _stddevofMeans = statistics.pstdev([_caseValue[v]['mean'] for v in _caseValue])
+
+                _meanofStds = statistics.mean([_caseValue[v]['std'] for v in _caseValue])
+                _stddevofStds = statistics.pstdev([_caseValue[v]['std'] for v in _caseValue])
+
+                _meanofMax = statistics.mean([_caseValue[v]['max'] for v in _caseValue])
+                _stddevofMax = statistics.pstdev([_caseValue[v]['max'] for v in _caseValue])
+
+                _meanofMin = statistics.mean([_caseValue[v]['min'] for v in _caseValue])
+                _stddevofMin = statistics.pstdev([_caseValue[v]['min'] for v in _caseValue])
+
+                writer.writerow([_caseName, _meanofMeans, _stddevofMeans, _meanofMax, _stddevofMax, _meanofMin, _stddevofMin])
+
+    # pishahang_ind_files = [y for x in os.walk(_PATH) for y in glob(os.path.join(x[0], 'individual-times.csv'))]
+    # pishahang_data_dict = {}
+    # rpmset = []  
+    # runset = [] 
+
+    # i_mean = []
+    # i_std = []
+    # i_max = []
+    # i_min = []
+
+    # for _i_file in pishahang_ind_files:
+    #     rpm = Path(_i_file).parent.name.split("_rpm")[1].split("_")[0]   
+    #     rpmset.append(int(rpm))
+    #     run =  Path(_i_file).parent.name.split("rpm")[1].split("_")[1].split("-")[0]   
+    #     runset.append(run)
+    #     i_data = pd.read_csv(_i_file)
+    #     i_mean.append(i_data["mean"][0])
+    #     i_std.append(i_data["std"][0])
+    #     i_max.append(i_data["max"][0])
+    #     i_min.append(i_data["min"][0])
+
+    # dict = {
+    #     'rpm': rpmset,
+    #     'run': runset,
+    #     'mean': i_mean,
+    #     'std': i_std,
+    #     'max': i_max,
+    #     'min': i_min
+    #     }
+
+    # df = pd.DataFrame(dict)
+    # df = df.sort_values('rpm')
+    # df = df = df.groupby(['rpm']).agg(['mean', 'std']).reset_index()
+
+    # dataf = df.reset_index()
+
+    # sns.set(style='whitegrid', palette='muted', font_scale=1.5)
+    # fig, ax = plt.subplots(figsize=(35,20))
+    # plt.title('Individual Times v/s RPM', fontsize=30)
+
+    # plt.xlabel('RPM', fontsize=25)
+    # plt.ylabel('Individual Time (sec)', fontsize=25)
+
+    # index = np.arange(len(dataf['mean']))
+    # width = 0.30 
+
+    # # ax.bar(index-width, dataf['mean']['mean'], yerr=dataf['std']['mean'], label = "mean", alpha=0.5, capsize=10)
+    # ax.bar(index-width, dataf['mean']['mean'],  yerr=dataf['mean']['std'], width=width, label = "mean", alpha=0.5, capsize=10, color = 'b')
+    # ax.bar(index, dataf['max']['mean'], yerr=dataf['max']['std'], width=width, label = "max", alpha=0.5, capsize=10, color = 'r')
+    # ax.bar(index+width, dataf['min']['mean'], yerr=dataf['min']['std'], width=width,  label = "min", alpha=0.5, capsize=10, color = 'g')
+
+    # plt.xticks(index, df['rpm'])
+    # plt.legend(loc='center left', bbox_to_anchor=(1, 0.5))
+    # plt.savefig('{}/{}.png'.format(OUTPUT_PATH, "Pishahang - RPM vs Individual") ,bbox_inches='tight',dpi=100)
 
 
 print("Total time: {}".format(time.time() - start_time))

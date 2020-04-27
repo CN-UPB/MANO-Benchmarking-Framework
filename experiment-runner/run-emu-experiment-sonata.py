@@ -42,16 +42,17 @@ AUTH_URL = "http://131.234.29.169/identity/v3"
 OS_USERNAME = "demo"
 OS_PASSWORD = "1234"
 
-EXPERIMENT_REFERENCE = "limit-2"
+EXPERIMENT_REFERENCE = "100vsRPM-3"
 IMAGES = ["cirros"]
-INSTANCES = list(range(190, 231, 10))
-# INSTANCES = [10]
+# INSTANCES = list(range(220, 261, 10))
+INSTANCES = [50]
 CASES = [1]
-RUNS = 6
-REQUESTS_PER_MINUTE = list(range(100, 1001, 200))
-# REQUESTS_PER_MINUTE = [3200]
+RUNS = 20
+# REQUESTS_PER_MINUTE = list(range(800, 1401, 200))
+REQUESTS_PER_MINUTE = [100, 500, 1000, 2000, 3000]
 
-IS_EXPERIMENT_VNF_INSTANCES_BASED = True
+RESTART_PISHAHANG = True
+IS_EXPERIMENT_VNF_INSTANCES_BASED = False
 SKIP_EXPERIMENT_IF_ERRORS = True
 
 cases_vnfs = {
@@ -93,13 +94,23 @@ def restart_pishahang(host=HOST_URL, port=APP_SERVER_PORT) :
         print("Restart Pishahang")
 
 
-def get_pishahang_status(host=HOST_URL, port=APP_SERVER_PORT) :
+def get_pishahang_status(host=HOST_URL, port=APP_SERVER_PORT):
     _base_path = 'http://{0}:{1}/get_pishahang_status'.format(host, port)
 
     try:
         r = requests.get(_base_path, verify=False)
         print(r.text)
         return tuple(int(x) for x in r.text.split(","))
+    except Exception as e:
+        print("Get status Pishahang")
+
+def get_pishahang_init_times(host=HOST_URL, port=APP_SERVER_PORT):
+    _base_path = 'http://{0}:{1}/get_pishahang_init_times'.format(host, port)
+
+    try:
+        r = requests.get(_base_path, verify=False)
+        print(r.text)
+        return str(r.text)
     except Exception as e:
         print("Get status Pishahang")
 
@@ -279,6 +290,9 @@ print("""
 
                 
 """)
+
+remove_requests()
+
 TOTAL_EXPERIMENT_TIME = time.time()
 
 for _image in IMAGES:
@@ -287,6 +301,7 @@ for _image in IMAGES:
             for _rpm in REQUESTS_PER_MINUTE:
                 for _run in range(1, RUNS+1):
                     try:
+                        remove_requests()
                         print("{image}_case{case}_{instances}_Run{run}".format(image=_image, case=_case, instances=_instances, run=_run))
                         # NO_INSTANCES = _instances
                         NSNAME = "{image}_case{case}-{_id}"
@@ -383,7 +398,7 @@ for _image in IMAGES:
                                 if IS_EXPERIMENT_VNF_INSTANCES_BASED:
                                     TOTAL_INSTANCES = _instances
                                 else:
-                                    TOTAL_INSTANCES = int(cases_vnfs[_case]*_instances)
+                                    TOTAL_INSTANCES = _instances
 
                                 _sr_old = "0,0,0"
                                 _no_change_count = -1
@@ -612,6 +627,9 @@ for _image in IMAGES:
                         with open('{nit}/end-to-end-time.csv'.format(nit=nit), 'w') as _file:
                             _file.write("end-to-end-time\n{0}".format(experiment_timestamps["end_to_end_lifecycle_time"]))
                         
+                        with open('{nit}/individual-times.csv'.format(nit=nit), 'w') as _file:
+                            _file.write("mean,std,max,min\n{0}".format(get_pishahang_init_times()))
+
                         print("Metrics saved in folder {nit}".format(nit=nit))
 
                         print("\nhttp://{host}:9000/?host={host}&after={after}&before={before}&start_time={start_time}&ns_inst_time={ns_inst_time}&ns_inst_end_time={ns_inst_end_time}&ns_term_start_time={ns_term_start_time}&ns_term_end_time={ns_term_end_time}&end_time={end_time}&exp_description={exp_description}".format(host=HOST_URL, after=experiment_timestamps["start_time"], before=experiment_timestamps["end_time"],start_time=experiment_timestamps["start_time"],ns_inst_time=experiment_timestamps["ns_inst_time"],ns_inst_end_time=experiment_timestamps["ns_inst_end_time"],ns_term_start_time=experiment_timestamps["ns_term_start_time"],ns_term_end_time=experiment_timestamps["ns_term_end_time"],end_time=experiment_timestamps["end_time"],exp_description=NSDESCRIPTION))
@@ -624,11 +642,13 @@ for _image in IMAGES:
                         else:
                             os.rename(nit, "{nit}-{active}".format(nit=nit, active=experiment_missing))                        
                         # delete_stacks()
-                        remove_requests()
-                        restart_pishahang()
-                        time.sleep(INTER_EXPERIMENT_SLEEP)
+
                     except Exception as e:
+                        print(e)
                         print("failed RUN")
 
+                    if RESTART_PISHAHANG:
+                        restart_pishahang()
+                    time.sleep(INTER_EXPERIMENT_SLEEP)
 
 print("Total experiment time: {}".format(time.time() - TOTAL_EXPERIMENT_TIME))

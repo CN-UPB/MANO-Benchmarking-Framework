@@ -254,6 +254,7 @@ class NovaListServersApi(Resource):
                         return Response(
                             "Currently only networking by port is supported.", status=400)
 
+            # vim-mocker
             self.api.compute._start_compute(server)
 
             response = NovaShowServerDetails(self.api).get(id, server.id)

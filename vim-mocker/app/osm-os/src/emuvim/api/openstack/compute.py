@@ -459,6 +459,7 @@ class OpenstackCompute(object):
         network = list()
         network_dict = dict()
 
+        # vim-mocker
         return
 
         for port_name in server.port_names:
