@@ -55,8 +55,8 @@ PISH_CPU_RPM_DOC_GRAPH = False
 PISH_MEM_RPM_DOC_GRAPH = False
 
 OSM_RPM_DOC_AGG_GRAPH = False
-PISH_CPU_RPM_DOC_AGG_GRAPH = True
-PISH_MEM_RPM_DOC_AGG_GRAPH = True
+PISH_CPU_RPM_DOC_AGG_GRAPH = False
+PISH_MEM_RPM_DOC_AGG_GRAPH = False
 
 # Scalability Paper
 
@@ -65,8 +65,13 @@ PISH_MEM_RPM_DOC_GRAPH = False
 RPM_END_TO_END_TIMES = False
 RPM_INDIVIDUAL_TIMES = False
 
+<<<<<<< HEAD
+OSM_vs_PISH = True
+
+=======
 INPUT_PATH = "/home/ashwin/Documents/MSc/pg-scramble/MANO-Benchmarking-Framework/results/Common Results/vim-mocker/Final"
 OUTPUT_PATH = "/home/ashwin/Documents/MSc/pg-scramble/MANO-Benchmarking-Framework/results/Common Results/Graphs"
+>>>>>>> d7b8e00ecd710d3331366b8b7676c86a0884bad5
 
 # --------------
 
@@ -2642,6 +2647,38 @@ if RPM_INDIVIDUAL_TIMES:
     plt.legend(loc='center left', bbox_to_anchor=(1, 0.5))
     plt.savefig('{}/{}.png'.format(OUTPUT_PATH, "Pishahang - RPM vs Individual") ,bbox_inches='tight',dpi=100)
 
+#########################################
+#########################################
+# OSM vs Pishahang
+#########################################
+#########################################
+
+if OSM_vs_PISH:
+    # values for OSM CPU mean
+    osm_means = (20, 35, 30, 35, 60)
+
+    # values for Pishahang CPU mean
+    pish_means = (30, 45, 40, 50, 70)
+
+    # values for RPM values
+    rpm = (10, 20, 30, 40, 50)
+
+    ind = np.arange(len(rpm))  # the x locations for the groups
+    width = 0.35  # the width of the bars
+    sns.set(style='whitegrid', palette='muted', font_scale=1.5)
+    fig, ax = plt.subplots()
+    rects1 = ax.bar(ind - width/2, osm_means, width, label='OSM', color = 'g')
+    rects2 = ax.bar(ind + width/2, pish_means, width, label='Pishahang',color = 'b')
+
+    # Labels, title and custom x-axis tick labels, etc.
+    ax.set_ylabel('Means')
+    ax.set_xlabel('RPM')
+    ax.set_title('')
+    ax.set_xticks(ind)
+    ax.set_xticklabels(rpm)
+    ax.legend()
+    fig.tight_layout()
+    plt.savefig('OSM vs Pishahang.png',bbox_inches='tight',dpi=100)
 
 
 #########################################
