@@ -1,0 +1,13 @@
+HTTP/1.1 200 OK
+Content-Type: application/json
+Content-Length: 756
+Access-Control-Allow-Origin: *
+Date: Tue, 21 Apr 2020 15:34:09 GMT
+
+{"server": {"name": "dc1_as-1-stress-VM-1", "full_name": "dc1_as-1-stress-VM-1", "id": "023182cc-a99a-45f3-8977-780183486ec9", "template_name": "as-1-stress-VM-1", "flavor": {"id": "72936ae1-56e0-44f0-a689-58080967dc6c", "links": [{"href": "http://thesismano2.cs.upb.de:9775/v2.1/fc394f2ab2df4114bde39905f800dc57/flavors/72936ae1-56e0-44f0-a689-58080967dc6c", "rel": "bookmark"}]}, "image": {"id": "95bd65e3-3048-428f-8a9c-4705a67a55e9", "links": [{"href": "http://thesismano2.cs.upb.de:9775/v2.1/fc394f2ab2df4114bde39905f800dc57/images/95bd65e3-3048-428f-8a9c-4705a67a55e9", "rel": "bookmark"}]}, "command": null, "links": [{"href": "http://thesismano2.cs.upb.de:9775/v2.1/fc394f2ab2df4114bde39905f800dc57/servers/023182cc-a99a-45f3-8977-780183486ec9"}]}}HTTP/1.1 200 OK
+Content-Type: application/json
+Content-Length: 839
+Access-Control-Allow-Origin: *
+Date: Tue, 21 Apr 2020 15:34:15 GMT
+
+{"servers": [{"name": "dc1_as-1-stress-VM-1", "full_name": "dc1_as-1-stress-VM-1", "id": "023182cc-a99a-45f3-8977-780183486ec9", "template_name": "as-1-stress-VM-1", "flavor": {"id": "72936ae1-56e0-44f0-a689-58080967dc6c", "links": [{"href": "http://thesismano2.cs.upb.de:9775/v2.1/fc394f2ab2df4114bde39905f800dc57/flavors/72936ae1-56e0-44f0-a689-58080967dc6c", "rel": "bookmark"}]}, "image": {"id": "95bd65e3-3048-428f-8a9c-4705a67a55e9", "links": [{"href": "http://thesismano2.cs.upb.de:9775/v2.1/fc394f2ab2df4114bde39905f800dc57/images/95bd65e3-3048-428f-8a9c-4705a67a55e9", "rel": "bookmark"}]}, "command": null, "status": "ACTIVE", "OS-EXT-STS:power_state": 1, "OS-EXT-STS:task_state": null, "links": [{"href": "http://thesismano2.cs.upb.de:9775/v2.1/fc394f2ab2df4114bde39905f800dc57/servers/023182cc-a99a-45f3-8977-780183486ec9"}]}]}

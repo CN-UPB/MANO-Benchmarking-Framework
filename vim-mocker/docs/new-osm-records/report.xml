@@ -1,0 +1,56 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dfxml xmloutputversion='1.0'>
+  <metadata 
+  xmlns='http://afflib.org/tcpflow/' 
+  xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' 
+  xmlns:dc='http://purl.org/dc/elements/1.1/'>
+    <dc:type>Feature Extraction</dc:type>
+  </metadata>
+  <creator version='1.0'>
+    <program>TCPFLOW</program>
+    <version>1.4.5</version>
+    <build_environment>
+      <compiler>5.4.0 (5.4.0 20160609)</compiler>
+      <CPPFLAGS>-pthread -I/usr/local/include -I/usr/local/include -Wdate-time -D_FORTIFY_SOURCE=2 -DUTC_OFFSET=+0000 </CPPFLAGS>
+      <CFLAGS>-g   -pthread -g -O3 -fstack-protector-strong -Wformat -Werror=format-security -MD -Wpointer-arith -Wmissing-declarations -Wmissing-prototypes -Wshadow -Wwrite-strings -Wcast-align -Waggregate-return -Wbad-function-cast -Wcast-qual -Wundef -Wredundant-decls -Wdisabled-optimization -Wfloat-equal -Wmultichar -Wc++-compat -Wmissing-noreturn -Wall -Wstrict-prototypes -MD -D_FORTIFY_SOURCE=2 -Wpointer-arith -Wmissing-declarations -Wmissing-prototypes -Wshadow -Wwrite-strings -Wcast-align -Waggregate-return -Wbad-function-cast -Wcast-qual -Wundef -Wredundant-decls -Wdisabled-optimization -Wfloat-equal -Wmultichar -Wc++-compat -Wmissing-noreturn -Wall -Wstrict-prototypes</CFLAGS>
+      <CXXFLAGS>-g -pthread -g -O3 -fstack-protector-strong -Wformat -Werror=format-security -Wall -MD -D_FORTIFY_SOURCE=2 -Wpointer-arith -Wshadow -Wwrite-strings -Wcast-align -Wredundant-decls -Wdisabled-optimization -Wfloat-equal -Wmultichar -Wmissing-noreturn -Woverloaded-virtual -Wsign-promo -funit-at-a-time -Weffc++ -std=c++11 -Wall -MD -D_FORTIFY_SOURCE=2 -Wpointer-arith -Wshadow -Wwrite-strings -Wcast-align -Wredundant-decls -Wdisabled-optimization -Wfloat-equal -Wmultichar -Wmissing-noreturn -Woverloaded-virtual -Wsign-promo -funit-at-a-time -Wstrict-null-sentinel -Weffc++ </CXXFLAGS>
+      <LDFLAGS>-L/usr/local/lib -L/usr/local/lib -Wl,-Bsymbolic-functions -Wl,-z,relro</LDFLAGS>
+      <LIBS>-lpcap -lcairo -lfontconfig -lfreetype -lpixman-1 -lexpat  -lssl -lcrypto -lssl -lcrypto -ldl -lz </LIBS>
+      <compilation_date>2019-04-24T13:09:59</compilation_date>
+      <library name="boost" version="105800"/>
+    </build_environment>
+    <execution_environment>
+      <os_sysname>Linux</os_sysname>
+      <os_release>4.4.0-170-generic</os_release>
+      <os_version>#199-Ubuntu SMP Thu Nov 14 01:45:04 UTC 2019</os_version>
+      <host>thesismano3</host>
+      <arch>x86_64</arch>
+      <command_line>tcpflow -T%t-%A-%a-%B-%b-%# -i ens160 host 131.234.28.186</command_line>
+      <uid>0</uid>
+      <start_time>2020-04-21T15:33:59Z</start_time>
+    </execution_environment>
+  </creator>
+  <configuration>
+  </configuration>
+  <tdelta>0</tdelta>
+  <configuration>
+    <fileobject>
+      <filename>1587483248-131.234.028.194-34182-131.234.028.186-06001-0</filename>
+      <filesize>514</filesize>
+      <tcpflow startime='2020-04-21T17:34:08.888297Z' endtime='2020-04-21T17:34:08.895145Z' src_ipn='131.234.28.194' dst_ipn='131.234.28.186' mac_daddr='00:50:56:b8:bf:79' mac_saddr='00:50:56:b8:d8:e4' packets='7' srcport='34182' dstport='6001' family='2' />
+    </fileobject>
+    <fileobject>
+      <filename>1587483248-131.234.028.186-06001-131.234.028.194-34182-0</filename>
+      <filesize>356</filesize>
+      <tcpflow startime='2020-04-21T17:34:08.888557Z' endtime='2020-04-21T17:34:08.895345Z' src_ipn='131.234.28.186' dst_ipn='131.234.28.194' mac_daddr='00:50:56:b8:d8:e4' mac_saddr='00:50:56:b8:bf:79' packets='6' srcport='6001' dstport='34182' family='2' />
+    </fileobject>
+    <fileobject>
+      <filename>1587483251-131.234.028.194-36958-131.234.028.186-06001-0</filename>
+      <filesize>514</filesize>
+      <tcpflow startime='2020-04-21T17:34:11.300234Z' endtime='2020-04-21T17:34:11.312975Z' src_ipn='131.234.28.194' dst_ipn='131.234.28.186' mac_daddr='00:50:56:b8:bf:79' mac_saddr='00:50:56:b8:d8:e4' packets='7' srcport='36958' dstport='6001' family='2' />
+    </fileobject>
+    <fileobject>
+      <filename>1587483251-131.234.028.186-06001-131.234.028.194-36958-0</filename>
+      <filesize>356</filesize>
+      <tcpflow startime='2020-04-21T17:34:11.300524Z' endtime='2020-04-21T17:34:11.313312Z' src_ipn='131.234.28.186' dst_ipn='131.234.28.194' mac_daddr='00:50:56:b8:d8:e4' mac_saddr='00:50:56:b8:bf:79' packets='6' srcport='6001' dstport='36958' family='2' />
+    </fileobject>

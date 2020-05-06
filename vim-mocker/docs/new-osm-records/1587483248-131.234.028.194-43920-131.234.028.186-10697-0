@@ -1,0 +1,58 @@
+GET /v2.0/networks?admin_state_up=True&name=default&status=ACTIVE HTTP/1.1
+Host: thesismano2.cs.upb.de:10697
+User-Agent: python-neutronclient
+Accept-Encoding: gzip, deflate
+Accept: application/json
+Connection: keep-alive
+X-Auth-Token: fc394f2ab2df4114bde39905f800dc57
+
+POST /v2.0/ports HTTP/1.1
+Host: thesismano2.cs.upb.de:10697
+User-Agent: python-neutronclient
+Accept-Encoding: gzip, deflate
+Accept: application/json
+Connection: keep-alive
+Content-Type: application/json
+X-Auth-Token: fc394f2ab2df4114bde39905f800dc57
+Content-Length: 108
+
+{"port": {"network_id": "d2b30ddd-b397-4aef-ac50-3bf9ad83d3c7", "name": "vdu-eth0", "admin_state_up": true}}GET /v2.0/networks?id=d2b30ddd-b397-4aef-ac50-3bf9ad83d3c7 HTTP/1.1
+Host: thesismano2.cs.upb.de:10697
+User-Agent: python-neutronclient
+Accept-Encoding: gzip, deflate
+Accept: application/json
+Connection: keep-alive
+X-Auth-Token: fc394f2ab2df4114bde39905f800dc57
+
+GET /v2.0/subnets/b784c464-9425-4f0d-a2b7-f76d79ec6b89 HTTP/1.1
+Host: thesismano2.cs.upb.de:10697
+User-Agent: python-neutronclient
+Accept-Encoding: gzip, deflate
+Accept: application/json
+Connection: keep-alive
+X-Auth-Token: fc394f2ab2df4114bde39905f800dc57
+
+GET /v2.0/ports?device_id=023182cc-a99a-45f3-8977-780183486ec9 HTTP/1.1
+Host: thesismano2.cs.upb.de:10697
+User-Agent: python-neutronclient
+Accept-Encoding: gzip, deflate
+Accept: application/json
+Connection: keep-alive
+X-Auth-Token: fc394f2ab2df4114bde39905f800dc57
+
+GET /v2.0/networks/d2b30ddd-b397-4aef-ac50-3bf9ad83d3c7 HTTP/1.1
+Host: thesismano2.cs.upb.de:10697
+User-Agent: python-neutronclient
+Accept-Encoding: gzip, deflate
+Accept: application/json
+Connection: keep-alive
+X-Auth-Token: fc394f2ab2df4114bde39905f800dc57
+
+GET /v2.0/floatingips?port_id=0a20b7e1-fa3e-409f-9cea-f7f7c84aaf8c HTTP/1.1
+Host: thesismano2.cs.upb.de:10697
+User-Agent: python-neutronclient
+Accept-Encoding: gzip, deflate
+Accept: application/json
+Connection: keep-alive
+X-Auth-Token: fc394f2ab2df4114bde39905f800dc57
+

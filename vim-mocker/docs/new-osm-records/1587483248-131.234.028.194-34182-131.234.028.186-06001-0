@@ -1,0 +1,10 @@
+POST /v2.0/auth/tokens HTTP/1.1
+Host: thesismano2.cs.upb.de:6001
+User-Agent: osm-mon-collector keystoneauth1/3.18.0 python-requests/2.18.4 CPython/3.6.9
+Accept-Encoding: gzip, deflate
+Accept: application/json
+Connection: keep-alive
+Content-Type: application/json
+Content-Length: 221
+
+{"auth": {"identity": {"methods": ["password"], "password": {"user": {"password": "password", "name": "username", "domain": {"name": "Default"}}}}, "scope": {"project": {"name": "tenant", "domain": {"name": "Default"}}}}}

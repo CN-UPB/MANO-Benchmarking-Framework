@@ -1,0 +1,36 @@
+HTTP/1.1 200 OK
+Content-Type: application/json
+Content-Length: 244
+Date: Tue, 21 Apr 2020 15:34:08 GMT
+
+{"networks": [{"status": "ACTIVE", "subnets": ["b784c464-9425-4f0d-a2b7-f76d79ec6b89"], "name": "default", "admin_state_up": true, "tenant_id": "abcdefghijklmnopqrstuvwxyz123456", "id": "d2b30ddd-b397-4aef-ac50-3bf9ad83d3c7", "shared": false}]}HTTP/1.1 201 CREATED
+Content-Type: application/json
+Content-Length: 418
+Date: Tue, 21 Apr 2020 15:34:08 GMT
+
+{"port": {"admin_state_up": true, "device_id": "257614cc-e178-4c92-9c61-3b28d40eca44", "device_owner": "", "fixed_ips": [{"ip_address": "192.168.100.4", "subnet_id": "b784c464-9425-4f0d-a2b7-f76d79ec6b89"}], "id": "0a20b7e1-fa3e-409f-9cea-f7f7c84aaf8c", "mac_address": null, "name": "vdu-eth0", "network_id": "d2b30ddd-b397-4aef-ac50-3bf9ad83d3c7", "status": "ACTIVE", "tenant_id": "abcdefghijklmnopqrstuvwxyz123456"}}HTTP/1.1 200 OK
+Content-Type: application/json
+Content-Length: 244
+Date: Tue, 21 Apr 2020 15:34:15 GMT
+
+{"networks": [{"status": "ACTIVE", "subnets": ["b784c464-9425-4f0d-a2b7-f76d79ec6b89"], "name": "default", "admin_state_up": true, "tenant_id": "abcdefghijklmnopqrstuvwxyz123456", "id": "d2b30ddd-b397-4aef-ac50-3bf9ad83d3c7", "shared": false}]}HTTP/1.1 200 OK
+Content-Type: application/json
+Content-Length: 432
+Date: Tue, 21 Apr 2020 15:34:15 GMT
+
+{"subnet": {"name": "default-sub", "network_id": "d2b30ddd-b397-4aef-ac50-3bf9ad83d3c7", "tenant_id": "abcdefghijklmnopqrstuvwxyz123456", "created_at": null, "dns_nameservers": [], "allocation_pools": [{"start": "192.168.100.0", "end": "192.168.100.255"}], "host_routers": [], "gateway_ip": null, "ip_version": "4", "cidr": "192.168.100.0/24", "updated_at": null, "id": "b784c464-9425-4f0d-a2b7-f76d79ec6b89", "enable_dhcp": false}}HTTP/1.1 200 OK
+Content-Type: application/json
+Content-Length: 421
+Date: Tue, 21 Apr 2020 15:34:15 GMT
+
+{"ports": [{"admin_state_up": true, "device_id": "257614cc-e178-4c92-9c61-3b28d40eca44", "device_owner": "", "fixed_ips": [{"ip_address": "192.168.100.4", "subnet_id": "b784c464-9425-4f0d-a2b7-f76d79ec6b89"}], "id": "0a20b7e1-fa3e-409f-9cea-f7f7c84aaf8c", "mac_address": null, "name": "vdu-eth0", "network_id": "d2b30ddd-b397-4aef-ac50-3bf9ad83d3c7", "status": "ACTIVE", "tenant_id": "abcdefghijklmnopqrstuvwxyz123456"}]}HTTP/1.1 200 OK
+Content-Type: application/json
+Content-Length: 241
+Date: Tue, 21 Apr 2020 15:34:15 GMT
+
+{"network": {"status": "ACTIVE", "subnets": ["b784c464-9425-4f0d-a2b7-f76d79ec6b89"], "name": "default", "admin_state_up": true, "tenant_id": "abcdefghijklmnopqrstuvwxyz123456", "id": "d2b30ddd-b397-4aef-ac50-3bf9ad83d3c7", "shared": false}}HTTP/1.1 200 OK
+Content-Type: application/json
+Content-Length: 58
+Date: Tue, 21 Apr 2020 15:34:15 GMT
+
+{"floatingips": [{"floating_ip_address": "10.10.193.37"}]}

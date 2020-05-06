@@ -10,14 +10,15 @@ import json
 import statistics
 import csv
 
-_PATH = "/home/ashwin/Documents/WHB-Hadi/ScalabilityPaper/Data/rpm-instances-1"
-_OUT_PATH = "/home/ashwin/Documents/WHB-Hadi/ScalabilityPaper/Data/rpm-instances-1/Final"
+_PATH = "/home/ashwin/Documents/WHB-Hadi/ScalabilityPaper/Data/FINAL/OSM/case1/Data"
+_OUT_PATH = "/home/ashwin/Documents/WHB-Hadi/ScalabilityPaper/Data/FINAL/OSM/case1/Final"
 
 
-RPM_SYSTEM = False
 RPM = False
 DOCKERS = False
 CASES = False
+
+RPM_SYSTEM = True
 INIT_TIMES = True
 
 SKIP_COMPLETE = False
@@ -415,7 +416,7 @@ if RPM_SYSTEM:
                 writer.writerow([_caseName, _meanofMeans, _stddevofMeans, _meanofMax, _stddevofMax, _meanofMin, _stddevofMin])
 
     with open('{outpath}/Lost-Requests-Final-Results.csv'.format(outpath=_OUT_PATH), mode='w') as system_cpu_resultsfile:
-        fieldnames = ['RPM', 'Lost' ]
+        fieldnames = ['RPM', 'Lost', 'Lost SD' ]
         writer = csv.writer(system_cpu_resultsfile, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
         writer.writerow(fieldnames)
         for _case, _caseV in result_sys_cpu_dict.items():

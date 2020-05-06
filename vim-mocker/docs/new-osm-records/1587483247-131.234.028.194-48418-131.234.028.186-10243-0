@@ -1,0 +1,9 @@
+GET /v2/images?limit=20 HTTP/1.1
+Host: thesismano2.cs.upb.de:10243
+User-Agent: python-glanceclient
+Accept-Encoding: gzip, deflate
+Accept: */*
+Connection: keep-alive
+Content-Type: application/octet-stream
+X-Auth-Token: fc394f2ab2df4114bde39905f800dc57
+

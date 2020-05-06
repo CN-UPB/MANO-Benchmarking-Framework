@@ -1,0 +1,20 @@
+POST /v2.1/fc394f2ab2df4114bde39905f800dc57/servers HTTP/1.1
+Host: thesismano2.cs.upb.de:9775
+User-Agent: python-novaclient
+Accept-Encoding: gzip, deflate
+Accept: application/json
+Connection: keep-alive
+X-OpenStack-Nova-API-Version: 2.1
+X-Auth-Token: fc394f2ab2df4114bde39905f800dc57
+Content-Type: application/json
+Content-Length: 241
+
+{"server": {"name": "as-1-stress-VM-1", "imageRef": "95bd65e3-3048-428f-8a9c-4705a67a55e9", "flavorRef": "72936ae1-56e0-44f0-a689-58080967dc6c", "min_count": 1, "max_count": 1, "networks": [{"port": "0a20b7e1-fa3e-409f-9cea-f7f7c84aaf8c"}]}}GET /v2.1/fc394f2ab2df4114bde39905f800dc57/servers/detail HTTP/1.1
+Host: thesismano2.cs.upb.de:9775
+User-Agent: python-novaclient
+Accept-Encoding: gzip, deflate
+Accept: application/json
+Connection: keep-alive
+X-OpenStack-Nova-API-Version: 2.1
+X-Auth-Token: fc394f2ab2df4114bde39905f800dc57
+

@@ -1,0 +1,9 @@
+GET /v2.1/fc394f2ab2df4114bde39905f800dc57/flavors/detail HTTP/1.1
+Host: thesismano2.cs.upb.de:9775
+User-Agent: python-novaclient
+Accept-Encoding: gzip, deflate
+Accept: application/json
+Connection: keep-alive
+X-OpenStack-Nova-API-Version: 2.1
+X-Auth-Token: fc394f2ab2df4114bde39905f800dc57
+
