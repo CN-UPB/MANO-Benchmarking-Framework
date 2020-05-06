@@ -11,34 +11,70 @@ MANO Benchmarking Framework (MBF) is a result of a small script that was used to
 
 # Steps to run an experiment
 
-    # The following commands are to be run on the machine where the MANO is installed (Remote experiment support to be added soon)
+## 1. Setup Pishahang and supporting software
 
-    # Clone the repository
-    git clone git@github.com:CN-UPB/pg-scrambLe.git --branch scalability-experiments experiments
+1. Setup regular pishahang installation
 
-    # cd into the right folder
-    cd experiments/experiment-runner
+2. Install netdata on the same vm using the following commands
 
-    # Delete any previous builds and run the following commands
-    sudo docker stop experiment-runner
-    sudo docker rm experiment-runner
-    sudo docker build -t experiment-runner -f Dockerfile-dev .
+        sudo su
 
-    # Run docker container and attach docker.sock as volume, so that we have access to docker API
-    sudo docker run -d --name experiment-runner -p 9000:9000 -v $(pwd):/app \
-        -v /var/run/docker.sock:/container/path/docker.sock \
-        experiment-runner
+        apt-get install zlib1g-dev uuid-dev libuv1-dev liblz4-dev libjudy-dev libssl-dev libmnl-dev gcc make git autoconf autoconf-archive autogen automake pkg-config curl python
 
-    # get a bash session inside the container
-    sudo docker exec -it experiment-runner bash
+        git clone --branch v1.19.0 https://github.com/netdata/netdata.git --depth=100
+        cd netdata
 
-    # Background Run the respective experiment file
-    nohup python -u ./run-emu-experiment-osm.py > emu-experiment.log &
-    nohup python -u ./run-emu-experiment-sonata.py > emu-experiment.log &
-    nohup python -u ./run-experiment-osm.py > experiment.log &
-    nohup python -u ./run-experiment-sonata.py > experiment.log &
-    nohup python -u ./run-experiment-sonata-k8-scaling.py > 10xpc-experiment.log &
+        ./netdata-installer.sh
 
+        # use browser and see <IP>:19999 to verify
+                
+
+3. Install supporting flask server to fetch metrics like deployment times and cleanup operations
+
+        git clone https://github.com/CN-UPB/MANO-Benchmarking-Framework.git
+        cd MANO-Benchmarking-Framework/experiment-runner/
+
+        # Run flask server
+        ./start_flask_helper_server.sh
+
+
+## 2. Start vim-mocker on another machine and add vim to pishahang
+
+Detailed info [here](MANO-Benchmarking-Framework/vim-mocker/README.md)
+
+
+        git clone https://github.com/CN-UPB/MANO-Benchmarking-Framework.git
+        cd MANO-Benchmarking-Framework
+        cd vim-mocker
+    
+        ./build_run_docker_pishahang_os_remote.sh
+
+
+## 3. Start experiment runner
+
+        cd MANO-Benchmarking-Framework/experiment-runner
+
+        # build experiment container
+        ./build_experiment_runner.sh
+
+        # run experiment container
+        ./run_experiment_runner.sh
+
+
+Once terminal is open inside the container, run one of the following experiment
+
+        python run-emu-experiment-pishahang.py
+        python run-emu-experiment-osm.py
+
+        # or in background to avoid process from quitting after disconnection
+
+        nohup python -u ./run-emu-experiment-sonata.py > emu-experiment.log &
+
+## 4. Results
+
++ Data is stored in the EXP_RESULTS folder with the given name
+
++ Parsing and plotting are done with the files `csv-result-parser-rpm-v2.py` and `plot-graphs-v2.py`
 
 # Additional commands
 
@@ -46,10 +82,6 @@ MANO Benchmarking Framework (MBF) is a result of a small script that was used to
     sudo docker logs experiment-runner -f
 
     # This is for testing scaling plugin
-    sudo docker run -d --name experiment-runner -p 9000:9000 -v $(pwd):/app \
-        -v /var/run/docker.sock:/container/path/docker.sock \
-        -v /home/sonatamano/pg-scrambLe/phishahang/Pishahang-master/son-mano-framework/plugins/son-mano-scaling/debugnorm:/debugscale \
-        experiment-runner
 
 # Add vim-mocker vims
 

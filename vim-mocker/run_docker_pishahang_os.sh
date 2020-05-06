@@ -12,4 +12,5 @@ sudo docker run -d --name vim-mocker \
     -p 8774:8774 \
     -p 9292:9292 \
     -v $dir:/app \
+    --env MANO=pishahang \
     vim-mocker
