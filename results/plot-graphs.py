@@ -65,13 +65,8 @@ PISH_MEM_RPM_DOC_GRAPH = False
 RPM_END_TO_END_TIMES = False
 RPM_INDIVIDUAL_TIMES = False
 
-<<<<<<< HEAD
-OSM_vs_PISH = True
-
-=======
 INPUT_PATH = "/home/ashwin/Documents/MSc/pg-scramble/MANO-Benchmarking-Framework/results/Common Results/vim-mocker/Final"
 OUTPUT_PATH = "/home/ashwin/Documents/MSc/pg-scramble/MANO-Benchmarking-Framework/results/Common Results/Graphs"
->>>>>>> d7b8e00ecd710d3331366b8b7676c86a0884bad5
 
 # --------------
 

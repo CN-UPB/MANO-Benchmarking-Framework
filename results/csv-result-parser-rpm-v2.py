@@ -10,16 +10,16 @@ import json
 import statistics
 import csv
 
-_PATH = "/home/ashwin/Documents/WHB-Hadi/ScalabilityPaper/Data/FINAL/OSM/case1/Data"
-_OUT_PATH = "/home/ashwin/Documents/WHB-Hadi/ScalabilityPaper/Data/FINAL/OSM/case1/Final"
+_PATH = "/home/ashwin/Documents/WHB-Hadi/ScalabilityPaper/Data/FINAL/OSM/containers/200/1589556618-cirros_case1_200_rpm200_Run1-191"
+_OUT_PATH = "/home/ashwin/Documents/WHB-Hadi/ScalabilityPaper/Data/FINAL/OSM/containers/Final"
 
 
 RPM = False
 DOCKERS = False
-CASES = False
+CASES = True
 
-RPM_SYSTEM = True
-INIT_TIMES = True
+RPM_SYSTEM = False
+INIT_TIMES = False
 
 SKIP_COMPLETE = False
 

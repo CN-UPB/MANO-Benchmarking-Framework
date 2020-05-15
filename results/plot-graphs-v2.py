@@ -23,12 +23,13 @@ start_time = time.time()
 
 # Scalability Paper
 
-RPM_INSTANCES_SYSTEM_CPU_BAR = True
-RPM_INDIVIDUAL_TIMES = True
-MISSED_REQUESTS_BAR = True
+RPM_INSTANCES_SYSTEM_CPU_BAR = False
+RPM_INDIVIDUAL_TIMES = False
+MISSED_REQUESTS_BAR = False
+CONTAINERS_HORIZONTAL_BAR = True
 
-INPUT_PATH = "/home/ashwin/Documents/WHB-Hadi/ScalabilityPaper/Data/FINAL/OSM/case1/Final"
-OUTPUT_PATH = "/home/ashwin/Documents/WHB-Hadi/ScalabilityPaper/Data/FINAL/OSM/case1/Graphs"
+INPUT_PATH = "/home/ashwin/Documents/WHB-Hadi/ScalabilityPaper/Data/FINAL/OSM/containers/Final"
+OUTPUT_PATH = "/home/ashwin/Documents/WHB-Hadi/ScalabilityPaper/Data/FINAL/OSM/containers/Graphs"
 
 # --------------
 
@@ -142,6 +143,63 @@ if MISSED_REQUESTS_BAR:
         plt.savefig('{}/{}.png'.format(OUTPUT_PATH, "OSM - RPM vs Missed Requests") ,bbox_inches='tight',dpi=100)
 
 
+##############################################
+# Container CPU and MEM horizontal bars
+##############################################
+
+if CONTAINERS_HORIZONTAL_BAR:
+    docker_cpu_file = os.path.join(INPUT_PATH, 'cirros_case1_200_rpm200-CPU-Final-Results.csv')
+    docker_mem_file = os.path.join(INPUT_PATH, 'cirros_case1_200_rpm200-MEM-Final-Results.csv')
+
+    # FOR CPU
+    df = pd.read_csv(docker_cpu_file)
+    df = df.sort_values('CPU Mean', ascending=True)
+
+    sns.set(style='whitegrid', palette='muted', font_scale=1.5)
+    fig, ax = plt.subplots(figsize=(35,20))
+    plt.title('Container v/s CPU', fontsize=30)
+
+    plt.xlabel('CPU (%)', fontsize=25)
+    plt.ylabel('Containers', fontsize=25)
+
+    index = np.arange(len(df['CPU Mean']))
+    width = 0.30 
+
+    # ax.bar(index-width, df['mean'], yerr=df['std']['mean'], label = "mean", alpha=0.5, capsize=10)
+    ax.barh(index-width, df['CPU Min'], height=width, label = "min", alpha=0.5, capsize=10, color = 'g')
+    ax.barh(index, df['CPU Mean'], height=width, label = "mean", alpha=0.5, capsize=10, color = 'b')
+    ax.barh(index+width, df['CPU Max'], height=width,  label = "max", alpha=0.5, capsize=10, color = 'r')
+    # Error 
+    # ax.bar(index-width, df['CPU Min'],  yerr=df['CPU Min SD'], width=width, label = "min", alpha=0.5, capsize=10, color = 'g')
+    # ax.bar(index, df['CPU Mean'], yerr=df['CPU SD'], width=width, label = "mean", alpha=0.5, capsize=10, color = 'b')
+    # ax.bar(index+width, df['CPU Max'], yerr=df['CPU Max SD'], width=width,  label = "max", alpha=0.5, capsize=10, color = 'r')
+    plt.yticks(index, df['Docker Container'])
+    plt.legend(loc='center left', bbox_to_anchor=(1, 0.5))
+    plt.savefig('{}/{}.png'.format(OUTPUT_PATH, "Pishahang - Containers vs CPU") ,bbox_inches='tight',dpi=100)
+
+    # For MEM
+
+    df = pd.read_csv(docker_mem_file)
+    df = df.sort_values('MEM Mean', ascending=True)
+
+    sns.set(style='whitegrid', palette='muted', font_scale=1.5)
+    fig, ax = plt.subplots(figsize=(35,20))
+    plt.title('Container v/s MEM', fontsize=30)
+
+    plt.xlabel('MEM (MB)', fontsize=25)
+    plt.ylabel('Containers', fontsize=25)
+
+    index = np.arange(len(df['MEM Mean']))
+    width = 0.30 
+
+    # ax.bar(index-width, df['mean'], yerr=df['std']['mean'], label = "mean", alpha=0.5, capsize=10)
+    ax.barh(index-width, df['MEM Min'], height=width, label = "min", alpha=0.5, capsize=10, color = 'g')
+    ax.barh(index, df['MEM Mean'], height=width, label = "mean", alpha=0.5, capsize=10, color = 'b')
+    ax.barh(index+width, df['MEM Max'], height=width,  label = "max", alpha=0.5, capsize=10, color = 'r')
+
+    plt.yticks(index, df['Docker Container'])
+    plt.legend(loc='center left', bbox_to_anchor=(1, 0.5))
+    plt.savefig('{}/{}.png'.format(OUTPUT_PATH, "Pishahang - Containers vs MEM") ,bbox_inches='tight',dpi=100)
 
 #########################################
 #########################################
