@@ -31,19 +31,19 @@ PASSWORD = "1234"
 HOST_URL = "131.234.28.240"
 APP_SERVER_PORT = 5055
 
-EXPERIMENT_REFERENCE = "EXPERIMENT_FIRST_TRIAL"
+EXPERIMENT_REFERENCE = "EXPERIMENT_FIRST_TRIAL-2"
 IMAGES = ["cirros"]
 
-INSTANCES = list(range(10, 400, 10))
-# INSTANCES = [1]
+# INSTANCES = list(range(10, 400, 10))
+INSTANCES = [100, 200]
 CASES = [1]
-RUNS = 1
+RUNS = 2
 
 # REQUESTS_PER_MINUTE = list(range(800, 1401, 200))
 # REQUESTS_PER_MINUTE = [100]
 
 # Restarting pishahang doesnt work with default installation!
-RESTART_PISHAHANG = False
+RESTART_PISHAHANG = True
 RESTART_MOCKER = False
 
 IS_EXPERIMENT_VNF_INSTANCES_BASED = False
@@ -116,6 +116,16 @@ def get_pishahang_init_times(host=HOST_URL, port=APP_SERVER_PORT):
     except Exception as e:
         print("Get status Pishahang")
 
+def get_pishahang_docker_list(host=HOST_URL, port=APP_SERVER_PORT):
+    _base_path = 'http://{0}:{1}/get_docker_names'.format(host, port)
+
+    try:
+        r = requests.get(_base_path, verify=False)
+        print(r.text)
+        return json.loads(r.text)
+    except Exception as e:
+        print("get_docker_names")
+
 def sonata_cleanup():
 
     print("Sonata NSD/VNFD Cleanup")
@@ -153,7 +163,6 @@ def sonata_cleanup():
     vnf_list = json.loads(vnf_list["data"])
 
     time.sleep(5)
-
 
 # http://patorjk.com/software/taag/#p=display&h=1&v=1&f=ANSI%20Shadow&t=OSM%20%0AExperiment
 print("""
@@ -480,13 +489,13 @@ for _image in IMAGES:
                         }
                         }
 
-                    # docker_list = {}
-                    # for _container in docker_client.containers.list():        
-                    #     if not _container.attrs["Name"][1:] in DOCKER_EXCLUDE:
-                    #             _charts["{0}-{1}".format(_container.attrs["Name"][1:], "cpu")] = { "url" : "http://{host}:19999/api/v1/data?chart=cgroup_{_name}.cpu&format=csv&after={after}&before={before}&format=csv&group=average&gtime=0&datasource&options=nonzeroseconds".format(host=HOST_URL, after=experiment_timestamps["start_time"], before=experiment_timestamps["end_time"], _name=_container.attrs["Name"][1:])}
-                    #             _charts["{0}-{1}".format(_container.attrs["Name"][1:], "throttle_io")] = { "url" : "http://{host}:19999/api/v1/data?chart=cgroup_{_name}.throttle_io&format=csv&after={after}&before={before}&format=csv&group=average&gtime=0&datasource&options=nonzeroseconds".format(host=HOST_URL, after=experiment_timestamps["start_time"], before=experiment_timestamps["end_time"], _name=_container.attrs["Name"][1:])}
-                    #             _charts["{0}-{1}".format(_container.attrs["Name"][1:], "mem_usage")] = { "url" : "http://{host}:19999/api/v1/data?chart=cgroup_{_name}.mem_usage&format=csv&after={after}&before={before}&format=csv&group=average&gtime=0&datasource&options=nonzeroseconds".format(host=HOST_URL, after=experiment_timestamps["start_time"], before=experiment_timestamps["end_time"], _name=_container.attrs["Name"][1:])}
-                                
+                    docker_list = get_pishahang_docker_list()
+
+                    for _container, v in docker_list.items():
+                        if not _container in DOCKER_EXCLUDE:
+                                _charts["{0}-{1}".format(_container, "cpu")] = { "url" : "http://{host}:19999/api/v1/data?chart=cgroup_{_name}.cpu&format=csv&after={after}&before={before}&format=csv&group=average&gtime=0&datasource&options=nonzeroseconds".format(host=HOST_URL, after=experiment_timestamps["start_time"], before=experiment_timestamps["end_time"], _name=_container)}
+                                _charts["{0}-{1}".format(_container, "throttle_io")] = { "url" : "http://{host}:19999/api/v1/data?chart=cgroup_{_name}.throttle_io&format=csv&after={after}&before={before}&format=csv&group=average&gtime=0&datasource&options=nonzeroseconds".format(host=HOST_URL, after=experiment_timestamps["start_time"], before=experiment_timestamps["end_time"], _name=_container)}
+                                _charts["{0}-{1}".format(_container, "mem_usage")] = { "url" : "http://{host}:19999/api/v1/data?chart=cgroup_{_name}.mem_usage&format=csv&after={after}&before={before}&format=csv&group=average&gtime=0&datasource&options=nonzeroseconds".format(host=HOST_URL, after=experiment_timestamps["start_time"], before=experiment_timestamps["end_time"], _name=_container)}
                             
                     for _sc, value  in _charts.items():
                         print(_sc)

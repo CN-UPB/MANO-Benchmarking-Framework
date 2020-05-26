@@ -32,7 +32,7 @@ DOCKER_EXCLUDE = ['']
 IDLE_SLEEP = 1
 NS_TERMINATION_SLEEP = 60 * 60 
 INTER_EXPERIMENT_SLEEP = 45
-NO_ACTIVITY_COUNT = 25
+NO_ACTIVITY_COUNT = 10
 # NO_INSTANCES = 1
 
 USERNAME = "admin"
@@ -47,10 +47,10 @@ OS_USERNAME = "demo"
 OS_PASSWORD = "1234"
 OS_PROJECT = "demo"
 
-EXPERIMENT_REFERENCE = "osm-retry-rpm-instances-9"
+EXPERIMENT_REFERENCE = "osm-containers-2"
 IMAGES = ["cirros"]
-INSTANCES = list(range(10, 400, 10))
-# INSTANCES = [1]
+# INSTANCES = list(range(10, 400, 10))
+INSTANCES = [100, 200]
 CASES = [1]
 RUNS = 2
 # REQUESTS_PER_MINUTE = list(range(30, 460, 30))
@@ -213,6 +213,16 @@ def get_individual_times(individual_init_times, folder_path, init_time, _ns_list
     
 
     return
+
+def get_osm_docker_list(host=HOST_URL, port=APP_SERVER_PORT):
+    _base_path = 'http://{0}:{1}/get_docker_names'.format(host, port)
+
+    try:
+        r = requests.get(_base_path, verify=False)
+        print(r.text)
+        return json.loads(r.text)
+    except Exception as e:
+        print("get_docker_names")
 
 osm_nsd = OSMClient.Nsd(HOST_URL)
 osm_nslcm = OSMClient.Nslcm(HOST_URL) 
@@ -499,7 +509,14 @@ for _image in IMAGES:
                     #             _charts["{0}-{1}".format(_container.attrs["Name"][1:], "throttle_io")] = { "url" : "http://{host}:19999/api/v1/data?chart=cgroup_{_name}.throttle_io&format=csv&after={after}&before={before}&format=csv&group=average&gtime=0&datasource&options=nonzeroseconds".format(host=HOST_URL, after=experiment_timestamps["start_time"], before=experiment_timestamps["end_time"], _name=_container.attrs["Name"][1:])}
                     #             _charts["{0}-{1}".format(_container.attrs["Name"][1:], "mem_usage")] = { "url" : "http://{host}:19999/api/v1/data?chart=cgroup_{_name}.mem_usage&format=csv&after={after}&before={before}&format=csv&group=average&gtime=0&datasource&options=nonzeroseconds".format(host=HOST_URL, after=experiment_timestamps["start_time"], before=experiment_timestamps["end_time"], _name=_container.attrs["Name"][1:])}
                                 
-                            
+                    docker_list = get_osm_docker_list()
+
+                    for _container, v in docker_list.items():
+                        if not _container in DOCKER_EXCLUDE:
+                                _charts["{0}-{1}".format(_container, "cpu")] = { "url" : "http://{host}:19999/api/v1/data?chart=cgroup_{_name}.cpu&format=csv&after={after}&before={before}&format=csv&group=average&gtime=0&datasource&options=nonzeroseconds".format(host=HOST_URL, after=experiment_timestamps["start_time"], before=experiment_timestamps["end_time"], _name=_container)}
+                                _charts["{0}-{1}".format(_container, "throttle_io")] = { "url" : "http://{host}:19999/api/v1/data?chart=cgroup_{_name}.throttle_io&format=csv&after={after}&before={before}&format=csv&group=average&gtime=0&datasource&options=nonzeroseconds".format(host=HOST_URL, after=experiment_timestamps["start_time"], before=experiment_timestamps["end_time"], _name=_container)}
+                                _charts["{0}-{1}".format(_container, "mem_usage")] = { "url" : "http://{host}:19999/api/v1/data?chart=cgroup_{_name}.mem_usage&format=csv&after={after}&before={before}&format=csv&group=average&gtime=0&datasource&options=nonzeroseconds".format(host=HOST_URL, after=experiment_timestamps["start_time"], before=experiment_timestamps["end_time"], _name=_container)}
+                                                        
                     for _sc, value  in _charts.items():
                         print(_sc)
                         try:
