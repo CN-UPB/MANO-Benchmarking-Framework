@@ -1,0 +1,72 @@
+---
+descriptor_version: vnfd-schema-01
+description: Trasncoder VNF with multiple versions
+name: transcoder-image-1-mv
+vendor: ashwin
+version: '1.0'
+author: ashwin
+
+transcoder-image-1-vm:
+- id: transcoder-image-1
+  description: transcoder-image-1
+  vm_image: "transcoder-image-1"
+  vm_image_format: qcow2
+  resource_requirements:
+    cpu:
+      vcpus: 8
+    memory:
+      size: 16
+      size_unit: GB
+    storage:
+      size: 10
+      size_unit: GB
+  connection_points:
+  - id: eth0
+    interface: ipv4
+    type: external
+  monitoring_parameters:
+    - net
+
+transcoder-image-1-gpu:
+- id: "transcoder-image-1"
+  name: "transcoder-image-1"
+  service_image: "pgscramble/transcoder-cn:1.5.short"
+  service_type: "LoadBalancer"
+  service_ports:
+  - name: "http"
+    protocol: "TCP"
+    port: 80
+    target_port: 80
+  environment:
+    - name: runtime
+      value: nvidia
+  resource_requirements:
+    memory:
+      size: 4096
+      size_unit: "Mi"
+    gpu:
+      gpus: 1
+      type: "nvidia.com/gpu"
+  monitoring_parameters:
+    - net
+
+transcoder-image-1-con:
+- id: "transcoder-image-1"
+  name: "transcoder-image-1"
+  service_image: "pgscramble/transcoder-cpu-cn:1.5.short"
+  service_type: "LoadBalancer"
+  service_ports:
+  - name: "http"
+    protocol: "TCP"
+    port: 80
+    target_port: 80
+  resource_requirements:
+    memory:
+      size: 4096
+      size_unit: "Mi"
+  monitoring_parameters:
+    - net
+
+
+# Image name on openstack should be "ashwin_transcoder-image-1-mv_1.0_transcoder-image-1"
+# vlc --loop --qt-notification 0 --no-qt-error-dialogs http://vimdemo2.cs.upb.de/data/stream_0.m3u8
