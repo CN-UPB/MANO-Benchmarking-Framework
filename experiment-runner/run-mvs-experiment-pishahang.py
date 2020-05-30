@@ -45,16 +45,16 @@ OS_PROJECT = "demo"
 USERNAME = "pishahang"
 PASSWORD = "1234"
 
-EXPERIMENT_REFERENCE = "MVS-TF_300-SF_600-Time_3600-runs_3-1"
+EXPERIMENT_REFERENCE = "MVS-Policy-5-25-overnight-ipsec-1"
 
-IMAGES = ["transcoder_mv"]
+IMAGES = ["ipsec_mv"]
 # INSTANCES = list(range(10, 400, 10))
-INSTANCES = [1]
-RUNS = 3
+INSTANCES = [1, 5, 10, 15, 20, 25]
+RUNS = 4
 
 
-EXPERIMENT_TIME = 3600
-SWITCH_FREQUENCY = 600
+EXPERIMENT_TIME = 900
+SWITCH_FREQUENCY = 120
 
 DESCRIPTORS_PATH = "/app/Pishahang/descriptors/multiversion"
 
@@ -258,6 +258,7 @@ for _image in IMAGES:
         for _run in range(1, RUNS+1):
             try:
                 print(pishahang_pish.delete_pd_descriptors_pdpkgid(_image))
+                set_remote_version(INIT_VERSION)
                 restart_pishahang()
                 delete_replication_controller()
                 delete_pod()
@@ -267,7 +268,7 @@ for _image in IMAGES:
                 experiment_timestamps = {}
                 experiment_timestamps["start_time"] = int(time.time())
 
-                nit = "./EXP_RESULTS/{0}/run_{1}".format(EXPERIMENT_REFERENCE, _run)
+                nit = "./EXP_RESULTS/{0}/{1}/run_{2}".format(EXPERIMENT_REFERENCE, _instances, _run)
 
                 createFolder("{nit}/".format(nit=nit))
 
@@ -308,51 +309,13 @@ for _image in IMAGES:
                         continue
 
                 if _ns:
-                    # calling the service instantiation API 
-                    instantiation = json.loads(pishahang_nslcm.post_ns_instances_nsinstanceid_instantiate(
-                                            token=token["token"]["access_token"], nsInstanceId=_ns))
-                    instantiation = json.loads(instantiation["data"])
-                    print ("Service instantiation request has been sent!")
-
-
-                    # extracting the request id
-                    _rq_id = instantiation["id"]
-
-                    # checking the service instantiation status
-                    counter, timeout, sleep_interval = 0, 60, 2
-
-                    while counter < timeout:
-
-                        #calling the request API
-                        request = json.loads(pishahang_nslcm.get_ns_instances_request_status(
-                                            token=token["token"]["access_token"], nsInstanceId=_rq_id))
-                        request = json.loads(request["data"])
-
-                        # checking if the call was successful
-                        try:
-                            request_status = request["status"]
-                        except:
-                            print ("Error in request status chaeking!")
-                            break
-
-                        # checking if the instantiation was successful
-                        if request["status"] == "ERROR":
-                            print ("Error in service instantiation")
-                            break
-                        elif request["status"] == "READY":
-                            print (request["status"] + " : Service has been successfully instantiated!")
-                            break
-
-                        # printing the current status and sleep
-                        print (request["status"] + "...")
-                        time.sleep(sleep_interval)
-                        counter += sleep_interval
-
-                    if counter > timeout:
-                        print ("Error: service instantiation remained incomplete")
-                else:
-                    print("Could not upload and instantiate NS")
-
+                    # calling the service instantiation API
+                    for _ins in range(_instances):
+                        instantiation = json.loads(pishahang_nslcm.post_ns_instances_nsinstanceid_instantiate(
+                                                token=token["token"]["access_token"], nsInstanceId=_ns))
+                        instantiation = json.loads(instantiation["data"])
+                        print ("Service instantiation request has been sent! - ", str(_ins))
+                        time.sleep(5)
 
                 # switch here
                 _EXP_COUNTER = 0
